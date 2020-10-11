@@ -1,0 +1,15 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="ForegroundColor">#D2FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="FadeForegroundColor">#AAFFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="MouseOverButtonColor">#30FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="BackgroundColor">#FF17212B</SolidColorBrush>
+    <SolidColorBrush x:Key="DarkBackgroundColor">#FF0D1319</SolidColorBrush>
+    <SolidColorBrush x:Key="ErrorColor">#963333</SolidColorBrush>
+    <ImageSource x:Key="Icon">
+        /KafedraApp;component/Resources/Images/icon_dark.png
+    </ImageSource>
+
+</ResourceDictionary>

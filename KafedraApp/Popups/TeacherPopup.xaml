@@ -1,0 +1,271 @@
+﻿<Grid
+    x:Class="KafedraApp.Popups.TeacherPopup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
+    xmlns:local="clr-namespace:KafedraApp.Popups"
+    xmlns:models="clr-namespace:KafedraApp.Enum"
+    xmlns:controls="clr-namespace:KafedraApp.Controls"
+    xmlns:converters="clr-namespace:KafedraApp.Converters"
+    mc:Ignorable="d"
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"
+    Grid.ColumnSpan="100"
+    Grid.RowSpan="100"
+    Panel.ZIndex="100"
+    DataContext="{Binding ElementName=ThisTeacherPopup}"
+    Name="ThisTeacherPopup">
+
+    <Grid.Resources>
+
+        <converters:BoolToStringConverter x:Key="BoolToString"/>
+
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+
+        <ExponentialEase x:Key="PushAnimationEase" EasingMode="EaseOut"/>
+        <ExponentialEase x:Key="PopAnimationEase" EasingMode="EaseIn"/>
+
+        <Storyboard x:Key="PushAnimation">
+            <DoubleAnimation
+                Storyboard.TargetName="BackgroundRectangle"
+                Storyboard.TargetProperty="Opacity"
+                From="0" To="1" Duration="0:0:0.3"/>
+            <DoubleAnimation
+                Storyboard.TargetName="TeacherFormBox"
+                Storyboard.TargetProperty="Opacity"
+                From="0" To="1" Duration="0:0:0.25"/>
+            <DoubleAnimation
+                Storyboard.TargetName="ScaleTransform"
+                Storyboard.TargetProperty="ScaleX"
+                From="0.5" To="1" Duration="0:0:0.25"
+                EasingFunction="{StaticResource PushAnimationEase}"/>
+            <DoubleAnimation
+                Storyboard.TargetName="ScaleTransform"
+                Storyboard.TargetProperty="ScaleY"
+                From="0.5" To="1" Duration="0:0:0.25"
+                EasingFunction="{StaticResource PushAnimationEase}"/>
+        </Storyboard>
+
+        <Storyboard x:Key="PopAnimation">
+            <DoubleAnimation
+                Storyboard.TargetName="BackgroundRectangle"
+                Storyboard.TargetProperty="Opacity"
+                From="1"  To="0" Duration="0:0:0.25"/>
+            <DoubleAnimation
+                Storyboard.TargetName="TeacherFormBox"
+                Storyboard.TargetProperty="Opacity"
+                From="1"  To="0" Duration="0:0:0.25"/>
+            <DoubleAnimation
+                Storyboard.TargetName="ScaleTransform"
+                Storyboard.TargetProperty="ScaleX"
+                From="1"  To="0.5" Duration="0:0:0.25"
+                EasingFunction="{StaticResource PopAnimationEase}"/>
+            <DoubleAnimation
+                Storyboard.TargetName="ScaleTransform"
+                Storyboard.TargetProperty="ScaleY"
+                From="1"  To="0.5" Duration="0:0:0.25"
+                EasingFunction="{StaticResource PopAnimationEase}"/>
+        </Storyboard>
+
+    </Grid.Resources>
+
+    <Grid
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+
+        <Rectangle
+            Name="BackgroundRectangle"
+            Fill="#90000000"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch">
+            <Rectangle.InputBindings>
+                <MouseBinding
+                    Gesture="LeftClick"
+                    Command="{Binding SetResultCommand}"/>
+            </Rectangle.InputBindings>
+        </Rectangle>
+
+        <Grid
+            Name="TeacherFormBox"
+            Width="600"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Background="{DynamicResource BackgroundColor}"
+            ClipToBounds="True">
+
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="RenderTransformOrigin" Value="0.5, 0.5"/>
+                </Style>
+            </Grid.Style>
+
+            <Grid.RenderTransform>
+                <ScaleTransform x:Name="ScaleTransform"/>
+            </Grid.RenderTransform>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Grid.OpacityMask>
+                <VisualBrush Visual="{Binding ElementName=GridOpacityMask}"/>
+            </Grid.OpacityMask>
+
+            <Border
+                Name="GridOpacityMask"
+                Background="{DynamicResource BackgroundColor}"
+                CornerRadius="10"
+                Grid.RowSpan="3"/>
+
+            <StackPanel
+                HorizontalAlignment="Center"
+                Orientation="Horizontal"
+                Margin="40,10">
+                <Label
+                    Content="{Binding IsEditMode,
+                                      Converter={StaticResource BoolToString},
+                                      ConverterParameter='&#xf4ff;|&#xf234;'}"
+                    VerticalAlignment="Center"
+                    FontSize="24"
+                    Margin="0,0,10,0"
+                    Foreground="{DynamicResource ForegroundColor}"
+                    FontFamily="{StaticResource FontAwesome}"/>
+                <Label
+                    Content="{Binding IsEditMode,
+                                      Converter={StaticResource BoolToString},
+                                      ConverterParameter='Редагувати викладача|Додати викладача'}"
+                    Foreground="{DynamicResource ForegroundColor}"
+                    FontSize="26"/>
+            </StackPanel>
+
+            <Grid
+                Grid.Row="1"
+                Margin="20,5"
+                DataContext="{Binding Teacher}">
+                <Grid.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
+                        <Setter Property="FontSize" Value="20"/>
+                    </Style>
+                    <ObjectDataProvider
+                        x:Key="DataFromEnum"
+                        MethodName="GetValues"
+                        ObjectType="{x:Type System:Enum}">
+                        <ObjectDataProvider.MethodParameters>
+                            <x:Type TypeName="models:AcademicStatuses"/>
+                        </ObjectDataProvider.MethodParameters>
+                    </ObjectDataProvider>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="170"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Row="0"
+                    Content="Прізвище:"
+                    VerticalContentAlignment="Center"/>
+                <TextBox
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="{Binding LastName}"
+                    Margin="5"/>
+                <Label
+                    Grid.Row="1"
+                    Content="Ім'я:"
+                    VerticalContentAlignment="Center"/>
+                <TextBox
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="{Binding FirstName}"
+                    Margin="5"/>
+                <Label
+                    Grid.Row="2"
+                    Content="По батькові:"
+                    VerticalContentAlignment="Center"/>
+                <TextBox
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Text="{Binding MiddleName}"
+                    Margin="5"/>
+                <Label
+                    Grid.Row="3"
+                    Content="Учений ступінь:"
+                    VerticalContentAlignment="Center"/>
+                <ComboBox
+                    Grid.Row="3"
+                    Grid.Column="1"
+                    SelectedItem="{Binding AcademicStatus}"
+                    ItemsSource="{Binding Source={StaticResource DataFromEnum}}"
+                    Margin="5"/>
+                <Label
+                    Grid.Row="4"
+                    Content="Ставка:"
+                    VerticalContentAlignment="Center"/>
+                <TextBox
+                    Grid.Row="4"
+                    Grid.Column="1"
+                    Text="{Binding DataContext.RateStr, ElementName=ThisTeacherPopup}"
+                    Margin="5"/>
+            </Grid>
+
+            <Label
+                Grid.Row="2"
+                Content="{Binding Error}"
+                Foreground="{DynamicResource ErrorColor}"
+                FontSize="18"
+                HorizontalAlignment="Center"/>
+
+            <StackPanel
+                Grid.Row="3"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                Margin="0,10,0,0">
+                <Border CornerRadius="10">
+                    <controls:IconButton
+                        Icon="&#xf00c;"
+                        MinWidth="200"
+                        Height="45"
+                        Text="{Binding IsEditMode,
+                                       Converter={StaticResource BoolToString},
+                                       ConverterParameter='Редагувати|Додати'}"
+                        Margin="10"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding SetResultCommand}"
+                        CommandParameter="{Binding Teacher}"
+                        Foreground="{DynamicResource ForegroundColor}"
+                        Style="{StaticResource RoundedButtonStyle}"/>
+                </Border>
+
+                <controls:IconButton
+                    Icon="&#xf00d;"
+                    MinWidth="200"
+                    Height="45"
+                    Text="Скасувати"
+                    Margin="10"
+                    HorizontalContentAlignment="Center"
+                    Command="{Binding SetResultCommand}"
+                    Foreground="{DynamicResource ForegroundColor}"
+                    Style="{StaticResource RoundedButtonStyle}">
+                </controls:IconButton>
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+
+</Grid>

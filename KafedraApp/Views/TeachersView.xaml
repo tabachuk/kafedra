@@ -1,0 +1,204 @@
+﻿<Grid
+    x:Class="KafedraApp.Views.TeachersView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    xmlns:controls="clr-namespace:KafedraApp.Controls"
+    mc:Ignorable="d"
+    Name="ThisTeachersView">
+
+    <Grid.Resources>
+        <Style x:Key="HeaderStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="DataStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style x:Key="SeparatorStyle" TargetType="Rectangle">
+            <Setter Property="Fill" Value="{DynamicResource DarkBackgroundColor}"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="3"/>
+        </Style>
+        <Style x:Key="SubjectsButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="Button">
+            <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+            <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Opacity" Value="0.9"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1"/>
+                    <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="80"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <controls:IconButton
+        ClipToBounds="False"
+        Icon="&#xf234;"
+        Text="Додати"
+        Foreground="{DynamicResource FadeForegroundColor}"
+        HorizontalAlignment="Right"
+        Margin="10,0"
+        Width="200"
+        FontSize="8"
+        Style="{StaticResource RoundedButtonStyle}"
+        Command="{Binding AddTeacherCommand}"/>
+
+    <Grid
+        Grid.Row="1"
+        Background="{DynamicResource FadeForegroundColor}"
+        VerticalAlignment="Top"
+        Margin="0,5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="90"/>
+        </Grid.ColumnDefinitions>
+        <Label
+            Grid.Column="0"
+            Content="Прізвище"
+            Style="{StaticResource HeaderStyle}"/>
+        <Label
+            Grid.Column="1"
+            Content="Ім'я"
+            Style="{StaticResource HeaderStyle}"/>
+        <Label
+            Grid.Column="2"
+            Content="По батькові"
+            Style="{StaticResource HeaderStyle}"/>
+        <Label
+            Grid.Column="3"
+            Content="Учений ступінь"
+            Style="{StaticResource HeaderStyle}"/>
+        <Label
+            Grid.Column="4"
+            Content="Ставка"
+            Style="{StaticResource HeaderStyle}"/>
+        <Label
+            Grid.Column="5"
+            Content="Предмети"
+            Style="{StaticResource HeaderStyle}"/>
+        <Label
+            Grid.Column="6"
+            Content="Дії"
+            Style="{StaticResource HeaderStyle}"/>
+        <ScrollViewer
+            Grid.Row="1"
+            Grid.ColumnSpan="7"
+            Background="{DynamicResource BackgroundColor}"
+            VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Teachers}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="90"/>
+                            </Grid.ColumnDefinitions>
+                            <Rectangle
+                                Grid.ColumnSpan="7"
+                                Style="{StaticResource SeparatorStyle}"/>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Content="{Binding LastName}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Content="{Binding FirstName}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Content="{Binding MiddleName}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="3"
+                                Content="{Binding AcademicStatus}"
+                                Style="{StaticResource DataStyle}"
+                                FontStyle="Italic"/>
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                Content="{Binding Rate}"
+                                Style="{StaticResource DataStyle}"
+                                FontSize="20"/>
+                            <Button
+                                Grid.Row="1"
+                                Grid.Column="5"
+                                Content="0 предметів"
+                                Style="{StaticResource SubjectsButtonStyle}"/>
+                            <StackPanel
+                                Grid.Row="1"
+                                Grid.Column="6"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                                <Button
+                                    Content="&#xf304;"
+                                    FontFamily="{StaticResource FontAwesome}"
+                                    FontSize="20"
+                                    Style="{StaticResource SmallButtonStyle}"
+                                    Foreground="{DynamicResource ForegroundColor}"
+                                    Command="{Binding DataContext.EditTeacherCommand, ElementName=ThisTeachersView}"
+                                    CommandParameter="{Binding }"/>
+                                <Button
+                                    Content="&#xf2ed;"
+                                    Style="{StaticResource SmallButtonStyle}"
+                                    FontFamily="{StaticResource FontAwesome}"
+                                    FontSize="20"
+                                    Foreground="{DynamicResource FadeForegroundColor}"
+                                    Command="{Binding DataContext.DeleteTeacherCommand, ElementName=ThisTeachersView}"
+                                    CommandParameter="{Binding }"
+                                    Margin="15,0,0,0"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+    </Grid>
+
+</Grid>

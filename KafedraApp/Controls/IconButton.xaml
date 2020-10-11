@@ -1,0 +1,52 @@
+﻿<Button
+    x:Class="KafedraApp.Controls.IconButton"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:KafedraApp.Controls"
+    xmlns:converters="clr-namespace:KafedraApp.Converters"
+    mc:Ignorable="d"
+    Height="50"
+    HorizontalContentAlignment="Stretch"
+    Style="{StaticResource DefaultButtonStyle}"
+    Name="ThisIconButton">
+
+    <Button.Resources>
+        <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+    </Button.Resources>
+
+    <Grid
+        Margin="10,0"
+        HorizontalAlignment="{Binding HorizontalContentAlignment}"
+        DataContext="{Binding ElementName=ThisIconButton}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Label
+            Content="{Binding Icon}"
+            FontSize="24"
+            FontFamily="{StaticResource FontAwesome}"
+            Foreground="{Binding Foreground}"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"/>
+        <Label
+            Grid.Column="1"
+            Content="{Binding Text}"
+            FontSize="20"
+            Margin="10,0"
+            VerticalAlignment="Center"
+            VerticalContentAlignment="Center"
+            Foreground="{Binding Foreground}"/>
+        <ToggleButton
+            Grid.Column="2"
+            IsChecked="{Binding IsChecked, Mode=TwoWay}"
+            VerticalAlignment="Center"
+            Visibility="{Binding HasToggle,
+                                 Converter={StaticResource BoolToVisibility}}"
+            Margin="5,0">
+        </ToggleButton>
+    </Grid>
+</Button>

@@ -1,0 +1,183 @@
+﻿<StackPanel
+    x:Class="KafedraApp.Views.SideBarView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    xmlns:viewModels="clr-namespace:KafedraApp.ViewModels"
+    xmlns:controls="clr-namespace:KafedraApp.Controls"
+    xmlns:converters="clr-namespace:KafedraApp.Converters"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    mc:Ignorable="d">
+
+    <StackPanel.Resources>
+        <converters:BoolToStringConverter x:Key="BoolToString"/>
+    </StackPanel.Resources>
+
+    <StackPanel.Style>
+        <Style TargetType="StackPanel">
+            <Style.Resources>
+                <system:Double x:Key="DefaultSideBarWidth">300</system:Double>
+                <system:Double x:Key="MinSideBarWidth">60</system:Double>
+                <Duration x:Key="SideBarAnimationDuration">0:0:0.3</Duration>
+                <ExponentialEase x:Key="AnimationEase" EasingMode="EaseOut"/>
+            </Style.Resources>
+            <Setter Property="Width" Value="{StaticResource DefaultSideBarWidth}"/>
+            <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsSideBarMinimized}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width"
+                                    Duration="{StaticResource SideBarAnimationDuration}"
+                                    To="{StaticResource MinSideBarWidth}"
+                                    EasingFunction="{StaticResource AnimationEase}"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                    <DataTrigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetProperty="Width"
+                                    Duration="{StaticResource SideBarAnimationDuration}"
+                                    To="{StaticResource DefaultSideBarWidth}"
+                                    EasingFunction="{StaticResource AnimationEase}"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.ExitActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </StackPanel.Style>
+
+    <controls:IconButton
+        Icon="{Binding IsSideBarMinimized,
+                       Converter={StaticResource BoolToString},
+                       ConverterParameter=&#xf0c9;|&#xf060;}"
+        Text="Приховати меню"
+        Margin="0,10,0,0"
+        IsChecked="{Binding IsSideBarMinimized, Mode=TwoWay}"
+        Foreground="{DynamicResource FadeForegroundColor}"/>
+    <controls:IconButton
+        Icon="&#xf02d;"
+        Text="Предмети"
+        Command="{Binding SwitchSectionCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Subjects}"
+        Margin="0,30,0,0">
+        <controls:IconButton.Style>
+            <Style
+                TargetType="{x:Type controls:IconButton}"
+                BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding CurrentSection}"
+                        Value="{x:Static viewModels:MainViewModel+Sections.Subjects}">
+                        <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </controls:IconButton.Style>
+    </controls:IconButton>
+    <controls:IconButton
+        Icon="&#xf51c;"
+        Text="Викладачі"
+        Command="{Binding SwitchSectionCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Teachers}">
+        <controls:IconButton.Style>
+            <Style
+                TargetType="{x:Type controls:IconButton}"
+                BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding CurrentSection}"
+                        Value="{x:Static viewModels:MainViewModel+Sections.Teachers}">
+                        <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </controls:IconButton.Style>
+    </controls:IconButton>
+    <controls:IconButton
+        Icon="&#xf19d;"
+        Text="Учені ступені"
+        Command="{Binding SwitchSectionCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Sections.AcademicStatuses}">
+        <controls:IconButton.Style>
+            <Style
+                TargetType="{x:Type controls:IconButton}"
+                BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding CurrentSection}"
+                        Value="{x:Static viewModels:MainViewModel+Sections.AcademicStatuses}">
+                        <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </controls:IconButton.Style>
+    </controls:IconButton>
+    <controls:IconButton
+        Icon="&#xf013;"
+        Text="Налаштування"
+        Command="{Binding SwitchSectionCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Settings}">
+        <controls:IconButton.Style>
+            <Style
+                TargetType="{x:Type controls:IconButton}"
+                BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding CurrentSection}"
+                        Value="{x:Static viewModels:MainViewModel+Sections.Settings}">
+                        <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </controls:IconButton.Style>
+    </controls:IconButton>
+    <controls:IconButton
+        Icon="&#xf128;"
+        Text="Довідка"
+        Command="{Binding SwitchSectionCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Help}">
+        <controls:IconButton.Style>
+            <Style
+                TargetType="{x:Type controls:IconButton}"
+                BasedOn="{StaticResource DefaultButtonStyle}">
+                <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding CurrentSection}"
+                        Value="{x:Static viewModels:MainViewModel+Sections.Help}">
+                        <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="Cursor" Value="Arrow"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </controls:IconButton.Style>
+    </controls:IconButton>
+    <controls:IconButton
+        Icon="&#xf186;"
+        Text="Нічний режим"
+        HasToggle="True"
+        IsChecked="{Binding IsDarkMode, Mode=TwoWay}"
+        Foreground="{DynamicResource FadeForegroundColor}"/>
+
+</StackPanel>
