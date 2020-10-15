@@ -3,7 +3,6 @@ using KafedraApp.Extensions;
 using KafedraApp.Helpers;
 using KafedraApp.Models;
 using KafedraApp.Services;
-using KafedraApp.Services.Contracts;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;

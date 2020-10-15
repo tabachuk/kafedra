@@ -1,11 +1,11 @@
 ﻿using KafedraApp.Attributes;
 using KafedraApp.Extensions;
 using KafedraApp.Models;
-using KafedraApp.Services.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,11 +26,81 @@ namespace KafedraApp.Services
 
 		public ObservableCollection<Teacher> Teachers { get; set; }
 
+		public ObservableCollection<AcademicStatusInfo> AcademicStatuses { get; set; }
+
 		#endregion
 
 		#region Private methods
 
 		private string GetPath<T>(string key) => $@"{ DataFolder }\{ key }.json";
+
+		private T Read<T>(string key = null)
+		{
+			key = key ?? GetKey<T>();
+			var path = GetPath<T>(key);
+
+			if (File.Exists(path))
+				return File.ReadAllText(path).FromJson<T>();
+
+			Console.WriteLine($"Can't read '{ key }'.");
+			return default;
+		}
+
+		private async Task<T> ReadAsync<T>(string key = null)
+		{
+			key = key ?? GetKey<T>();
+			var path = GetPath<T>(key);
+
+			if (File.Exists(path))
+				return await Task.Run(() =>
+					File.ReadAllText(path).FromJson<T>());
+
+			Console.WriteLine($"Can't read '{ key }'.");
+			return default;
+		}
+
+		private List<T> ReadList<T>(string key = null)
+		{
+			key = key ?? GetKey<T>();
+			var path = GetPath<T>(key);
+
+			if (File.Exists(path))
+				return File.ReadAllText(path).FromJson<List<T>>();
+
+			Console.WriteLine($"Can't read '{ key }'.");
+			return default;
+		}
+
+		private async Task<List<T>> ReadListAsync<T>(string key = null)
+		{
+			key = key ?? GetKey<T>();
+			var path = GetPath<T>(key);
+
+			if (File.Exists(path))
+				return await Task.Run(() =>
+					File.ReadAllText(path).FromJson<List<T>>());
+
+			Console.WriteLine($"Can't read '{ key }'.");
+			return default;
+		}
+
+		private void Write<T>(T data, string key = null)
+		{
+			lock (_locker)
+			{
+				key = key ?? GetKey<T>();
+
+				if (!Directory.Exists(DataFolder))
+					Directory.CreateDirectory(DataFolder);
+
+				File.WriteAllText(GetPath<T>(key), data.ToJson());
+			}
+		}
+
+		private async Task WriteAsync<T>(T data, string key = null)
+		{
+			await Task.Run(() => Write(data, key));
+		}
 
 		private string GetKey<T>()
 		{
@@ -53,11 +123,7 @@ namespace KafedraApp.Services
 			return string.IsNullOrEmpty(key) ? typeof(T).Name : key;
 		}
 
-		#endregion
-
-		#region Public methods
-
-		public async Task InitAsync()
+		private async Task InitTeachersAsync()
 		{
 			var teachers = await ReadListAsync<Teacher>();
 
@@ -69,72 +135,26 @@ namespace KafedraApp.Services
 			Teachers.CollectionChanged += OnTeachersChanged;
 		}
 
-		public T Read<T>(string key = null)
+		private async Task InitMaxHoursAsync()
 		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
+			var academicStatuses = await ReadListAsync<AcademicStatusInfo>();
+			AcademicStatuses = new ObservableCollection<AcademicStatusInfo>(academicStatuses);
+			AcademicStatuses.CollectionChanged += OnAcademicStatusesInfoChanged;
 
-			if (File.Exists(path))
-				return File.ReadAllText(path).FromJson<T>();
-
-			Console.WriteLine($"Can't read '{ key }'.");
-			return default;
-		}
-
-		public async Task<T> ReadAsync<T>(string key = null)
-		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
-
-			if (File.Exists(path))
-				return await Task.Run(() =>
-					File.ReadAllText(path).FromJson<T>());
-
-			Console.WriteLine($"Can't read '{ key }'.");
-			return default;
-		}
-
-		public List<T> ReadList<T>(string key = null)
-		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
-
-			if (File.Exists(path))
-				return File.ReadAllText(path).FromJson<List<T>>();
-
-			Console.WriteLine($"Can't read '{ key }'.");
-			return default;
-		}
-
-		public async Task<List<T>> ReadListAsync<T>(string key = null)
-		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
-
-			if (File.Exists(path))
-				return await Task.Run(() =>
-					File.ReadAllText(path).FromJson<List<T>>());
-
-			Console.WriteLine($"Can't read '{ key }'.");
-			return default;
-		}
-
-		public void Write<T>(T data, string key = null)
-		{
-			lock(_locker)
+			foreach (var status in AcademicStatuses)
 			{
-				key = key ?? GetKey<T>();
-
-				if (!Directory.Exists(DataFolder))
-					Directory.CreateDirectory(DataFolder);
-
-				File.WriteAllText(GetPath<T>(key), data.ToJson());
+				status.PropertyChanged += OnAcademicStatusInfoChanged;
 			}
 		}
 
-		public async Task WriteAsync<T>(T data, string key = null)
+		#endregion
+
+		#region Public methods
+
+		public async Task InitAsync()
 		{
-			await Task.Run(() => Write(data, key));
+			await InitTeachersAsync();
+			await InitMaxHoursAsync();
 		}
 
 		#endregion
@@ -144,6 +164,16 @@ namespace KafedraApp.Services
 		private async void OnTeachersChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			await WriteAsync(Teachers);
+		}
+
+		private async void OnAcademicStatusesInfoChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			await WriteAsync(AcademicStatuses);
+		}
+
+		private async void OnAcademicStatusInfoChanged(object sender, PropertyChangedEventArgs e)
+		{
+			await WriteAsync(AcademicStatuses);
 		}
 
 		#endregion

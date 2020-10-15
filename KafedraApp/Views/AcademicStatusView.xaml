@@ -1,0 +1,184 @@
+﻿<Grid
+    x:Class="KafedraApp.Views.AcademicStatusView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    xmlns:models="clr-namespace:KafedraApp.Models"
+    xmlns:converters="clr-namespace:KafedraApp.Converters"
+    mc:Ignorable="d"
+    x:Name="ThisAcademicStatusView">
+
+    <Grid.Resources>
+        <ResourceDictionary>
+            <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
+            <converters:InvertBoolToVisibilityConverter x:Key="InvertBoolToVisibility"/>
+        </ResourceDictionary>
+    </Grid.Resources>
+    
+    <Grid.RowDefinitions>
+        <RowDefinition Height="120"/>
+        <RowDefinition Height="40"/>
+        <RowDefinition Height="*"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <Rectangle
+        Grid.RowSpan="3"
+        Fill="{DynamicResource BackgroundColor}"/>
+
+    <TextBox
+        Text="{Binding Status}"
+        HorizontalAlignment="Center"
+        Width="200"
+        VerticalAlignment="Center"
+        HorizontalContentAlignment="Center"
+        IsReadOnly="True"
+        BorderThickness="0"
+        TextWrapping="Wrap"
+        FontSize="30"
+        Foreground="{DynamicResource ForegroundColor}"/>
+
+    <Label
+        Grid.Row="1"
+        FontFamily="{StaticResource FontAwesome}"
+        FontSize="20"
+        Background="{DynamicResource FadeForegroundColor}"
+        Foreground="{DynamicResource BackgroundColor}"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        HorizontalContentAlignment="Center"
+        VerticalContentAlignment="Center">
+        <Label.Style>
+            <Style TargetType="Label">
+                <Style.Triggers>
+                    <DataTrigger
+                        Binding="{Binding Status}"
+                        Value="{x:Static models:AcademicStatuses.Teacher}">
+                        <Setter Property="Content" Value="&#xf19d;"/>
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding Status}"
+                        Value="{x:Static models:AcademicStatuses.SeniorTeacher}">
+                        <Setter Property="Content" Value="&#xf19d; &#xf19d;"/>
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding Status}"
+                        Value="{x:Static models:AcademicStatuses.Docent}">
+                        <Setter Property="Content" Value="&#xf19d; &#xf19d; &#xf19d;"/>
+                    </DataTrigger>
+                    <DataTrigger
+                        Binding="{Binding Status}"
+                        Value="{x:Static models:AcademicStatuses.Professor}">
+                        <Setter Property="Content" Value="&#xf19d; &#xf19d; &#xf19d; &#xf19d;"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Label.Style>
+    </Label>
+
+    <StackPanel
+        Grid.Row="2"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Margin="0,20">
+        <TextBox
+            Text="Максимальна кількість годин:"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            HorizontalContentAlignment="Center"
+            IsReadOnly="True"
+            BorderThickness="0"
+            TextWrapping="Wrap"
+            FontSize="18"
+            Width="150"
+            FontStyle="Italic"
+            Foreground="{DynamicResource FadeForegroundColor}"/>
+        <StackPanel
+            Orientation="Horizontal"
+            HorizontalAlignment="Center">
+            <TextBox
+                Name="MaxHoursTB"
+                Text="{Binding MaxHoursInEdit,
+                               ElementName=ThisAcademicStatusView}"
+                HorizontalContentAlignment="Center"
+                FontSize="28"
+                MinWidth="50"
+                MaxLength="4"
+                IsReadOnly="{Binding IsMaxHoursInEdit,
+                                     ElementName=ThisAcademicStatusView,
+                                     Converter={StaticResource NotConverter}}"
+                BorderThickness="0"/>
+            <Button
+                Content="&#xf304;"
+                FontFamily="{StaticResource FontAwesome}"
+                FontSize="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10,0,0,0"
+                Style="{StaticResource SmallButtonStyle}"
+                Foreground="{DynamicResource ForegroundColor}"
+                Visibility="{Binding IsMaxHoursInEdit,
+                                     ElementName=ThisAcademicStatusView,
+                                     Converter={StaticResource InvertBoolToVisibility}}"
+                Command="{Binding EditMaxHoursCommand,
+                                  ElementName=ThisAcademicStatusView}"/>
+            <Button
+                Content="&#xf00c;"
+                FontFamily="{StaticResource FontAwesome}"
+                FontSize="22"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10,0,0,0"
+                Style="{StaticResource SmallButtonStyle}"
+                Foreground="{DynamicResource ForegroundColor}"
+                Visibility="{Binding IsMaxHoursInEdit,
+                                     ElementName=ThisAcademicStatusView,
+                                     Converter={StaticResource BoolToVisibility}}"
+                Command="{Binding SaveMaxHoursCommand,
+                                  ElementName=ThisAcademicStatusView}"/>
+            <Button
+                Content="&#xf00d;"
+                FontFamily="{StaticResource FontAwesome}"
+                FontSize="22"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="10,0,0,0"
+                Style="{StaticResource SmallButtonStyle}"
+                Foreground="{DynamicResource ForegroundColor}"
+                Visibility="{Binding IsMaxHoursInEdit,
+                                     ElementName=ThisAcademicStatusView,
+                                     Converter={StaticResource BoolToVisibility}}"
+                Command="{Binding NotSaveMaxHoursCommand,
+                                  ElementName=ThisAcademicStatusView}"/>
+        </StackPanel>
+    </StackPanel>
+
+    <ItemsControl
+        Grid.Row="3"
+        ItemsSource="{Binding Teachers,
+                              ElementName=ThisAcademicStatusView}">
+        <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+                <StackPanel Orientation="Vertical"/>
+            </ItemsPanelTemplate>
+        </ItemsControl.ItemsPanel>
+        <ItemsControl.ItemTemplate>
+            <DataTemplate>
+                <Label
+                    Content="{Binding LastNameAndInitials}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    Background="{DynamicResource BackgroundColor}"
+                    FontSize="20"
+                    Margin="0,10,0,0"
+                    Padding="10"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"/>
+            </DataTemplate>
+        </ItemsControl.ItemTemplate>
+    </ItemsControl>
+
+</Grid>

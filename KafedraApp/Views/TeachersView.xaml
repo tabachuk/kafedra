@@ -6,10 +6,12 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:KafedraApp.Views"
     xmlns:controls="clr-namespace:KafedraApp.Controls"
+    xmlns:converters="clr-namespace:KafedraApp.Converters"
     mc:Ignorable="d"
     Name="ThisTeachersView">
 
     <Grid.Resources>
+        <converters:MultiplyConverter x:Key="Multiply"/>
         <Style x:Key="HeaderStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -20,13 +22,9 @@
         <Style x:Key="DataStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="18"/>
-            <Setter Property="Margin" Value="10"/>
-        </Style>
-        <Style x:Key="SeparatorStyle" TargetType="Rectangle">
-            <Setter Property="Fill" Value="{DynamicResource DarkBackgroundColor}"/>
-            <Setter Property="HorizontalAlignment" Value="Stretch"/>
-            <Setter Property="Height" Value="3"/>
+            <Setter Property="Margin" Value="10,0"/>
         </Style>
         <Style x:Key="SubjectsButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="Button">
             <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
@@ -64,11 +62,10 @@
 
     <Grid
         Grid.Row="1"
-        Background="{DynamicResource FadeForegroundColor}"
         VerticalAlignment="Top"
         Margin="0,5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="60"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -80,6 +77,10 @@
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="90"/>
         </Grid.ColumnDefinitions>
+        <Rectangle
+            Grid.Column="0"
+            Grid.ColumnSpan="7"
+            Fill="{DynamicResource FadeForegroundColor}"/>
         <Label
             Grid.Column="0"
             Content="Прізвище"
@@ -111,7 +112,6 @@
         <ScrollViewer
             Grid.Row="1"
             Grid.ColumnSpan="7"
-            Background="{DynamicResource BackgroundColor}"
             VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Teachers}">
                 <ItemsControl.ItemsPanel>
@@ -121,11 +121,10 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
+                        <Grid
+                            Height="60"
+                            Margin="0,5,0,0"
+                            Background="{DynamicResource BackgroundColor}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
                                 <ColumnDefinition/>
@@ -135,43 +134,54 @@
                                 <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="90"/>
                             </Grid.ColumnDefinitions>
-                            <Rectangle
-                                Grid.ColumnSpan="7"
-                                Style="{StaticResource SeparatorStyle}"/>
                             <Label
-                                Grid.Row="1"
-                                Grid.Column="0"
                                 Content="{Binding LastName}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Row="1"
                                 Grid.Column="1"
                                 Content="{Binding FirstName}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Row="1"
                                 Grid.Column="2"
                                 Content="{Binding MiddleName}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Row="1"
                                 Grid.Column="3"
                                 Content="{Binding AcademicStatus}"
                                 Style="{StaticResource DataStyle}"
                                 FontStyle="Italic"/>
-                            <Label
-                                Grid.Row="1"
+                            <StackPanel
                                 Grid.Column="4"
-                                Content="{Binding Rate}"
-                                Style="{StaticResource DataStyle}"
-                                FontSize="20"/>
+                                VerticalAlignment="Center"
+                                Orientation="Vertical">
+                                <Label
+                                    Content="{Binding Rate}"
+                                    Style="{StaticResource DataStyle}"
+                                    FontSize="22"
+                                    Margin="0"
+                                    Padding="0"/>
+                                <Label
+                                    Style="{StaticResource DataStyle}"
+                                    FontStyle="Italic"
+                                    Foreground="{DynamicResource FadeForegroundColor}"
+                                    FontSize="15"
+                                    Margin="0"
+                                    Padding="0">
+                                    <Label.Content>
+                                        <MultiBinding
+                                            Converter="{StaticResource Multiply}"
+                                            ConverterParameter="(X) год">
+                                            <Binding Path="MaxHours"/>
+                                            <Binding Path="Rate"/>
+                                        </MultiBinding>
+                                    </Label.Content>
+                                </Label>
+                            </StackPanel>
                             <Button
-                                Grid.Row="1"
                                 Grid.Column="5"
                                 Content="0 предметів"
                                 Style="{StaticResource SubjectsButtonStyle}"/>
                             <StackPanel
-                                Grid.Row="1"
                                 Grid.Column="6"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"

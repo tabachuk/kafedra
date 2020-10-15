@@ -1,8 +1,10 @@
 ﻿using KafedraApp.Attributes;
-using KafedraApp.Enum;
+using KafedraApp.Helpers;
+using KafedraApp.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace KafedraApp.Models
 {
@@ -18,6 +20,21 @@ namespace KafedraApp.Models
 		public AcademicStatuses AcademicStatus { get; set; }
 
 		public float Rate { get; set; }
+
+		[JsonIgnore]
+		public string LastNameAndInitials => $"{ LastName } { FirstName[0] }. { MiddleName[0] }.";
+
+		[JsonIgnore]
+		public int MaxHours
+		{
+			get
+			{
+				var dataService = Container.Resolve<IDataService>();
+				var maxHours = dataService.AcademicStatuses?
+					.FirstOrDefault(x => x?.Status == AcademicStatus)?.MaxHours;
+				return maxHours ?? 0;
+			}
+		}
 
 		[JsonIgnore]
 		public List<Subject> SubjectsSpecializesIn { get; set; }

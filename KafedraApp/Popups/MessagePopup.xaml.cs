@@ -1,16 +1,17 @@
-﻿using System.ComponentModel;
+﻿using KafedraApp.Commands;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using KafedraApp.Commands;
 
 namespace KafedraApp.Popups
 {
 	public enum MessageTypes { Info, Error, Question };
 
-	public partial class MessagePopup : Grid, INotifyPropertyChanged
+	public partial class MessagePopup : INotifyPropertyChanged
 	{
 		#region Fields
 
@@ -73,11 +74,7 @@ namespace KafedraApp.Popups
 		public bool IsBusy
 		{
 			get => _isBusy;
-			private set
-			{
-				_isBusy = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsBusy)));
-			}
+			private set => SetProperty(ref _isBusy, value);
 		}
 
 		public string Message
@@ -166,6 +163,16 @@ namespace KafedraApp.Popups
 			};
 
 			BeginStoryboard(anim);
+		}
+
+		protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
+		{
+			if (EqualityComparer<T>.Default.Equals(storage, value))
+				return false;
+
+			storage = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			return true;
 		}
 
 		#endregion

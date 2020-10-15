@@ -6,7 +6,6 @@ using System.Windows;
 using KafedraApp.Properties;
 using KafedraApp.Services;
 using KafedraApp.Helpers;
-using KafedraApp.Services.Contracts;
 
 namespace KafedraApp
 {

@@ -1,15 +1,16 @@
 ﻿using KafedraApp.Commands;
 using KafedraApp.Models;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 
 namespace KafedraApp.Popups
 {
-	public partial class TeacherPopup : Grid, INotifyPropertyChanged
+	public partial class TeacherPopup : INotifyPropertyChanged
 	{
 		#region Fields
 
@@ -28,11 +29,7 @@ namespace KafedraApp.Popups
 		public string RateStr
 		{
 			get => _rateStr;
-			set
-			{
-				_rateStr = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RateStr)));
-			}
+			set => SetProperty(ref _rateStr, value);
 		}
 
 		public bool IsEditMode { get; }
@@ -41,22 +38,14 @@ namespace KafedraApp.Popups
 		public string Error
 		{
 			get => _error;
-			private set
-			{
-				_error = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Error)));
-			}
+			private set => SetProperty(ref _error, value);
 		}
 
 		private bool _isBusy;
 		public bool IsBusy
 		{
 			get => _isBusy;
-			private set
-			{
-				_isBusy = value;
-				PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsBusy)));
-			}
+			private set => SetProperty(ref _isBusy, value);
 		}
 
 		#endregion
@@ -144,6 +133,16 @@ namespace KafedraApp.Popups
 			};
 
 			BeginStoryboard(anim);
+		}
+
+		protected virtual bool SetProperty<T>(ref T storage, T value, [CallerMemberName] string propertyName = "")
+		{
+			if (EqualityComparer<T>.Default.Equals(storage, value))
+				return false;
+
+			storage = value;
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+			return true;
 		}
 
 		#endregion

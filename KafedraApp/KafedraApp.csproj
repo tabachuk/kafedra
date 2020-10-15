@@ -113,11 +113,13 @@
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="Enum\AcademicStatuses.cs" />
+    <Compile Include="Converters\InvertBoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\MultiplyConverter.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\SerializationExtensions.cs" />
     <Compile Include="Helpers\Container.cs" />
     <Compile Include="Helpers\Watch.cs" />
+    <Compile Include="Models\AcademicStatusInfo.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Popups\MessagePopup.xaml.cs">
       <DependentUpon>MessagePopup.xaml</DependentUpon>
@@ -139,6 +141,9 @@
     <Compile Include="ViewModels\TerminalViewModel.cs" />
     <Compile Include="Views\AcademicStatusesView.xaml.cs">
       <DependentUpon>AcademicStatusesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AcademicStatusView.xaml.cs">
+      <DependentUpon>AcademicStatusView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HelpView.xaml.cs">
       <DependentUpon>HelpView.xaml</DependentUpon>
@@ -174,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\AcademicStatusesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AcademicStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,5 +1,5 @@
 ﻿using KafedraApp.Helpers;
-using KafedraApp.Services.Contracts;
+using KafedraApp.Services;
 using System;
 using System.Windows;
 using System.Windows.Input;

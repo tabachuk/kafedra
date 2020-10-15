@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.IO;
-using KafedraApp.Services;
+﻿using KafedraApp.Extensions;
 using KafedraApp.Models;
-using Newtonsoft.Json;
-using KafedraApp.Converters;
-using FizzWare.NBuilder;
-using KafedraApp.Extensions;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
 
 namespace Misc
 {
