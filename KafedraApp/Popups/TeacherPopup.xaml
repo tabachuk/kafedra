@@ -20,7 +20,7 @@
 
     <Grid.Resources>
 
-        <converters:BoolToStringConverter x:Key="BoolToString"/>
+        <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
 
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
@@ -131,7 +131,7 @@
                 Margin="40,10">
                 <Label
                     Content="{Binding IsEditMode,
-                                      Converter={StaticResource BoolToString},
+                                      Converter={StaticResource BoolToStringConverter},
                                       ConverterParameter='&#xf4ff;|&#xf234;'}"
                     VerticalAlignment="Center"
                     FontSize="24"
@@ -140,7 +140,7 @@
                     FontFamily="{StaticResource FontAwesome}"/>
                 <Label
                     Content="{Binding IsEditMode,
-                                      Converter={StaticResource BoolToString},
+                                      Converter={StaticResource BoolToStringConverter},
                                       ConverterParameter='Редагувати викладача|Додати викладача'}"
                     Foreground="{DynamicResource ForegroundColor}"
                     FontSize="26"/>
@@ -241,7 +241,7 @@
                         MinWidth="200"
                         Height="45"
                         Text="{Binding IsEditMode,
-                                       Converter={StaticResource BoolToString},
+                                       Converter={StaticResource BoolToStringConverter},
                                        ConverterParameter='Редагувати|Додати'}"
                         Margin="10"
                         HorizontalContentAlignment="Center"

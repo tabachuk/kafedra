@@ -5,16 +5,11 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:KafedraApp.Controls"
-    xmlns:converters="clr-namespace:KafedraApp.Converters"
     mc:Ignorable="d"
     Height="50"
     HorizontalContentAlignment="Stretch"
     Style="{StaticResource DefaultButtonStyle}"
     Name="ThisIconButton">
-
-    <Button.Resources>
-        <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
-    </Button.Resources>
 
     <Grid
         Margin="10,0"
@@ -45,7 +40,7 @@
             IsChecked="{Binding IsChecked, Mode=TwoWay}"
             VerticalAlignment="Center"
             Visibility="{Binding HasToggle,
-                                 Converter={StaticResource BoolToVisibility}}"
+                                 Converter={StaticResource BooleanToVisibilityConverter}}"
             Margin="5,0">
         </ToggleButton>
     </Grid>

@@ -66,9 +66,6 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FizzWare.NBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5651b03e12e42c12, processorArchitecture=MSIL">
-      <HintPath>..\packages\NBuilder.6.1.0\lib\net40\FizzWare.NBuilder.dll</HintPath>
-    </Reference>
     <Reference Include="MaterialDesignColors, Version=1.2.3.981, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MaterialDesignColors.1.2.3-ci981\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
@@ -105,19 +102,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Attributes\CollectionNameAttribute.cs" />
+    <Compile Include="Attributes\ExcelColumnAttribute.cs" />
     <Compile Include="Commands\DelegateCommand.cs" />
     <Compile Include="Controls\IconButton.xaml.cs">
       <DependentUpon>IconButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\BaseModelJsonConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
-    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="Converters\InvertBoolToVisibilityConverter.cs" />
-    <Compile Include="Converters\MultiplyConverter.cs" />
+    <Compile Include="Converters\ArithmeticConverter.cs" />
+    <Compile Include="Extensions\ExcelExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\SerializationExtensions.cs" />
     <Compile Include="Helpers\Container.cs" />
+    <Compile Include="Helpers\ExcelHelper.cs" />
     <Compile Include="Helpers\Watch.cs" />
     <Compile Include="Models\AcademicStatusInfo.cs" />
     <Compile Include="Models\Subject.cs" />

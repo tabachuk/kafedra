@@ -11,7 +11,9 @@
     Name="ThisTeachersView">
 
     <Grid.Resources>
-        <converters:MultiplyConverter x:Key="Multiply"/>
+        
+        <converters:ArithmeticConverter x:Key="ArithmeticConverter"/>
+        
         <Style x:Key="HeaderStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -19,13 +21,15 @@
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Margin" Value="10"/>
         </Style>
+        
         <Style x:Key="DataStyle" TargetType="Label">
-            <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Margin" Value="10,0"/>
         </Style>
+        
         <Style x:Key="SubjectsButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="Button">
             <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
             <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
@@ -41,6 +45,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        
     </Grid.Resources>
 
     <Grid.RowDefinitions>
@@ -156,6 +161,7 @@
                                 Orientation="Vertical">
                                 <Label
                                     Content="{Binding Rate}"
+                                    ContentStringFormat="{}{0:0.0#}"
                                     Style="{StaticResource DataStyle}"
                                     FontSize="22"
                                     Margin="0"
@@ -166,11 +172,12 @@
                                     Foreground="{DynamicResource FadeForegroundColor}"
                                     FontSize="15"
                                     Margin="0"
-                                    Padding="0">
+                                    Padding="0"
+                                    ContentStringFormat="{}{0:f0} год">
                                     <Label.Content>
                                         <MultiBinding
-                                            Converter="{StaticResource Multiply}"
-                                            ConverterParameter="(X) год">
+                                            Converter="{StaticResource ArithmeticConverter}"
+                                            ConverterParameter="*">
                                             <Binding Path="MaxHours"/>
                                             <Binding Path="Rate"/>
                                         </MultiBinding>

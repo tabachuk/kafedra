@@ -6,17 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:KafedraApp.Views"
     xmlns:models="clr-namespace:KafedraApp.Models"
-    xmlns:converters="clr-namespace:KafedraApp.Converters"
     mc:Ignorable="d"
     x:Name="ThisAcademicStatusView">
 
-    <Grid.Resources>
-        <ResourceDictionary>
-            <converters:BoolToVisibilityConverter x:Key="BoolToVisibility"/>
-            <converters:InvertBoolToVisibilityConverter x:Key="InvertBoolToVisibility"/>
-        </ResourceDictionary>
-    </Grid.Resources>
-    
     <Grid.RowDefinitions>
         <RowDefinition Height="120"/>
         <RowDefinition Height="40"/>
@@ -121,7 +113,7 @@
                 Foreground="{DynamicResource ForegroundColor}"
                 Visibility="{Binding IsMaxHoursInEdit,
                                      ElementName=ThisAcademicStatusView,
-                                     Converter={StaticResource InvertBoolToVisibility}}"
+                                     Converter={StaticResource InverseBoolToVisConverter}}"
                 Command="{Binding EditMaxHoursCommand,
                                   ElementName=ThisAcademicStatusView}"/>
             <Button
@@ -135,7 +127,7 @@
                 Foreground="{DynamicResource ForegroundColor}"
                 Visibility="{Binding IsMaxHoursInEdit,
                                      ElementName=ThisAcademicStatusView,
-                                     Converter={StaticResource BoolToVisibility}}"
+                                     Converter={StaticResource BooleanToVisibilityConverter}}"
                 Command="{Binding SaveMaxHoursCommand,
                                   ElementName=ThisAcademicStatusView}"/>
             <Button
@@ -149,7 +141,7 @@
                 Foreground="{DynamicResource ForegroundColor}"
                 Visibility="{Binding IsMaxHoursInEdit,
                                      ElementName=ThisAcademicStatusView,
-                                     Converter={StaticResource BoolToVisibility}}"
+                                     Converter={StaticResource BooleanToVisibilityConverter}}"
                 Command="{Binding NotSaveMaxHoursCommand,
                                   ElementName=ThisAcademicStatusView}"/>
         </StackPanel>

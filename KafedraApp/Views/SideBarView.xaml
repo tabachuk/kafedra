@@ -12,7 +12,7 @@
     mc:Ignorable="d">
 
     <StackPanel.Resources>
-        <converters:BoolToStringConverter x:Key="BoolToString"/>
+        <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
     </StackPanel.Resources>
 
     <StackPanel.Style>
@@ -56,7 +56,7 @@
 
     <controls:IconButton
         Icon="{Binding IsSideBarMinimized,
-                       Converter={StaticResource BoolToString},
+                       Converter={StaticResource BoolToStringConverter},
                        ConverterParameter=&#xf0c9;|&#xf060;}"
         Text="Приховати меню"
         Margin="0,10,0,0"
