@@ -16,7 +16,7 @@ namespace KafedraApp.ViewModels
 
 		public SubjectsViewModel()
 		{
-			ImportSubjectsCommand = new DelegateCommand(ImportSubjects);
+			ImportSubjectsCommand = new DelegateCommand(async () => await ImportSubjects());
 		}
 
 		#endregion
@@ -29,7 +29,7 @@ namespace KafedraApp.ViewModels
 
 		#region Methods
 
-		private void ImportSubjects()
+		private async Task ImportSubjects()
 		{
 			var dialog = new OpenFileDialog
 			{
@@ -39,7 +39,7 @@ namespace KafedraApp.ViewModels
 			if (dialog.ShowDialog() != true)
 				return;
 
-			ExcelHelper.GetSubjects(dialog.FileName);
+			await Task.Run(() => ExcelHelper.GetSubjects(dialog.FileName));
 		}
 
 		#endregion

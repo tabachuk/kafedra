@@ -1,8 +1,10 @@
-﻿using KafedraApp.Extensions;
+﻿using KafedraApp.Attributes;
+using KafedraApp.Extensions;
 using KafedraApp.Models;
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace KafedraApp.Helpers
 {
@@ -11,6 +13,10 @@ namespace KafedraApp.Helpers
 		#region Fields
 
 		private static Application _app;
+
+		private static object[,] _data;
+
+		private static List<string> _titles;
 
 		#endregion
 
@@ -30,20 +36,29 @@ namespace KafedraApp.Helpers
 		{
 			_app = new Application();
 
+			var subjects = new List<Subject>();
 			var workSheet = OpenWorkSheet(filePath);
-			var titles = GetTitles(workSheet);
+			_titles = GetTitles(workSheet);
 			var rowsCount = GetWorkSheetRowsCount(workSheet);
 
-			string leftTopCell =
-				$"{ DataStartColumn }{ DataStartRow }";
-			string rightBottomCell =
-				$"{ (char)(DataStartColumn + titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
+			string leftTopCell = $"{ DataStartColumn }{ DataStartRow }";
 
-			var data = GetData(workSheet, leftTopCell, rightBottomCell);
+			string rightBottomCell =
+				$"{ (char)(DataStartColumn + _titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
+
+			_data = GetData(workSheet, leftTopCell, rightBottomCell);
+
+			for (int i = DataStartRow; i < rowsCount; ++i)
+			{
+				var subject = GetItem<Subject>(i - DataStartRow);
+
+				if (subject != null)
+					subjects.Add(subject);
+			}
 
 			_app.Quit();
 
-			return null;
+			return subjects;
 		}
 
 		#endregion
@@ -57,9 +72,26 @@ namespace KafedraApp.Helpers
 			return workSheet;
 		}
 
-		private static T GetItem<T>(Worksheet workSheet, int row)
+		private static T GetItem<T>(int row)
 		{
-			throw new NotImplementedException();
+			var t = typeof(T);
+			var props = t.GetProperties();
+			var item = Activator.CreateInstance<T>();
+			
+			foreach (var prop in props)
+			{
+				var columnAttr = prop.GetCustomAttribute<ExcelColumnAttribute>();
+				
+				if (columnAttr != null)
+				{
+					var columnIndex = _titles.IndexOf(columnAttr.Column);
+
+					if (columnIndex > -1)
+						prop.SetValue(item, _data[row + 1, columnIndex + 1]);
+				}
+			}
+
+			return item;
 		}
 
 		private static List<string> GetTitles(Worksheet workSheet)
