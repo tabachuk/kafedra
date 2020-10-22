@@ -17,5 +17,6 @@ namespace KafedraApp.Services
 			string cancelButtonText = "Відміна",
 			string caption = "Підтвердіть дію");
 		Task<Teacher> ShowTeacherForm(Teacher teacher = null);
+		bool CanShowDialog { get; }
 	}
 }

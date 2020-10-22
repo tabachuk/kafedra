@@ -138,6 +138,11 @@ namespace KafedraApp.Services
 		private async Task InitMaxHoursAsync()
 		{
 			var academicStatuses = await ReadListAsync<AcademicStatusInfo>();
+
+			if (academicStatuses == null)
+				throw new FileNotFoundException(
+					"Файл із вченими ступенями не знайдений. Перевірте його наявність в папці з даними");
+
 			AcademicStatuses = new ObservableCollection<AcademicStatusInfo>(academicStatuses);
 			AcademicStatuses.CollectionChanged += OnAcademicStatusesInfoChanged;
 

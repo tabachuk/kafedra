@@ -9,10 +9,23 @@ namespace KafedraApp.Services
 {
 	public class DialogService : IDialogService
 	{
+		#region Properties
+
+		private Panel MainView => MainWindow.Instance.Content as Panel;
+
+		public bool CanShowDialog => MainWindow.Instance?.Content != null;
+
+		#endregion
+
+		#region Methods
+
 		public async Task ShowError(
 			string message,
 			string caption = "Помилка")
 		{
+			if (!CanShowDialog)
+				return;
+
 			var popup = new MessagePopup
 			{
 				MessageType = MessageTypes.Error,
@@ -30,6 +43,9 @@ namespace KafedraApp.Services
 			string message,
 			string caption = "Інформація")
 		{
+			if (!CanShowDialog)
+				return;
+
 			var popup = new MessagePopup
 			{
 				MessageType = MessageTypes.Info,
@@ -49,6 +65,9 @@ namespace KafedraApp.Services
 			string cancelButtonText = "Відміна",
 			string caption = "Підтвердіть дію")
 		{
+			if (!CanShowDialog)
+				return false;
+
 			var popup = new MessagePopup
 			{
 				MessageType = MessageTypes.Question,
@@ -67,6 +86,9 @@ namespace KafedraApp.Services
 
 		public async Task<Teacher> ShowTeacherForm(Teacher teacher = null)
 		{
+			if (!CanShowDialog)
+				return null;
+
 			var popup = new TeacherPopup(teacher);
 
 			Push(popup);
@@ -75,12 +97,12 @@ namespace KafedraApp.Services
 			return result;
 		}
 
-		private Panel MainView => MainWindow.Instance.Content as Panel;
-
 		private void Push(UIElement popup) =>
 			MainView.Children.Add(popup);
 
 		private void Pop(UIElement popup) =>
 			MainView.Children.Remove(popup);
+
+		#endregion
 	}
 }

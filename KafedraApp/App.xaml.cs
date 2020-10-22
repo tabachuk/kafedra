@@ -6,6 +6,7 @@ using System.Windows;
 using KafedraApp.Properties;
 using KafedraApp.Services;
 using KafedraApp.Helpers;
+using System.Threading.Tasks;
 
 namespace KafedraApp
 {
@@ -61,14 +62,14 @@ namespace KafedraApp
 			ShutDownIfAlreadyRuns();
 
 #if !DEBUG
-			AppDomain.CurrentDomain.UnhandledException += (s, e) =>
-				CatchUnhandledException((Exception)e.ExceptionObject);
+			AppDomain.CurrentDomain.UnhandledException += async (s, e) =>
+				await CatchUnhandledException((Exception)e.ExceptionObject);
 
-			Dispatcher.UnhandledException += (s, e) =>
-				CatchUnhandledException(e.Exception);
+			//Dispatcher.UnhandledException += async (s, e) =>
+			//	await CatchUnhandledException(e.Exception);
 
-			TaskScheduler.UnobservedTaskException += (s, e) =>
-				CatchUnhandledException(e.Exception);
+			TaskScheduler.UnobservedTaskException += async (s, e) =>
+				await CatchUnhandledException(e.Exception);
 #endif
 
 			Instance = this;
@@ -83,9 +84,22 @@ namespace KafedraApp
 		#region Methods
 
 #if !DEBUG
-		private void CatchUnhandledException(Exception exc)
+		private async Task CatchUnhandledException(Exception exc)
 		{
-			Container.Resolve<IDialogService>().ShowErrorMessage(exc.Message);
+			var dialogService = Container.Resolve<IDialogService>();
+
+			if (dialogService?.CanShowDialog == true)
+			{
+				await dialogService.ShowError(exc.Message);
+			}
+			else
+			{
+				MessageBox.Show(
+					exc.Message,
+					"Критична помилка",
+					MessageBoxButton.OK,
+					MessageBoxImage.Error);
+			}
 		}
 #endif
 
