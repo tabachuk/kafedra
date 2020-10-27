@@ -118,9 +118,13 @@
     <Compile Include="Helpers\ExcelHelper.cs" />
     <Compile Include="Helpers\Watch.cs" />
     <Compile Include="Models\AcademicStatusInfo.cs" />
+    <Compile Include="Models\ExcelLoadProgressChangedEventArgs.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Popups\MessagePopup.xaml.cs">
       <DependentUpon>MessagePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\SubjectImportPopup.xaml.cs">
+      <DependentUpon>SubjectImportPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\TeacherPopup.xaml.cs">
       <DependentUpon>TeacherPopup.xaml</DependentUpon>
@@ -169,6 +173,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\MessagePopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\SubjectImportPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

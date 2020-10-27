@@ -96,6 +96,15 @@
                         <Setter Property="FontSize" Value="20"/>
                         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
                     </Style>
+                    <Style
+                        TargetType="ProgressBar"
+                        BasedOn="{StaticResource MaterialDesignLinearProgressBar}">
+                        <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="BorderBrush" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Height" Value="30"/>
+                        <Setter Property="Opacity" Value="0.8"/>
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

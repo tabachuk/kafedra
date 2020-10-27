@@ -97,6 +97,18 @@ namespace KafedraApp.Services
 			return result;
 		}
 
+		public async Task ShowSubjectImportPopup()
+		{
+			if (!CanShowDialog)
+				return;
+
+			var popup = new SubjectImportPopup();
+
+			Push(popup);
+			await popup.Result;
+			Pop(popup);
+		}
+
 		private void Push(UIElement popup) =>
 			MainView.Children.Add(popup);
 

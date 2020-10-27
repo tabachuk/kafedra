@@ -4,7 +4,11 @@ using KafedraApp.Models;
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace KafedraApp.Helpers
 {
@@ -30,34 +34,74 @@ namespace KafedraApp.Helpers
 
 		#endregion
 
+		#region Delegates
+
+		public delegate void ExcelLoadProgressChangedEventHandler(
+			ExcelLoadProgressChangedEventArgs e);
+
+		#endregion
+
+		#region Events
+
+		public static event ExcelLoadProgressChangedEventHandler LoadProgressChanged;
+		public static event EventHandler LoadCompleted;
+
+		#endregion
+
 		#region Public methods
 
-		public static List<Subject> GetSubjects(string filePath)
+		public static List<Subject> GetSubjects(string[] filePaths)
 		{
-			_app = new Application();
-
 			var subjects = new List<Subject>();
-			var workSheet = OpenWorkSheet(filePath);
-			_titles = GetTitles(workSheet);
-			var rowsCount = GetWorkSheetRowsCount(workSheet);
-
-			string leftTopCell = $"{ DataStartColumn }{ DataStartRow }";
-
-			string rightBottomCell =
-				$"{ (char)(DataStartColumn + _titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
-
-			_data = GetData(workSheet, leftTopCell, rightBottomCell);
-
-			for (int i = DataStartRow; i < rowsCount; ++i)
+			var args = new ExcelLoadProgressChangedEventArgs
 			{
-				var subject = GetItem<Subject>(i - DataStartRow);
+				TotalSheets = filePaths.Length
+			};
 
-				if (subject != null)
-					subjects.Add(subject);
+			foreach (var filePath in filePaths)
+			{
+				args.CurrentSheetName = filePath.Split('\\').Last();
+				args.CurrentSheetLoadingProgress = 0;
+				LoadProgressChanged?.Invoke(args);
+
+				if (_app == null)
+					_app = new Application();
+
+				var workBook = _app.Workbooks.Open(filePath, 0, true, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+				var workSheet = (Worksheet)workBook.Sheets[1];
+
+				_titles = GetTitles(workSheet);
+				var rowsCount = GetWorkSheetRowsCount(workSheet);
+
+				string leftTopCell = $"{ DataStartColumn }{ DataStartRow }";
+
+				string rightBottomCell =
+					$"{ (char)(DataStartColumn + _titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
+
+				_data = GetData(workSheet, leftTopCell, rightBottomCell);
+
+				for (int i = DataStartRow; i < rowsCount - 1; ++i)
+				{
+					var subject = GetItem<Subject>(i - DataStartRow);
+
+					if (subject != null)
+						subjects.Add(subject);
+
+					args.CurrentSheetLoadingProgress = (i - DataStartRow + 1) * 100 / (rowsCount - DataStartRow - 1);
+					LoadProgressChanged?.Invoke(args);
+				}
+
+				++args.LoadedSheets;
+				LoadProgressChanged?.Invoke(args);
+
+				Marshal.ReleaseComObject(workSheet);
+				workBook.Close(0);
+				Marshal.ReleaseComObject(workBook);
 			}
 
 			_app.Quit();
-
+			_app = null;
+			LoadCompleted?.Invoke(null, null);
 			return subjects;
 		}
 
@@ -65,23 +109,16 @@ namespace KafedraApp.Helpers
 
 		#region Private methods
 
-		private static Worksheet OpenWorkSheet(string filePath)
-		{
-			var workBook = _app.Workbooks.Open(filePath, 0, true, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);
-			var workSheet = (Worksheet)workBook.Sheets[1];
-			return workSheet;
-		}
-
 		private static T GetItem<T>(int row)
 		{
 			var t = typeof(T);
 			var props = t.GetProperties();
 			var item = Activator.CreateInstance<T>();
-			
+
 			foreach (var prop in props)
 			{
 				var columnAttr = prop.GetCustomAttribute<ExcelColumnAttribute>();
-				
+
 				if (columnAttr != null)
 				{
 					var columnIndex = _titles.IndexOf(columnAttr.Column);
@@ -115,7 +152,10 @@ namespace KafedraApp.Helpers
 			return rows;
 		}
 
-		private static object[,] GetData(Worksheet workSheet, string leftTopCell, string rightBottomCell)
+		private static object[,] GetData(
+			Worksheet workSheet,
+			string leftTopCell,
+			string rightBottomCell)
 		{
 			var range = workSheet.get_Range(leftTopCell, rightBottomCell);
 			var data = (object[,])range.Cells.Value;

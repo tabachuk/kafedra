@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:local="clr-namespace:KafedraApp.Views" xmlns:controls="clr-namespace:KafedraApp.Controls"
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    xmlns:controls="clr-namespace:KafedraApp.Controls"
     mc:Ignorable="d">
 
     <Grid.Resources>
@@ -21,21 +22,6 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Margin" Value="10,0"/>
-        </Style>
-        <Style x:Key="SubjectsButtonStyle" BasedOn="{StaticResource RoundedButtonStyle}" TargetType="Button">
-            <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
-            <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Width" Value="120"/>
-            <Setter Property="Height" Value="32"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Opacity" Value="0.9"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Opacity" Value="1"/>
-                    <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
-                </Trigger>
-            </Style.Triggers>
         </Style>
     </Grid.Resources>
 
@@ -74,87 +60,158 @@
         VerticalAlignment="Top"
         Margin="0,5">
         <Grid.RowDefinitions>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="200"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition Width="*" MinWidth="180"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="80"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
+            <ColumnDefinition Width="60"/>
         </Grid.ColumnDefinitions>
         <Rectangle
-            Grid.ColumnSpan="14"
+            Grid.ColumnSpan="16"
             Fill="{DynamicResource FadeForegroundColor}"/>
         <Label
             Grid.Column="0"
-            Content="Назва"
+            Content="Предмет"
             Style="{StaticResource HeaderStyle}"/>
         <Label
             Grid.Column="1"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Спеціальність"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="2"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Курс"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="3"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Кількість підгруп"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="4"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Семестр"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="5"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Кредити"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="6"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Всього"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="7"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Всього (аудиторних)"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="8"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Лекції"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="9"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Практичні"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="10"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Лабораторні"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="11"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Контрольна робота"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="12"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="Курсова"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <Label
             Grid.Column="13"
-            Content="Назва"
-            Style="{StaticResource HeaderStyle}"/>
+            Content="ІНДЗ"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
+        <Label
+            Grid.Column="14"
+            Content="Екзамен"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
+        <Label
+            Grid.Column="15"
+            Content="Залік"
+            Style="{StaticResource HeaderStyle}">
+            <Label.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Label.LayoutTransform>
+        </Label>
         <ScrollViewer
             Grid.Row="1"
-            VerticalScrollBarVisibility="Auto">
+            Grid.ColumnSpan="16"
+            VerticalScrollBarVisibility="Hidden">
             <ItemsControl ItemsSource="{Binding Subjects}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -164,18 +221,103 @@
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <Grid
-                            Height="60"
                             Margin="0,5,0,0"
                             Background="{DynamicResource BackgroundColor}">
                             <Grid.ColumnDefinitions>
-                                
+                                <ColumnDefinition Width="*" MinWidth="180"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="60"/>
                             </Grid.ColumnDefinitions>
-
+                            <TextBox
+                                Grid.Column="0"
+                                Text="{Binding Name}"
+                                TextWrapping="Wrap"
+                                IsReadOnly="True"
+                                BorderThickness="0"
+                                HorizontalContentAlignment="Center"
+                                Foreground="{DynamicResource ForegroundColor}"
+                                HorizontalAlignment="Center"
+                                Background="Transparent"
+                                FontSize="18"
+                                Margin="10"/>
+                            <Label
+                                Grid.Column="1"
+                                Content="{Binding Specialty}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="2"
+                                Content="{Binding Course}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="3"
+                                Content="{Binding Subgroups}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="4"
+                                Content="{Binding Semester}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="5"
+                                Content="{Binding Credits}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="6"
+                                Content="{Binding TotalHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="7"
+                                Content="{Binding TotalClassroomHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="8"
+                                Content="{Binding LectureHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="9"
+                                Content="{Binding PracticalHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="10"
+                                Content="{Binding LaboratoryWorkHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="11"
+                                Content="{Binding ControlWorkHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="12"
+                                Content="{Binding CourseWorkHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="13"
+                                Content="{Binding IndividualTaskHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="14"
+                                Content="{Binding ExaminationHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
+                                Grid.Column="15"
+                                Content="{Binding TestHours}"
+                                Style="{StaticResource DataStyle}"/>
                         </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
     </Grid>
-    
+
 </Grid>

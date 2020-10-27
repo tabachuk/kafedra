@@ -12,8 +12,8 @@
     Grid.ColumnSpan="100"
     Grid.RowSpan="100"
     Panel.ZIndex="100"
-    DataContext="{Binding ElementName=ThisMessagePopup}"
-    Name="ThisMessagePopup">
+    DataContext="{Binding ElementName=ThisSubjectImportPopup}"
+    Name="ThisSubjectImportPopup">
 
     <Grid.Resources>
 
@@ -84,8 +84,7 @@
 
         <Grid
             Name="MessageBox"
-            MinWidth="500"
-            MaxWidth="700"
+            Width="500"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="{DynamicResource BackgroundColor}"
@@ -134,16 +133,29 @@
                     FontSize="26"/>
             </StackPanel>
 
-            <TextBlock
+            <StackPanel
                 Grid.Row="1"
-                Text="{Binding Message}"
-                FontSize="20"
-                Foreground="{DynamicResource FadeForegroundColor}"
-                Background="Transparent"
-                TextWrapping="Wrap"
-                Margin="40,20"
-                HorizontalAlignment="Center"
-                TextAlignment="Center"/>
+                Orientation="Vertical"
+                Margin="30,15">
+                <Label
+                    Content="{Binding FirstProgressTitle}"
+                    FontSize="20"
+                    Margin="10,0,0,0"
+                    Foreground="{DynamicResource ForegroundColor}"
+                    Background="Transparent"/>
+                <ProgressBar
+                    Value="{Binding FirstProgressValue}"
+                    Margin="0,5"/>
+                <Label
+                    Content="{Binding SecondProgressTitle}"
+                    FontSize="20"
+                    Margin="10,10,0,0"
+                    Foreground="{DynamicResource ForegroundColor}"
+                    Background="Transparent"/>
+                <ProgressBar
+                    Value="{Binding SecondProgressValue}"
+                    Margin="0,5"/>
+            </StackPanel>
 
             <controls:IconButton
                 Grid.Row="2"
@@ -155,7 +167,7 @@
                 Margin="10"
                 HorizontalContentAlignment="Center"
                 Style="{StaticResource RoundedButtonStyle}"
-                Command="{Binding SetResultCommand}"
+                Command="{Binding CancelCommand}"
                 CommandParameter="False"
                 Foreground="{DynamicResource ForegroundColor}"/>
 

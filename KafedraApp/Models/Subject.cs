@@ -12,11 +12,17 @@ namespace KafedraApp.Models
 		[ExcelColumn("Предмет")]
 		public string Name { get; set; }
 
-		[ExcelColumn("Група")]
-		public string Group { get; set; }
+		[ExcelColumn("Спеціальність")]
+		public string Specialty { get; set; }
 
-		[ExcelColumn("Кафедра")]
-		public string Cathedra { get; set; }
+		[ExcelColumn("Курс")]
+		public string Course { get; set; }
+
+		[ExcelColumn("Кількість підгруп")]
+		public double Subgroups { get; set; }
+
+		[ExcelColumn("Семестр")]
+		public double Semester { get; set; }
 
 		[ExcelColumn("Кредити")]
 		public double Credits { get; set; }
