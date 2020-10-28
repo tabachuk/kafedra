@@ -7,8 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace KafedraApp.Helpers
 {
@@ -48,7 +47,7 @@ namespace KafedraApp.Helpers
 
 		#endregion
 
-		#region Public methods
+		#region Public Methods
 
 		public static List<Subject> GetSubjects(string[] filePaths)
 		{
@@ -107,7 +106,7 @@ namespace KafedraApp.Helpers
 
 		#endregion
 
-		#region Private methods
+		#region Private Methods
 
 		private static T GetItem<T>(int row)
 		{
@@ -121,14 +120,20 @@ namespace KafedraApp.Helpers
 
 				if (columnAttr != null)
 				{
-					var columnIndex = _titles.IndexOf(columnAttr.Column);
+					var column = _titles.FindIndex(x => Simplify(columnAttr.Column) == Simplify(x));
 
-					if (columnIndex > -1)
-						prop.SetValue(item, _data[row + 1, columnIndex + 1]);
+					if (column > -1)
+						prop.SetValue(item, _data[row + 1, column + 1]);
 				}
 			}
 
 			return item;
+		}
+
+		private static string Simplify(string str)
+		{
+			var res = Regex.Replace(str.ToLower(), @"\s+", "");
+			return res;
 		}
 
 		private static List<string> GetTitles(Worksheet workSheet)
