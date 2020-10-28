@@ -68,7 +68,9 @@
     <Grid
         Grid.Row="1"
         VerticalAlignment="Top"
-        Margin="0,5">
+        Margin="0,5"
+        Visibility="{Binding IsTeachersEmpty,
+                             Converter={StaticResource InverseBoolToVisConverter}}">
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition/>
@@ -218,4 +220,24 @@
         </ScrollViewer>
     </Grid>
 
+    <StackPanel
+        Grid.Row="1"
+        Opacity="0.8"
+        Orientation="Vertical"
+        VerticalAlignment="Center"
+        Visibility="{Binding IsTeachersEmpty,
+                             Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Label
+            Content="&#xf51c;"
+            FontSize="200"
+            FontFamily="{StaticResource FontAwesome}"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            HorizontalAlignment="Center"/>
+        <Label
+            Content="Жодного викладача"
+            FontSize="36"
+            HorizontalAlignment="Center"
+            Foreground="{DynamicResource FadeForegroundColor}"/>
+    </StackPanel>
+    
 </Grid>

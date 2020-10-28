@@ -3,15 +3,12 @@ using KafedraApp.Helpers;
 using KafedraApp.Models;
 using KafedraApp.Services;
 using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Threading;
 
 namespace KafedraApp.ViewModels
 {
@@ -29,8 +26,14 @@ namespace KafedraApp.ViewModels
 		public ObservableCollection<Subject> Subjects
 		{
 			get => _subjects;
-			set => SetProperty(ref _subjects, value);
+			set
+			{
+				SetProperty(ref _subjects, value);
+				OnPropertyChanged(nameof(IsSubjectsEmpty));
+			}
 		}
+
+		public bool IsSubjectsEmpty => Subjects?.Any() != true;
 
 		#endregion
 
@@ -41,6 +44,8 @@ namespace KafedraApp.ViewModels
 			_dialogService = Container.Resolve<IDialogService>();
 
 			ImportSubjectsCommand = new DelegateCommand(ImportSubjects);
+
+			Subjects.CollectionChanged += SubjectsChanged;
 		}
 
 		#endregion
@@ -78,6 +83,15 @@ namespace KafedraApp.ViewModels
 						Subjects.Add(subject));
 				}
 			});
+		}
+
+		#endregion
+
+		#region Event Handlers
+
+		private void SubjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			OnPropertyChanged(nameof(IsSubjectsEmpty));
 		}
 
 		#endregion

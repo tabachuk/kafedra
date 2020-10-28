@@ -5,6 +5,8 @@ using KafedraApp.Models;
 using KafedraApp.Services;
 using System;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using System.Linq;
 using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
@@ -21,6 +23,8 @@ namespace KafedraApp.ViewModels
 		#region Properties
 
 		public ObservableCollection<Teacher> Teachers => _dataService.Teachers;
+
+		public bool IsTeachersEmpty => Teachers?.Any() != true;
 
 		#endregion
 
@@ -42,6 +46,8 @@ namespace KafedraApp.ViewModels
 			AddTeacherCommand = new DelegateCommand(AddTeacher);
 			EditTeacherCommand = new DelegateCommand<Teacher>(EditTeacher);
 			DeleteTeacherCommand = new DelegateCommand<Teacher>(DeleteTeacher);
+
+			Teachers.CollectionChanged += TeachersChanged;
 		}
 
 		#endregion
@@ -92,6 +98,15 @@ namespace KafedraApp.ViewModels
 				Teachers.Remove(teacher);
 
 			IsBusy = false;
+		}
+
+		#endregion
+
+		#region Event Handlers
+
+		private void TeachersChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			OnPropertyChanged(nameof(IsTeachersEmpty));
 		}
 
 		#endregion
