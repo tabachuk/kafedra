@@ -126,6 +126,9 @@
     <Compile Include="Popups\SubjectImportPopup.xaml.cs">
       <DependentUpon>SubjectImportPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Popups\SubjectPopup.xaml.cs">
+      <DependentUpon>SubjectPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popups\TeacherPopup.xaml.cs">
       <DependentUpon>TeacherPopup.xaml</DependentUpon>
     </Compile>
@@ -177,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\SubjectImportPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\SubjectPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

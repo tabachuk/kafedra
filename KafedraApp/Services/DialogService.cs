@@ -97,6 +97,19 @@ namespace KafedraApp.Services
 			return result;
 		}
 
+		public async Task<Subject> ShowSubjectForm(Subject subject = null)
+		{
+			if (!CanShowDialog)
+				return null;
+
+			var popup = new SubjectPopup(subject);
+
+			Push(popup);
+			var result = await popup.Result;
+			Pop(popup);
+			return result;
+		}
+
 		public async Task ShowSubjectImportPopup()
 		{
 			if (!CanShowDialog)

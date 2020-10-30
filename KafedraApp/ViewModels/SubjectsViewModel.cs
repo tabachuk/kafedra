@@ -43,6 +43,7 @@ namespace KafedraApp.ViewModels
 		{
 			_dialogService = Container.Resolve<IDialogService>();
 
+			AddSubjectCommand = new DelegateCommand(AddSubject);
 			ImportSubjectsCommand = new DelegateCommand(ImportSubjects);
 
 			Subjects.CollectionChanged += SubjectsChanged;
@@ -53,10 +54,25 @@ namespace KafedraApp.ViewModels
 		#region Commands
 
 		public ICommand ImportSubjectsCommand { get; set; }
+		public ICommand AddSubjectCommand { get; set; }
 
 		#endregion
 
 		#region Methods
+
+		private async void AddSubject()
+		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
+			var subject = await _dialogService.ShowSubjectForm();
+
+			if (subject != null)
+				Subjects?.Add(subject);
+
+			IsBusy = false;
+		}
 
 		private void ImportSubjects()
 		{
