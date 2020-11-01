@@ -1,4 +1,5 @@
 ﻿using KafedraApp.Commands;
+using KafedraApp.Extensions;
 using KafedraApp.Helpers;
 using KafedraApp.Models;
 using KafedraApp.Services;
@@ -44,6 +45,8 @@ namespace KafedraApp.ViewModels
 			_dialogService = Container.Resolve<IDialogService>();
 
 			AddSubjectCommand = new DelegateCommand(AddSubject);
+			EditSubjectCommand = new DelegateCommand<Subject>(EditSubject);
+			DeleteSubjectCommand = new DelegateCommand<Subject>(DeleteSubject);
 			ImportSubjectsCommand = new DelegateCommand(ImportSubjects);
 
 			Subjects.CollectionChanged += SubjectsChanged;
@@ -55,6 +58,8 @@ namespace KafedraApp.ViewModels
 
 		public ICommand ImportSubjectsCommand { get; set; }
 		public ICommand AddSubjectCommand { get; set; }
+		public ICommand EditSubjectCommand { get; set; }
+		public ICommand DeleteSubjectCommand { get; set; }
 
 		#endregion
 
@@ -70,6 +75,38 @@ namespace KafedraApp.ViewModels
 
 			if (subject != null)
 				Subjects?.Add(subject);
+
+			IsBusy = false;
+		}
+
+		private async void EditSubject(Subject subject)
+		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
+			subject = await _dialogService.ShowSubjectForm(subject.Clone() as Subject);
+
+			if (subject != null)
+			{
+				var id = Subjects.IndexOf(Subjects.GetById(subject.Id));
+				Subjects[id] = subject;
+			}
+
+			IsBusy = false;
+		}
+
+		private async void DeleteSubject(Subject subject)
+		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
+			var res = await _dialogService.ShowQuestion(
+				$"Ви дійсно бажаєте видалити { subject.Name }?");
+
+			if (res)
+				Subjects.Remove(subject);
 
 			IsBusy = false;
 		}
@@ -93,9 +130,9 @@ namespace KafedraApp.ViewModels
 
 				foreach (var subject in subjects)
 				{
-					await Task.Delay(100);
+					await Task.Delay(80);
 
-					Application.Current.Dispatcher.Invoke(() =>
+					Application.Current?.Dispatcher?.Invoke(() =>
 						Subjects.Add(subject));
 				}
 			});
