@@ -17,22 +17,14 @@ namespace KafedraApp.ViewModels
 	{
 		#region Fields
 
+		private readonly IDataService _dataService;
 		private readonly IDialogService _dialogService;
 
 		#endregion
 
 		#region Properties
 
-		private ObservableCollection<Subject> _subjects = new ObservableCollection<Subject>();
-		public ObservableCollection<Subject> Subjects
-		{
-			get => _subjects;
-			set
-			{
-				SetProperty(ref _subjects, value);
-				OnPropertyChanged(nameof(IsSubjectsEmpty));
-			}
-		}
+		public ObservableCollection<Subject> Subjects => _dataService.Subjects;
 
 		public bool IsSubjectsEmpty => Subjects?.Any() != true;
 
@@ -42,6 +34,7 @@ namespace KafedraApp.ViewModels
 
 		public SubjectsViewModel()
 		{
+			_dataService = Container.Resolve<IDataService>();
 			_dialogService = Container.Resolve<IDialogService>();
 
 			AddSubjectCommand = new DelegateCommand(AddSubject);

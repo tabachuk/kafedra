@@ -98,17 +98,17 @@
                     Content="Предмет"
                     Style="{StaticResource HeaderStyle}"/>
                 <Label
-                        Grid.Column="1"
-                        Content="Спеціальність"
-                        Style="{StaticResource HeaderStyle}">
+                    Grid.Column="1"
+                    Content="Спеціальність"
+                    Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
                         <RotateTransform Angle="-90"/>
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                        Grid.Column="2"
-                        Content="Курс"
-                        Style="{StaticResource HeaderStyle}">
+                    Grid.Column="2"
+                    Content="Курс"
+                    Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
                         <RotateTransform Angle="-90"/>
                     </Label.LayoutTransform>

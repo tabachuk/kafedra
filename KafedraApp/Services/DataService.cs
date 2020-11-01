@@ -24,6 +24,8 @@ namespace KafedraApp.Services
 
 		public string DataFolder => "Data";
 
+		public ObservableCollection<Subject> Subjects { get; set; }
+
 		public ObservableCollection<Teacher> Teachers { get; set; }
 
 		public ObservableCollection<AcademicStatusInfo> AcademicStatuses { get; set; }
@@ -123,6 +125,18 @@ namespace KafedraApp.Services
 			return string.IsNullOrEmpty(key) ? typeof(T).Name : key;
 		}
 
+		private async Task InitSubjectsAsync()
+		{
+			var subjects = await ReadListAsync<Subject>();
+
+			if (subjects?.Any() == true)
+				Subjects = new ObservableCollection<Subject>(subjects);
+			else
+				Subjects = new ObservableCollection<Subject>();
+
+			Subjects.CollectionChanged += OnSubjectsChanged;
+		}
+
 		private async Task InitTeachersAsync()
 		{
 			var teachers = await ReadListAsync<Teacher>();
@@ -158,6 +172,7 @@ namespace KafedraApp.Services
 
 		public async Task InitAsync()
 		{
+			await InitSubjectsAsync();
 			await InitTeachersAsync();
 			await InitMaxHoursAsync();
 		}
@@ -165,6 +180,11 @@ namespace KafedraApp.Services
 		#endregion
 
 		#region Event handlers
+
+		private async void OnSubjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			await WriteAsync(Subjects);
+		}
 
 		private async void OnTeachersChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{

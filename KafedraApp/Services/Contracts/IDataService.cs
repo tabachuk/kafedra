@@ -6,6 +6,7 @@ namespace KafedraApp.Services
 {
 	public interface IDataService
 	{
+		ObservableCollection<Subject> Subjects { get; set; }
 		ObservableCollection<Teacher> Teachers { get; set; }
 		ObservableCollection<AcademicStatusInfo> AcademicStatuses { get; set; }
 		Task InitAsync();

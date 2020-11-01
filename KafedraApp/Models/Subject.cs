@@ -1,12 +1,9 @@
 ﻿using KafedraApp.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KafedraApp.Models
 {
+	[CollectionName("Subjects")]
 	public class Subject : BaseModel, ICloneable
 	{
 		[ExcelColumn("Предмет")]
