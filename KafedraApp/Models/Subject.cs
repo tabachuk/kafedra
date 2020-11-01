@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KafedraApp.Models
 {
-	public class Subject : BaseModel
+	public class Subject : BaseModel, ICloneable
 	{
 		[ExcelColumn("Предмет")]
 		public string Name { get; set; }
@@ -56,5 +56,29 @@ namespace KafedraApp.Models
 
 		[ExcelColumn("Залік")]
 		public double TestHours { get; set; }
+
+		public object Clone()
+		{
+			return new Subject()
+			{
+				Id = Id,
+				Name = Name,
+				Specialty = Specialty,
+				Course = Course,
+				Subgroups = Subgroups,
+				Semester = Semester,
+				Credits = Credits,
+				TotalHours = TotalHours,
+				TotalClassroomHours = TotalClassroomHours,
+				LectureHours = LectureHours,
+				PracticalHours = PracticalHours,
+				LaboratoryWorkHours = LaboratoryWorkHours,
+				ControlWorkHours = ControlWorkHours,
+				CourseWorkHours = CourseWorkHours,
+				IndividualTaskHours = IndividualTaskHours,
+				ExaminationHours = ExaminationHours,
+				TestHours = TestHours
+			};
+		}
 	}
 }
