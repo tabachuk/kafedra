@@ -4,6 +4,8 @@ using KafedraApp.Helpers;
 using KafedraApp.Models;
 using KafedraApp.Services;
 using Microsoft.Win32;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -26,6 +28,8 @@ namespace KafedraApp.ViewModels
 
 		public ObservableCollection<Subject> Subjects => _dataService.Subjects;
 
+		public ObservableCollection<Subject> SubjectsToShow { get; set; }
+
 		public bool IsSubjectsEmpty => Subjects?.Any() != true;
 
 		#endregion
@@ -36,6 +40,8 @@ namespace KafedraApp.ViewModels
 		{
 			_dataService = Container.Resolve<IDataService>();
 			_dialogService = Container.Resolve<IDialogService>();
+
+			InitSubjectsToShow();
 
 			AddSubjectCommand = new DelegateCommand(AddSubject);
 			EditSubjectCommand = new DelegateCommand<Subject>(EditSubject);
@@ -131,6 +137,27 @@ namespace KafedraApp.ViewModels
 			});
 		}
 
+		private void InitSubjectsToShow()
+		{
+			if (Subjects.Any())
+			{
+				SubjectsToShow = new ObservableCollection<Subject>(
+					Subjects.Take(Math.Min(10, Subjects.Count)));
+			}
+			else
+			{
+				SubjectsToShow = new ObservableCollection<Subject>();
+			}
+		}
+
+		public void AddSubjectToShow()
+		{
+			if (SubjectsToShow.Count >= Subjects.Count)
+				return;
+
+			SubjectsToShow.Add(Subjects[SubjectsToShow.Count]);
+		}
+
 		#endregion
 
 		#region Event Handlers
@@ -138,6 +165,39 @@ namespace KafedraApp.ViewModels
 		private void SubjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			OnPropertyChanged(nameof(IsSubjectsEmpty));
+
+			switch (e.Action)
+			{
+				case NotifyCollectionChangedAction.Add:
+					var subject = e.NewItems[0] as Subject;
+					var index = Subjects.IndexOf(subject);
+
+					if (index >= 0 && index <= SubjectsToShow.Count)
+					{
+						SubjectsToShow.Insert(index, subject);
+					}
+					break;
+				case NotifyCollectionChangedAction.Remove:
+					subject = e.OldItems[0] as Subject;
+					SubjectsToShow.Remove(subject);
+					break;
+				case NotifyCollectionChangedAction.Replace:
+					var newSubject = e.NewItems[0] as Subject;
+
+					index = Subjects.IndexOf(newSubject);
+
+					if (index >= 0 && index <= SubjectsToShow.Count)
+					{
+						SubjectsToShow.RemoveAt(index);
+						SubjectsToShow.Insert(index, newSubject);
+					}
+					break;
+				case NotifyCollectionChangedAction.Move:
+					break;
+				case NotifyCollectionChangedAction.Reset:
+					SubjectsToShow.Clear();
+					break;
+			}
 		}
 
 		#endregion

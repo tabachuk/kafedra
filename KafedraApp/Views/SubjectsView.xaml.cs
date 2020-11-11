@@ -46,7 +46,16 @@ namespace KafedraApp.Views
 
 		private void OnSubjectsSVScrolled(object sender, ScrollChangedEventArgs e)
 		{
-			HeaderSV.ScrollToHorizontalOffset(e.HorizontalOffset);
+			if (e.HorizontalChange != 0)
+			{
+				HeaderSV.ScrollToHorizontalOffset(e.HorizontalOffset);
+			}
+
+			if (e.VerticalChange != 0
+				&& e.VerticalOffset + e.ViewportHeight > e.ExtentHeight - 100)
+			{
+				ViewModel.AddSubjectToShow();
+			}
 		}
 	}
 }

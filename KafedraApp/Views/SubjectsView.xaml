@@ -236,7 +236,7 @@
             HorizontalScrollBarVisibility="Auto"
             ScrollChanged="OnSubjectsSVScrolled"
             Padding="0,0,0,5">
-            <ItemsControl ItemsSource="{Binding Subjects}">
+            <ItemsControl ItemsSource="{Binding SubjectsToShow}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Vertical"/>
