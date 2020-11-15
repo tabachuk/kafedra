@@ -49,12 +49,12 @@ namespace KafedraApp.Windows
                 return;
             _isInitialized = true;
 
-            Watch.Start();
+            var watch = new Watch().Start();
             Console.WriteLine("Initialization started.");
 
             await Container.Resolve<IDataService>().InitAsync();
 
-            Watch.Stop("Initialization finished. Duration: ");
+            watch.Stop("Initialization finished. Duration: ");
 
             new MainWindow().Show();
             Close();

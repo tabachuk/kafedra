@@ -1,11 +1,13 @@
 ﻿using KafedraApp.Attributes;
 using KafedraApp.Extensions;
+using KafedraApp.Helpers;
 using KafedraApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -42,9 +44,15 @@ namespace KafedraApp.Services
 			var path = GetPath<T>(key);
 
 			if (File.Exists(path))
-				return File.ReadAllText(path).FromJson<T>();
+			{
+				var watch = new Watch().Start();
+				var res = File.ReadAllText(path).FromJson<T>();
+				Debug.Write($"'{ key }' has been read. ");
+				watch.Stop("Duration: ");
+				return res;
+			}
 
-			Console.WriteLine($"Can't read '{ key }'.");
+			Debug.WriteLine($"Can't read '{ key }'.");
 			return default;
 		}
 
@@ -54,10 +62,15 @@ namespace KafedraApp.Services
 			var path = GetPath<T>(key);
 
 			if (File.Exists(path))
-				return await Task.Run(() =>
-					File.ReadAllText(path).FromJson<T>());
+			{
+				var watch = new Watch().Start();
+				var res = await Task.Run(() => File.ReadAllText(path).FromJson<T>());
+				Debug.Write($"'{ key }' has been read. ");
+				watch.Stop("Duration: ");
+				return res;
+			}
 
-			Console.WriteLine($"Can't read '{ key }'.");
+			Debug.WriteLine($"Can't read '{ key }'. File does not exist.");
 			return default;
 		}
 
@@ -67,9 +80,15 @@ namespace KafedraApp.Services
 			var path = GetPath<T>(key);
 
 			if (File.Exists(path))
-				return File.ReadAllText(path).FromJson<List<T>>();
+			{
+				var watch = new Watch().Start();
+				var res = File.ReadAllText(path).FromJson<List<T>>();
+				Debug.Write($"'{ key }' has been read. { res.Count } items. ");
+				watch.Stop("Duration: ");
+				return res;
+			}
 
-			Console.WriteLine($"Can't read '{ key }'.");
+			Debug.WriteLine($"Can't read '{ key }'. File does not exist.");
 			return default;
 		}
 
@@ -79,10 +98,15 @@ namespace KafedraApp.Services
 			var path = GetPath<T>(key);
 
 			if (File.Exists(path))
-				return await Task.Run(() =>
-					File.ReadAllText(path).FromJson<List<T>>());
+			{
+				var watch = new Watch().Start();
+				var res = await Task.Run(() => File.ReadAllText(path).FromJson<List<T>>());
+				Debug.Write($"'{ key }' has been read. { res.Count } items. ");
+				watch.Stop("Duration: ");
+				return res;
+			}
 
-			Console.WriteLine($"Can't read '{ key }'.");
+			Debug.WriteLine($"Can't read '{ key }'. File does not exist.");
 			return default;
 		}
 
@@ -90,12 +114,19 @@ namespace KafedraApp.Services
 		{
 			lock (_locker)
 			{
+				var watch = new Watch().Start();
 				key = key ?? GetKey<T>();
 
 				if (!Directory.Exists(DataFolder))
 					Directory.CreateDirectory(DataFolder);
 
 				File.WriteAllText(GetPath<T>(key), data.ToJson());
+				Debug.Write($"'{ key }' has been written. ");
+
+				if (typeof(T) is IEnumerable<object> items)
+					Debug.Write($"{ items.Count() } items. ");
+
+				watch.Stop("Duration: ");
 			}
 		}
 

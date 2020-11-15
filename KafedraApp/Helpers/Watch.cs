@@ -3,25 +3,29 @@ using System.Diagnostics;
 
 namespace KafedraApp.Helpers
 {
-	public static class Watch
+	public class Watch
 	{
-		private static readonly Stopwatch _watch = new Stopwatch();
+		private readonly Stopwatch _stopwatch = new Stopwatch();
 
-		public static TimeSpan GetElapsed() => _watch.Elapsed;
+		public TimeSpan GetElapsed() => _stopwatch.Elapsed;
 
-		public static void Start() => _watch.Restart();
-
-		public static void Stop(string prefix = "")
+		public Watch Start()
 		{
-			_watch.Stop();
+			_stopwatch.Restart();
+			return this;
+		}
+
+		public void Stop(string prefix = "")
+		{
+			_stopwatch.Stop();
 			Debug.WriteLine(prefix + GetElapsedString());
 		}
 
-		private static string GetElapsedString()
+		private string GetElapsedString()
 		{
-			var min = _watch.Elapsed.Minutes;
-			var sec = _watch.Elapsed.Seconds;
-			var mlsec = _watch.Elapsed.Milliseconds;
+			var min = _stopwatch.Elapsed.Minutes;
+			var sec = _stopwatch.Elapsed.Seconds;
+			var mlsec = _stopwatch.Elapsed.Milliseconds;
 
 			if (min > 0)
 				return $"{ min }m { sec }s { mlsec }ms";
