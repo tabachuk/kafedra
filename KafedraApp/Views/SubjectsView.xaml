@@ -54,6 +54,16 @@
             FontSize="8"
             Style="{StaticResource RoundedButtonStyle}"
             Command="{Binding AddSubjectCommand}"/>
+        <controls:IconButton
+            ClipToBounds="False"
+            Icon="&#xf2ed;"
+            Text="Очистити"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Margin="10,0"
+            Width="200"
+            FontSize="8"
+            Style="{StaticResource RoundedButtonStyle}"
+            Command="{Binding ClearSubjectsCommand}"/>
     </StackPanel>
 
     <Grid Grid.Row="1">

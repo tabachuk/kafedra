@@ -5,7 +5,6 @@ using KafedraApp.Models;
 using KafedraApp.Services;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -21,6 +20,8 @@ namespace KafedraApp.ViewModels
 
 		private readonly IDataService _dataService;
 		private readonly IDialogService _dialogService;
+
+		private bool _isImporting;
 
 		#endregion
 
@@ -47,6 +48,7 @@ namespace KafedraApp.ViewModels
 			EditSubjectCommand = new DelegateCommand<Subject>(EditSubject);
 			DeleteSubjectCommand = new DelegateCommand<Subject>(DeleteSubject);
 			ImportSubjectsCommand = new DelegateCommand(ImportSubjects);
+			ClearSubjectsCommand = new DelegateCommand(ClearSubjects);
 
 			Subjects.CollectionChanged += SubjectsChanged;
 		}
@@ -59,6 +61,7 @@ namespace KafedraApp.ViewModels
 		public ICommand AddSubjectCommand { get; set; }
 		public ICommand EditSubjectCommand { get; set; }
 		public ICommand DeleteSubjectCommand { get; set; }
+		public ICommand ClearSubjectsCommand { get; set; }
 
 		#endregion
 
@@ -73,7 +76,10 @@ namespace KafedraApp.ViewModels
 			var subject = await _dialogService.ShowSubjectForm();
 
 			if (subject != null)
+			{
 				Subjects?.Add(subject);
+				await _dataService.SaveSubjects();
+			}
 
 			IsBusy = false;
 		}
@@ -90,6 +96,7 @@ namespace KafedraApp.ViewModels
 			{
 				var id = Subjects.IndexOf(Subjects.GetById(subject.Id));
 				Subjects[id] = subject;
+				await _dataService.SaveSubjects();
 			}
 
 			IsBusy = false;
@@ -105,7 +112,10 @@ namespace KafedraApp.ViewModels
 				$"Ви дійсно бажаєте видалити { subject.Name }?");
 
 			if (res)
+			{
 				Subjects.Remove(subject);
+				await _dataService.SaveSubjects();
+			}
 
 			IsBusy = false;
 		}
@@ -125,16 +135,30 @@ namespace KafedraApp.ViewModels
 
 			Task.Run(async () =>
 			{
+				_isImporting = true;
 				var subjects = ExcelHelper.GetSubjects(dialog.FileNames);
 
 				foreach (var subject in subjects)
 				{
-					await Task.Delay(80);
-
-					Application.Current?.Dispatcher?.Invoke(() =>
+					Application.Current.Dispatcher.Invoke(() =>
 						Subjects.Add(subject));
 				}
+
+				await _dataService.SaveSubjects();
+				_isImporting = false;
 			});
+		}
+
+		private async void ClearSubjects()
+		{
+			var res = await _dialogService.ShowQuestion(
+				$"Ви дійсно бажаєте видалити всі предмети?");
+
+			if (res)
+			{
+				Subjects.Clear();
+				await _dataService.SaveSubjects();
+			}
 		}
 
 		private void InitSubjectsToShow()
@@ -169,6 +193,9 @@ namespace KafedraApp.ViewModels
 			switch (e.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
+					if (_isImporting && SubjectsToShow.Count >= 10)
+						break;
+
 					var subject = e.NewItems[0] as Subject;
 					var index = Subjects.IndexOf(subject);
 

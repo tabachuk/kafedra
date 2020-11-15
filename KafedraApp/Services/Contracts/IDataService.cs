@@ -10,5 +10,6 @@ namespace KafedraApp.Services
 		ObservableCollection<Teacher> Teachers { get; set; }
 		ObservableCollection<AcademicStatusInfo> AcademicStatuses { get; set; }
 		Task InitAsync();
+		Task SaveSubjects();
 	}
 }

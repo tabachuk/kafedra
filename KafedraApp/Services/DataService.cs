@@ -133,8 +133,6 @@ namespace KafedraApp.Services
 				Subjects = new ObservableCollection<Subject>(subjects);
 			else
 				Subjects = new ObservableCollection<Subject>();
-
-			Subjects.CollectionChanged += OnSubjectsChanged;
 		}
 
 		private async Task InitTeachersAsync()
@@ -177,14 +175,14 @@ namespace KafedraApp.Services
 			await InitMaxHoursAsync();
 		}
 
-		#endregion
-
-		#region Event handlers
-
-		private async void OnSubjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		public async Task SaveSubjects()
 		{
 			await WriteAsync(Subjects);
 		}
+
+		#endregion
+
+		#region Event handlers
 
 		private async void OnTeachersChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
