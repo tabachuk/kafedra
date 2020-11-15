@@ -122,10 +122,6 @@ namespace KafedraApp.Services
 
 				File.WriteAllText(GetPath<T>(key), data.ToJson());
 				Debug.Write($"'{ key }' has been written. ");
-
-				if (typeof(T) is IEnumerable<object> items)
-					Debug.Write($"{ items.Count() } items. ");
-
 				watch.Stop("Duration: ");
 			}
 		}

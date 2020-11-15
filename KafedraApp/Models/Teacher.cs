@@ -40,6 +40,9 @@ namespace KafedraApp.Models
 		public List<Subject> SubjectsSpecializesIn { get; set; }
 
 		[JsonIgnore]
+		public int SubjectsSpecializesInCount => SubjectsSpecializesIn?.Count ?? 0;
+
+		[JsonIgnore]
 		public List<Subject> SubjectsTeaches { get; set; }
 
 		public bool IsValid(out string error)

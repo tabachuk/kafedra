@@ -202,7 +202,8 @@
                             </StackPanel>
                             <Button
                                 Grid.Column="5"
-                                Content="0 предметів"
+                                Content="{Binding SubjectsSpecializesInCount}"
+                                ContentStringFormat="{}{0:f0} предметів"
                                 Style="{StaticResource SubjectsButtonStyle}"/>
                             <StackPanel
                                 Grid.Column="6"
