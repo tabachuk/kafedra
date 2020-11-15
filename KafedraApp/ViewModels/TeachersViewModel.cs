@@ -33,6 +33,7 @@ namespace KafedraApp.ViewModels
 		public ICommand AddTeacherCommand { get; private set; }
 		public ICommand EditTeacherCommand { get; private set; }
 		public ICommand DeleteTeacherCommand { get; private set; }
+		public ICommand ClearTeachersCommand { get; private set; }
 
 		#endregion
 
@@ -46,6 +47,7 @@ namespace KafedraApp.ViewModels
 			AddTeacherCommand = new DelegateCommand(AddTeacher);
 			EditTeacherCommand = new DelegateCommand<Teacher>(EditTeacher);
 			DeleteTeacherCommand = new DelegateCommand<Teacher>(DeleteTeacher);
+			ClearTeachersCommand = new DelegateCommand(ClearTeachers);
 
 			Teachers.CollectionChanged += TeachersChanged;
 		}
@@ -98,6 +100,15 @@ namespace KafedraApp.ViewModels
 				Teachers.Remove(teacher);
 
 			IsBusy = false;
+		}
+
+		private async void ClearTeachers()
+		{
+			var res = await _dialogService.ShowQuestion(
+				$"Ви дійсно бажаєте видалити всіх викладачів?");
+
+			if (res)
+				Teachers.Clear();
 		}
 
 		#endregion

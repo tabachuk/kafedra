@@ -53,18 +53,32 @@
         <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
-    <controls:IconButton
-        ClipToBounds="False"
-        Icon="&#xf234;"
-        Text="Додати"
-        Foreground="{DynamicResource FadeForegroundColor}"
+    <StackPanel
         HorizontalAlignment="Right"
-        Margin="10,0"
-        Width="200"
-        FontSize="8"
-        Style="{StaticResource RoundedButtonStyle}"
-        Command="{Binding AddTeacherCommand}"/>
-
+        Orientation="Horizontal">
+        <controls:IconButton
+            ClipToBounds="False"
+            Icon="&#xf234;"
+            Text="Додати"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            HorizontalAlignment="Right"
+            Margin="10,0"
+            Width="200"
+            FontSize="8"
+            Style="{StaticResource RoundedButtonStyle}"
+            Command="{Binding AddTeacherCommand}"/>
+        <controls:IconButton
+            ClipToBounds="False"
+            Icon="&#xf2ed;"
+            Text="Очистити"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Margin="10,0"
+            Width="200"
+            FontSize="8"
+            Style="{StaticResource RoundedButtonStyle}"
+            Command="{Binding ClearTeachersCommand}"/>
+    </StackPanel>
+    
     <Grid
         Grid.Row="1"
         VerticalAlignment="Top"
