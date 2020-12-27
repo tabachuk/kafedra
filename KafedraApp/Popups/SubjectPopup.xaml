@@ -92,7 +92,7 @@
 
         <Grid
             Name="SubjectFormBox"
-            Width="600"
+            Width="800"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="{DynamicResource BackgroundColor}"
@@ -178,7 +178,7 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="170"/>
+                        <ColumnDefinition Width="200"/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Label
@@ -210,7 +210,7 @@
                         Margin="5"/>
                     <Label
                         Grid.Row="3"
-                        Content="К-сть підгруп:"
+                        Content="Кількість підгруп:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
                         Grid.Row="3"
@@ -269,7 +269,7 @@
                     <TextBox
                         Grid.Row="9"
                         Grid.Column="1"
-                        Text="{Binding PracticalHours}"
+                        Text="{Binding PracticalWorkHours}"
                         Margin="5"/>
                     <Label
                         Grid.Row="10"
@@ -305,7 +305,7 @@
                     <TextBox
                         Grid.Row="13"
                         Grid.Column="1"
-                        Text="{Binding IndividualTaskHours}"
+                        Text="{Binding IndividualTasksHours}"
                         Margin="5"/>
                     <Label
                         Grid.Row="14"
@@ -314,7 +314,7 @@
                     <TextBox
                         Grid.Row="14"
                         Grid.Column="1"
-                        Text="{Binding ExaminationHours}"
+                        Text="{Binding ExamHours}"
                         Margin="5"/>
                     <Label
                         Grid.Row="15"

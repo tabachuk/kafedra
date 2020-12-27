@@ -50,7 +50,7 @@ namespace KafedraApp.ViewModels
 			ImportSubjectsCommand = new DelegateCommand(ImportSubjects);
 			ClearSubjectsCommand = new DelegateCommand(ClearSubjects);
 
-			Subjects.CollectionChanged += SubjectsChanged;
+			Subjects.CollectionChanged += OnSubjectsChanged;
 		}
 
 		#endregion
@@ -152,7 +152,7 @@ namespace KafedraApp.ViewModels
 		private async void ClearSubjects()
 		{
 			var res = await _dialogService.ShowQuestion(
-				$"Ви дійсно бажаєте видалити всі предмети?");
+				"Ви дійсно бажаєте видалити всі предмети?");
 
 			if (res)
 			{
@@ -163,7 +163,7 @@ namespace KafedraApp.ViewModels
 
 		private void InitSubjectsToShow()
 		{
-			if (Subjects.Any())
+			if (Subjects?.Any() == true)
 			{
 				SubjectsToShow = new ObservableCollection<Subject>(
 					Subjects.Take(Math.Min(10, Subjects.Count)));
@@ -186,7 +186,7 @@ namespace KafedraApp.ViewModels
 
 		#region Event Handlers
 
-		private void SubjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void OnSubjectsChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			OnPropertyChanged(nameof(IsSubjectsEmpty));
 
@@ -207,6 +207,7 @@ namespace KafedraApp.ViewModels
 				case NotifyCollectionChangedAction.Remove:
 					subject = e.OldItems[0] as Subject;
 					SubjectsToShow.Remove(subject);
+					AddSubjectToShow();
 					break;
 				case NotifyCollectionChangedAction.Replace:
 					var newSubject = e.NewItems[0] as Subject;

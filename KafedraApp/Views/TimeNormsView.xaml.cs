@@ -2,12 +2,12 @@
 
 namespace KafedraApp.Views
 {
-	public partial class TeachersView
+	public partial class TimeNormsView
 	{
-		public TeachersView()
+		public TimeNormsView()
 		{
 			InitializeComponent();
-			DataContext = new TeachersViewModel();
+			DataContext = new TimeNormsViewModel();
 		}
 	}
 }

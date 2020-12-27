@@ -1,5 +1,7 @@
 ﻿using KafedraApp.Attributes;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace KafedraApp.Models
 {
@@ -13,10 +15,15 @@ namespace KafedraApp.Models
 		public string Specialty { get; set; }
 
 		[ExcelColumn("Курс")]
-		public string Course { get; set; }
+		public double Course { get; set; }
 
+		private double _subgroups;
 		[ExcelColumn("Кількість підгруп")]
-		public double Subgroups { get; set; }
+		public double Subgroups
+		{
+			get => _subgroups;
+			set => _subgroups = value < 1 ? 1 : value;
+		}
 
 		[ExcelColumn("Семестр")]
 		public double Semester { get; set; }
@@ -34,7 +41,7 @@ namespace KafedraApp.Models
 		public double LectureHours { get; set; }
 
 		[ExcelColumn("Практичні")]
-		public double PracticalHours { get; set; }
+		public double PracticalWorkHours { get; set; }
 
 		[ExcelColumn("Лабораторні")]
 		public double LaboratoryWorkHours { get; set; }
@@ -46,10 +53,10 @@ namespace KafedraApp.Models
 		public double CourseWorkHours { get; set; }
 
 		[ExcelColumn("ІНДЗ")]
-		public double IndividualTaskHours { get; set; }
+		public double IndividualTasksHours { get; set; }
 
 		[ExcelColumn("Екзамен")]
-		public double ExaminationHours { get; set; }
+		public double ExamHours { get; set; }
 
 		[ExcelColumn("Залік")]
 		public double TestHours { get; set; }
@@ -68,12 +75,12 @@ namespace KafedraApp.Models
 				TotalHours = TotalHours,
 				TotalClassroomHours = TotalClassroomHours,
 				LectureHours = LectureHours,
-				PracticalHours = PracticalHours,
+				PracticalWorkHours = PracticalWorkHours,
 				LaboratoryWorkHours = LaboratoryWorkHours,
 				ControlWorkHours = ControlWorkHours,
 				CourseWorkHours = CourseWorkHours,
-				IndividualTaskHours = IndividualTaskHours,
-				ExaminationHours = ExaminationHours,
+				IndividualTasksHours = IndividualTasksHours,
+				ExamHours = ExamHours,
 				TestHours = TestHours
 			};
 		}

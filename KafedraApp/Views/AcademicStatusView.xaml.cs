@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Input;
 using Container = KafedraApp.Helpers.Container;
 
 namespace KafedraApp.Views
@@ -77,11 +78,9 @@ namespace KafedraApp.Views
 
 		#region Commands
 
-		public DelegateCommand EditMaxHoursCommand { get; set; }
-
-		public DelegateCommand SaveMaxHoursCommand { get; set; }
-
-		public DelegateCommand NotSaveMaxHoursCommand { get; set; }
+		public ICommand EditMaxHoursCommand { get; private set; }
+		public ICommand SaveMaxHoursCommand { get; private set; }
+		public ICommand NotSaveMaxHoursCommand { get; private set; }
 
 		#endregion
 

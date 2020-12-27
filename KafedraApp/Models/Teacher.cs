@@ -4,6 +4,8 @@ using KafedraApp.Services;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
 
 namespace KafedraApp.Models
@@ -11,6 +13,8 @@ namespace KafedraApp.Models
 	[CollectionName("Teachers")]
 	public class Teacher : BaseModel, ICloneable
 	{
+		#region Properties
+
 		public string LastName { get; set; }
 
 		public string FirstName { get; set; }
@@ -20,6 +24,9 @@ namespace KafedraApp.Models
 		public AcademicStatuses AcademicStatus { get; set; }
 
 		public float Rate { get; set; }
+
+		[JsonIgnore]
+		public string FullName => $"{ LastName } { FirstName } { MiddleName }";
 
 		[JsonIgnore]
 		public string LastNameAndInitials => $"{ LastName } { FirstName[0] }. { MiddleName[0] }.";
@@ -37,13 +44,47 @@ namespace KafedraApp.Models
 		}
 
 		[JsonIgnore]
-		public List<Subject> SubjectsSpecializesIn { get; set; }
+		public double LoadHours => LoadItems?.Sum(x => x.Hours) ?? 0;
+
+		private ObservableCollection<string> _subjectsSpecializesIn;
+		public ObservableCollection<string> SubjectsSpecializesIn
+		{
+			get => _subjectsSpecializesIn;
+			set
+			{
+				_subjectsSpecializesIn = value;
+				OnPropertyChanged(nameof(SubjectsSpecializesInCount));
+			}
+		}
 
 		[JsonIgnore]
 		public int SubjectsSpecializesInCount => SubjectsSpecializesIn?.Count ?? 0;
 
 		[JsonIgnore]
 		public List<Subject> SubjectsTeaches { get; set; }
+
+		private ObservableCollection<LoadItem> _loadItems;
+		[JsonIgnore]
+		public ObservableCollection<LoadItem> LoadItems
+		{
+			get => _loadItems;
+			set
+			{
+				if (_loadItems != null)
+					_loadItems.CollectionChanged -= OnLoadItemsChanged;
+
+				_loadItems = value;
+				OnPropertyChanged(nameof(LoadItems));
+				OnPropertyChanged(nameof(LoadHours));
+
+				if (_loadItems != null)
+					_loadItems.CollectionChanged += OnLoadItemsChanged;
+			}
+		}
+
+		#endregion
+
+		#region Methods
 
 		public bool IsValid(out string error)
 		{
@@ -86,10 +127,23 @@ namespace KafedraApp.Models
 				AcademicStatus = AcademicStatus,
 				Rate = Rate,
 				SubjectsSpecializesIn = SubjectsSpecializesIn == null ?
-					null : new List<Subject>(SubjectsSpecializesIn),
+					null : new ObservableCollection<string>(SubjectsSpecializesIn),
 				SubjectsTeaches = SubjectsTeaches == null ?
-					null : new List<Subject>(SubjectsTeaches)
+					null : new List<Subject>(SubjectsTeaches),
+				LoadItems = LoadItems == null ?
+					null : new ObservableCollection<LoadItem>(LoadItems)
 			};
 		}
+
+		#endregion
+
+		#region Event Handlers
+
+		private void OnLoadItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			OnPropertyChanged(nameof(LoadHours));
+		}
+
+		#endregion
 	}
 }

@@ -32,6 +32,23 @@
     </Grid.RowDefinitions>
 
     <StackPanel
+        Margin="10,0"
+        Orientation="Horizontal">
+        <Label
+            Content="&#xf02d;"
+            FontSize="32"
+            Margin="0,0,10,0"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            VerticalContentAlignment="Center"
+            FontFamily="{StaticResource FontAwesome}"/>
+        <Label
+            FontSize="28"
+            VerticalContentAlignment="Center"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Content="Предмети"/>
+    </StackPanel>
+    
+    <StackPanel
         HorizontalAlignment="Right"
         Orientation="Horizontal">
         <controls:IconButton
@@ -83,7 +100,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" MinWidth="220"/>
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="60"/>
@@ -125,14 +141,6 @@
                 </Label>
                 <Label
                     Grid.Column="3"
-                    Content="Кількість підгруп"
-                    Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
-                    Grid.Column="4"
                     Content="Семестр"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -140,7 +148,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="5"
+                    Grid.Column="4"
                     Content="Кредити"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -148,7 +156,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="6"
+                    Grid.Column="5"
                     Content="Всього"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -156,7 +164,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="7"
+                    Grid.Column="6"
                     Content="Всього (аудиторних)"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -164,7 +172,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="8"
+                    Grid.Column="7"
                     Content="Лекції"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -172,7 +180,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="9"
+                    Grid.Column="8"
                     Content="Практичні"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -180,7 +188,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="10"
+                    Grid.Column="9"
                     Content="Лабораторні"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -188,7 +196,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="11"
+                    Grid.Column="10"
                     Content="Контрольна робота"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -196,7 +204,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="12"
+                    Grid.Column="11"
                     Content="Курсова"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -204,7 +212,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="13"
+                    Grid.Column="12"
                     Content="ІНДЗ"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -212,7 +220,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="14"
+                    Grid.Column="13"
                     Content="Екзамен"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -220,7 +228,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="15"
+                    Grid.Column="14"
                     Content="Залік"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -228,7 +236,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="16"
+                    Grid.Column="15"
                     Content="Дії"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -259,7 +267,6 @@
                             Background="{DynamicResource BackgroundColor}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MinWidth="220"/>
-                                <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
@@ -299,58 +306,54 @@
                                 Style="{StaticResource DataStyle}"/>
                             <Label
                                 Grid.Column="3"
-                                Content="{Binding Subgroups}"
-                                Style="{StaticResource DataStyle}"/>
-                            <Label
-                                Grid.Column="4"
                                 Content="{Binding Semester}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="5"
+                                Grid.Column="4"
                                 Content="{Binding Credits}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="6"
+                                Grid.Column="5"
                                 Content="{Binding TotalHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="7"
+                                Grid.Column="6"
                                 Content="{Binding TotalClassroomHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="8"
+                                Grid.Column="7"
                                 Content="{Binding LectureHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="9"
-                                Content="{Binding PracticalHours}"
+                                Grid.Column="8"
+                                Content="{Binding PracticalWorkHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="10"
+                                Grid.Column="9"
                                 Content="{Binding LaboratoryWorkHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="11"
+                                Grid.Column="10"
                                 Content="{Binding ControlWorkHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="12"
+                                Grid.Column="11"
                                 Content="{Binding CourseWorkHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
+                                Grid.Column="12"
+                                Content="{Binding IndividualTasksHours}"
+                                Style="{StaticResource DataStyle}"/>
+                            <Label
                                 Grid.Column="13"
-                                Content="{Binding IndividualTaskHours}"
+                                Content="{Binding ExamHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
                                 Grid.Column="14"
-                                Content="{Binding ExaminationHours}"
-                                Style="{StaticResource DataStyle}"/>
-                            <Label
-                                Grid.Column="15"
                                 Content="{Binding TestHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <StackPanel
-                                Grid.Column="16"
+                                Grid.Column="15"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">

@@ -1,0 +1,413 @@
+﻿<Grid
+    x:Class="KafedraApp.Views.LoadDistributionView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    xmlns:controls="clr-namespace:KafedraApp.Controls"
+    xmlns:converters="clr-namespace:KafedraApp.Converters"
+    xmlns:helpers="clr-namespace:KafedraApp.Helpers"
+    mc:Ignorable="d"
+    Name="ThisLoadDistributionView">
+
+    <Grid.Resources>
+        <converters:EqualityConverter x:Key="EqualityConverter"/>
+        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+        <converters:InverseCountToVisibilityConverter x:Key="InverseCountToVisibilityConverter"/>
+        <converters:ArithmeticConverter x:Key="ArithmeticConverter"/>
+        <InputBindingCollection
+            x:Key="UndistributedLoadInputCollection"
+            x:Shared="False">
+            <MouseBinding
+                Gesture="LeftClick"
+                Command="{Binding DataContext.AssignLoadCommand,
+                                  ElementName=ThisLoadDistributionView}"
+                CommandParameter="{Binding}"/>
+        </InputBindingCollection>
+        <InputBindingCollection
+            x:Key="TeacherLoadInputCollection"
+            x:Shared="False">
+            <MouseBinding
+                Gesture="LeftClick"
+                Command="{Binding DataContext.UnassignLoadCommand,
+                                  ElementName=ThisLoadDistributionView}"
+                CommandParameter="{Binding}"/>
+        </InputBindingCollection>
+        <DataTemplate x:Key="LoadItemView">
+            <Grid
+                Margin="0,3,3,3"
+                Background="{DynamicResource BackgroundColor}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <TextBox
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Text="{Binding Subject}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    TextWrapping="Wrap"
+                    HorizontalContentAlignment="Center"
+                    IsReadOnly="True"
+                    BorderThickness="0"
+                    IsHitTestVisible="False"
+                    Margin="10,5"
+                    FontSize="18"/>
+                <Label
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Content="{Binding Type}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    Margin="10,5"
+                    FontSize="18"/>
+                <Label
+                    Grid.Column="2"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Content="{Binding Hours}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    FontSize="18"
+                    Margin="10,5"
+                    FontStyle="Italic"
+                    ContentStringFormat="{}{0} год"/>
+                <Label
+                    Grid.Column="3"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Content="{Binding Group}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    Margin="10,5"
+                    FontSize="18"/>
+                <StackPanel
+                    Grid.Column="4"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical"
+                    Margin="10,5">
+                    <Label
+                        Content="{Binding Semester}"
+                        HorizontalAlignment="Center"
+                        Padding="0"
+                        Margin="0"
+                        Foreground="{DynamicResource FadeForegroundColor}"
+                        FontSize="18"/>
+                    <Label
+                        HorizontalAlignment="Center"
+                        Content="семестр"
+                        Opacity="0.9"
+                        Padding="0"
+                        Margin="0,-5,0,0"
+                        Foreground="{DynamicResource FadeForegroundColor}"
+                        FontSize="15"/>
+                </StackPanel>
+            </Grid>
+        </DataTemplate>
+    </Grid.Resources>
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="80"/>
+        <RowDefinition Height="*"/>
+    </Grid.RowDefinitions>
+
+    <StackPanel
+        Margin="10,0"
+        Orientation="Horizontal">
+        <Label
+            Content="&#xf24e;"
+            FontSize="32"
+            Margin="0,0,10,0"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            VerticalContentAlignment="Center"
+            FontFamily="{StaticResource FontAwesome}"/>
+        <Label
+            FontSize="28"
+            VerticalContentAlignment="Center"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Content="Розподіл навантаження"/>
+    </StackPanel>
+    
+    <StackPanel
+        HorizontalAlignment="Right"
+        Orientation="Horizontal">
+        <controls:IconButton
+            ClipToBounds="False"
+            Icon="&#xf01e;"
+            Text="Скинути"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Margin="10,0"
+            Width="200"
+            FontSize="8"
+            Style="{StaticResource RoundedButtonStyle}"
+            Command="{Binding ResetLoadCommand}"/>
+        <controls:IconButton
+            ClipToBounds="False"
+            Icon="&#xf24e;"
+            Text="Сформувати"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Margin="10,0"
+            Width="200"
+            FontSize="8"
+            Style="{StaticResource RoundedButtonStyle}"
+            Command="{Binding FormLoadCommand}"/>
+        <controls:IconButton
+            ClipToBounds="False"
+            Icon="&#xf1c3;"
+            Text="Зберегти"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Margin="10,0"
+            Width="200"
+            FontSize="8"
+            Style="{StaticResource RoundedButtonStyle}"/>
+    </StackPanel>
+
+    <Grid Grid.Row="1">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="10"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ItemsControl
+            Grid.RowSpan="3"
+            ItemsSource="{Binding Teachers}"
+            VerticalAlignment="Stretch"
+            Background="{DynamicResource BackgroundColor}"
+            Padding="0,10">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Button
+                        x:Name="ThisIconButton"
+                        Foreground="{DynamicResource FadeForegroundColor}"
+                        FontSize="20"
+                        Height="50"
+                        HorizontalAlignment="Stretch"
+                        Content="{Binding LastNameAndInitials}"
+                        Command="{Binding DataContext.SwitchTeacherCommand, ElementName=ThisLoadDistributionView}"
+                        CommandParameter="{Binding .}">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <Setter Property="Background" Value="{DynamicResource BackgroundColor}"/>
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="BorderThickness" Value="0"/>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                                <Setter Property="Padding" Value="30,0"/>
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="Button">
+                                            <Border Background="{TemplateBinding Background}">
+                                                <ContentPresenter
+                                                    VerticalAlignment="Center"
+                                                    Margin="20,0"/>
+                                            </Border>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter
+                                            Property="Background"
+                                            Value="{DynamicResource MouseOverButtonColor}"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <DataTemplate.Triggers>
+                        <DataTrigger Value="True">
+                            <DataTrigger.Binding>
+                                <MultiBinding Converter="{StaticResource EqualityConverter}">
+                                    <Binding
+                                        Path="DataContext.CurrentTeacher"
+                                        ElementName="ThisLoadDistributionView"/>
+                                    <Binding/>
+                                </MultiBinding>
+                            </DataTrigger.Binding>
+                            <Setter
+                                TargetName="ThisIconButton"
+                                Property="Foreground"
+                                Value="{DynamicResource BackgroundColor}"/>
+                            <Setter
+                                TargetName="ThisIconButton"
+                                Property="Background"
+                                Value="{DynamicResource FadeForegroundColor}"/>
+                            <Setter
+                                TargetName="ThisIconButton"
+                                Property="Cursor"
+                                Value="Arrow"/>
+                        </DataTrigger>
+                    </DataTemplate.Triggers>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Rectangle Fill="{DynamicResource FadeForegroundColor}"/>
+            <TextBlock
+                Foreground="{DynamicResource BackgroundColor}"
+                FontSize="20"
+                HorizontalAlignment="Left"
+                Margin="15,10">
+                <Run Text="Навантаження викладача "/>
+                <Run
+                    Text="{Binding CurrentTeacher.LastNameAndInitials,
+                                   Mode=OneWay,
+                                   StringFormat=({0})}"
+                    FontStyle="Italic"/>
+            </TextBlock>
+            <TextBlock
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Foreground="{DynamicResource BackgroundColor}"
+                FontSize="18"
+                FontStyle="Italic"
+                Margin="15,10">
+                <Run Text="{Binding CurrentTeacher.LoadHours, Mode=OneWay}"/>
+                <Run Text=" год / "/>
+                <Run>
+                    <Run.Text>
+                        <MultiBinding
+                            StringFormat="{}{0:f0}"
+                            Mode="OneWay"
+                            Converter="{StaticResource ArithmeticConverter}"
+                            ConverterParameter="*">
+                            <Binding Path="CurrentTeacher.MaxHours"/>
+                            <Binding Path="CurrentTeacher.Rate"/>
+                        </MultiBinding>
+                    </Run.Text>
+                </Run>
+                <Run Text=" год"/>
+            </TextBlock>
+            <ScrollViewer
+                Grid.Row="1"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto">
+                <ItemsControl
+                    ItemsSource="{Binding CurrentTeacher.LoadItems}"
+                    ItemTemplate="{StaticResource LoadItemView}"
+                    Margin="0,3,0,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter
+                                Property="helpers:Attach.InputBindings" 
+                                Value="{StaticResource TeacherLoadInputCollection}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </ScrollViewer>
+            <StackPanel
+                Grid.Row="1"
+                Opacity="0.8"
+                Orientation="Vertical"
+                VerticalAlignment="Center"
+                Visibility="{Binding CurrentTeacher.LoadHours,
+                                     Converter={StaticResource InverseCountToVisibilityConverter}}">
+                <Label
+                    Content="&#xf24e;"
+                    FontSize="90"
+                    FontFamily="{StaticResource FontAwesome}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    HorizontalAlignment="Center"/>
+                <Label
+                    Content="Навантаження відсутнє"
+                    FontSize="32"
+                    HorizontalAlignment="Center"
+                    Foreground="{DynamicResource FadeForegroundColor}"/>
+            </StackPanel>
+        </Grid>
+        <Grid
+            Grid.Row="2"
+            Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Rectangle Fill="{DynamicResource FadeForegroundColor}"/>
+            <TextBlock
+                Text="Нерозподілене навантаження"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Foreground="{DynamicResource BackgroundColor}"
+                FontSize="20"
+                Margin="15,10"/>
+            <Label
+                Content="{Binding NotDistributedLoadHours}"
+                ContentStringFormat="{}{0:# 000} год не розподілено"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                FontStyle="Italic"
+                Foreground="{DynamicResource BackgroundColor}"
+                Visibility="{Binding NotDistributedLoadHours,
+                                     Converter={StaticResource CountToVisibilityConverter}}"
+                FontSize="18"
+                Margin="15,10"/>
+            <ScrollViewer
+                Grid.Row="1"
+                Name="NotDistributedLoadSV"
+                HorizontalScrollBarVisibility="Disabled"
+                VerticalScrollBarVisibility="Auto"
+                ScrollChanged="OnNotDistributedLoadSVScrollChanged">
+                <ItemsControl
+                    ItemsSource="{Binding NotDistributedLoadToShow}"
+                    ItemTemplate="{StaticResource LoadItemView}"
+                    Margin="0,3,0,0">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel
+                                HorizontalAlignment="Stretch"
+                                Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemContainerStyle>
+                        <Style>
+                            <Setter
+                                Property="helpers:Attach.InputBindings"
+                                Value="{StaticResource UndistributedLoadInputCollection}"/>
+                        </Style>
+                    </ItemsControl.ItemContainerStyle>
+                </ItemsControl>
+            </ScrollViewer>
+            <StackPanel
+                Grid.Row="1"
+                Opacity="0.8"
+                Orientation="Vertical"
+                VerticalAlignment="Center"
+                Visibility="{Binding NotDistributedLoadHours,
+                                     Converter={StaticResource InverseCountToVisibilityConverter}}">
+                <Label
+                    Content="&#xf058;"
+                    FontSize="90"
+                    FontFamily="{StaticResource FontAwesome}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    HorizontalAlignment="Center"/>
+                <Label
+                    Content="Навантаження розподілене"
+                    FontSize="32"
+                    HorizontalAlignment="Center"
+                    Foreground="{DynamicResource FadeForegroundColor}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+
+</Grid>

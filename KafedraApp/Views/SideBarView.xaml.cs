@@ -1,6 +1,4 @@
-﻿using KafedraApp.Services;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace KafedraApp.Views
 {

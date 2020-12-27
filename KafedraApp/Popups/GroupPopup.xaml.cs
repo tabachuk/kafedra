@@ -9,20 +9,27 @@ using System.Windows.Media.Animation;
 
 namespace KafedraApp.Popups
 {
-	public partial class SubjectPopup : INotifyPropertyChanged
+	public partial class GroupPopup : INotifyPropertyChanged
 	{
 		#region Fields
 
-		private readonly TaskCompletionSource<Subject> _tcs
-			= new TaskCompletionSource<Subject>();
+		private readonly TaskCompletionSource<Group> _tcs
+			= new TaskCompletionSource<Group>();
 
 		#endregion
 
 		#region Properties
 
-		public Subject Subject { get; set; }
+		public Group Group { get; set; }
 
-		public Task<Subject> Result => _tcs.Task;
+		public Task<Group> Result => _tcs.Task;
+
+		private string _rateStr;
+		public string RateStr
+		{
+			get => _rateStr;
+			set => SetProperty(ref _rateStr, value);
+		}
 
 		public bool IsEditMode { get; }
 
@@ -56,11 +63,11 @@ namespace KafedraApp.Popups
 
 		#region Constructors
 
-		public SubjectPopup(Subject subject = null)
+		public GroupPopup(Group group = null)
 		{
-			IsEditMode = subject != null;
-			Subject = subject ?? new Subject();
-			SetResultCommand = new DelegateCommand<Subject>(SetResult);
+			IsEditMode = group != null;
+			Group = group ?? new Group { SubgroupsCount = 1, Course = 1 };
+			SetResultCommand = new DelegateCommand<Group>(SetResult);
 
 			InitializeComponent();
 		}
@@ -77,7 +84,7 @@ namespace KafedraApp.Popups
 			BeginStoryboard(anim);
 		}
 
-		private void SetResult(Subject subject)
+		private void SetResult(Group group)
 		{
 			if (IsBusy)
 				return;
@@ -85,41 +92,11 @@ namespace KafedraApp.Popups
 
 			string error = null;
 
-			//if (subject != null)
-			//{
-			//	if (string.IsNullOrWhiteSpace(RateStr))
-			//	{
-			//		Error = "Вкажіть ставку";
-			//		IsBusy = false;
-			//		return;
-			//	}
-
-			//	if (!float.TryParse(
-			//			RateStr,
-			//			NumberStyles.Any,
-			//			CultureInfo.InvariantCulture,
-			//			out float rate))
-			//	{
-			//		Error = "Невірний формат ставки";
-			//		IsBusy = false;
-			//		return;
-			//	}
-
-			//	subject.Rate = rate;
-
-			//	if (!subject.IsValid(out error))
-			//	{
-			//		Error = error;
-			//		IsBusy = false;
-			//		return;
-			//	}
-			//}
-
 			var anim = Resources["PopAnimation"] as Storyboard;
 
 			anim.Completed += (o, e) =>
 			{
-				_tcs.SetResult(subject);
+				_tcs.SetResult(group);
 				IsBusy = false;
 			};
 

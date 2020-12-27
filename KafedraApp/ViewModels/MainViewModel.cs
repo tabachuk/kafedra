@@ -28,7 +28,7 @@ namespace KafedraApp.ViewModels
 		public Sections CurrentSection
 		{
 			get => _currentSection;
-			set => SetProperty<Sections>(ref _currentSection, value);
+			set => SetProperty(ref _currentSection, value);
 		}
 
 		#endregion
@@ -45,7 +45,10 @@ namespace KafedraApp.ViewModels
 		{
 			Subjects,
 			Teachers,
+			Groups,
 			AcademicStatuses,
+			TimeNorms,
+			LoadDistribution,
 			Settings,
 			Help
 		};

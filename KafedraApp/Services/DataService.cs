@@ -2,7 +2,6 @@
 using KafedraApp.Extensions;
 using KafedraApp.Helpers;
 using KafedraApp.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
@@ -30,11 +29,23 @@ namespace KafedraApp.Services
 
 		public ObservableCollection<Teacher> Teachers { get; set; }
 
+		public ObservableCollection<Group> Groups { get; set; }
+
 		public ObservableCollection<AcademicStatusInfo> AcademicStatuses { get; set; }
+
+		public ObservableCollection<TimeNorm> TimeNorms { get; set; }
+
+		public List<string> SubjectNames =>
+			Subjects?
+			.Select(x => x.Name)
+			.Distinct()
+			.Where(x => !x.Contains("робота") && !x.Contains("практика"))
+			.OrderBy(x => x)
+			.ToList();
 
 		#endregion
 
-		#region Private methods
+		#region Private Methods
 
 		private string GetPath<T>(string key) => $@"{ DataFolder }\{ key }.json";
 
@@ -174,6 +185,16 @@ namespace KafedraApp.Services
 			Teachers.CollectionChanged += OnTeachersChanged;
 		}
 
+		private async Task InitGroupsAsync()
+		{
+			var groups = await ReadListAsync<Group>();
+
+			if (groups?.Any() == true)
+				Groups = new ObservableCollection<Group>(groups);
+			else
+				Groups = new ObservableCollection<Group>();
+		}
+
 		private async Task InitMaxHoursAsync()
 		{
 			var academicStatuses = await ReadListAsync<AcademicStatusInfo>();
@@ -191,15 +212,155 @@ namespace KafedraApp.Services
 			}
 		}
 
+		private async Task InitTimeNormsAsync()
+		{
+			var timeNorms = await ReadListAsync<TimeNorm>();
+
+			if (timeNorms == null)
+				throw new FileNotFoundException(
+					"Файл із нормами часу не знайдений. Перевірте його наявність в папці з даними");
+
+			TimeNorms = new ObservableCollection<TimeNorm>(timeNorms);
+			TimeNorms.CollectionChanged += OnTimeNormsChanged;
+
+			foreach (var timeNorm in TimeNorms)
+			{
+				timeNorm.PropertyChanged += OnTimeNormChanged;
+			}
+		}
+
+		private List<LoadItem> GetLoadItemsByTeacher(Subject subject)
+		{
+			var loadItems = new List<LoadItem>();
+
+			if (subject.LectureHours > 0)
+			{
+				var loadItem = GetLoadItem(
+					subject,
+					LoadItemTypes.Lectures,
+					subject.LectureHours);
+
+				loadItems.Add(loadItem);
+			}
+
+			if (subject.PracticalWorkHours > 0)
+			{
+				if (subject.Subgroups > 1)
+				{
+					for (int i = 1; i <= subject.Subgroups; ++i)
+					{
+						var loadItem = GetLoadItem(
+							subject,
+							LoadItemTypes.PracticalWork,
+							subject.PracticalWorkHours, i);
+
+						loadItems.Add(loadItem);
+					}
+				}
+				else
+				{
+					var loadItem = GetLoadItem(
+						subject,
+						LoadItemTypes.PracticalWork,
+						subject.PracticalWorkHours);
+
+					loadItems.Add(loadItem);
+				}
+			}
+
+			if (subject.LaboratoryWorkHours > 0)
+			{
+				if (subject.Subgroups > 1)
+				{
+					for (int i = 1; i <= subject.Subgroups; ++i)
+					{
+						var loadItem = GetLoadItem(
+							subject,
+							LoadItemTypes.LaboratoryWork,
+							subject.LaboratoryWorkHours,
+							i);
+
+						loadItems.Add(loadItem);
+					}
+				}
+				else
+				{
+					var loadItem = GetLoadItem(
+						subject,
+						LoadItemTypes.LaboratoryWork,
+						subject.LaboratoryWorkHours);
+
+					loadItems.Add(loadItem);
+				}
+			}
+
+			if (subject.TestHours > 0)
+			{
+				var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Test);
+
+				if (timeNorm != null && timeNorm.Hours > 0)
+				{
+					var loadItem = GetLoadItem(subject, LoadItemTypes.Test, timeNorm.Hours);
+					loadItems.Add(loadItem);
+				}
+			}
+
+			if (subject.ExamHours > 0)
+			{
+				var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Exam);
+
+				if (timeNorm != null && timeNorm.Hours > 0)
+				{
+					var loadItem = GetLoadItem(subject, LoadItemTypes.Exam, timeNorm.Hours);
+					loadItems.Add(loadItem);
+				}
+			}
+
+			if (subject.IndividualTasksHours > 0)
+			{
+				var loadItem = GetLoadItem(subject, LoadItemTypes.IndividualTasks, subject.IndividualTasksHours);
+				loadItems.Add(loadItem);
+			}
+
+			return loadItems;
+		}
+
+		private LoadItem GetLoadItem(Subject subject, LoadItemTypes type, double hours, double subgroup = 0)
+		{
+			return new LoadItem
+			{
+				Subject = subject.Name,
+				Semester = subject.Semester,
+				Group = $"{ subject.Specialty }-{ subject.Course }1",
+				Type = type,
+				Hours = hours,
+				Subgroup = subgroup
+			};
+		}
+
+		private List<Subject> GetCathedraSubjects()
+		{
+			var assignedSubjects = Teachers.SelectMany(x => x.SubjectsSpecializesIn);
+			var subjects = Subjects.Where(x => assignedSubjects.Contains(x.Name));
+			return subjects.ToList();
+		}
+
 		#endregion
 
-		#region Public methods
+		#region Public Methods
 
 		public async Task InitAsync()
 		{
 			await InitSubjectsAsync();
 			await InitTeachersAsync();
+			await InitGroupsAsync();
 			await InitMaxHoursAsync();
+			await InitTimeNormsAsync();
+		}
+
+		public async Task SaveTeachers()
+		{
+			await WriteAsync(Teachers);
 		}
 
 		public async Task SaveSubjects()
@@ -207,9 +368,31 @@ namespace KafedraApp.Services
 			await WriteAsync(Subjects);
 		}
 
+		public async Task SaveGroups()
+		{
+			await WriteAsync(Groups);
+		}
+
+		public List<LoadItem> GetLoadItems(IEnumerable<Subject> subjects = null)
+		{
+			if (subjects?.Any() != true)
+			{
+				subjects = GetCathedraSubjects();
+			}
+
+			var loadItems = new List<LoadItem>();
+
+			foreach (var subject in subjects)
+			{
+				loadItems.AddRange(GetLoadItemsByTeacher(subject));
+			}
+
+			return loadItems;
+		}
+
 		#endregion
 
-		#region Event handlers
+		#region Event Handlers
 
 		private async void OnTeachersChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
@@ -224,6 +407,16 @@ namespace KafedraApp.Services
 		private async void OnAcademicStatusInfoChanged(object sender, PropertyChangedEventArgs e)
 		{
 			await WriteAsync(AcademicStatuses);
+		}
+
+		private async void OnTimeNormsChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			await WriteAsync(TimeNorms);
+		}
+
+		private async void OnTimeNormChanged(object sender, PropertyChangedEventArgs e)
+		{
+			await WriteAsync(TimeNorms);
 		}
 
 		#endregion

@@ -34,6 +34,7 @@ namespace KafedraApp.ViewModels
 		public ICommand EditTeacherCommand { get; private set; }
 		public ICommand DeleteTeacherCommand { get; private set; }
 		public ICommand ClearTeachersCommand { get; private set; }
+		public ICommand EditSubjectsCommand { get; private set; }
 
 		#endregion
 
@@ -48,8 +49,9 @@ namespace KafedraApp.ViewModels
 			EditTeacherCommand = new DelegateCommand<Teacher>(EditTeacher);
 			DeleteTeacherCommand = new DelegateCommand<Teacher>(DeleteTeacher);
 			ClearTeachersCommand = new DelegateCommand(ClearTeachers);
+			EditSubjectsCommand = new DelegateCommand<Teacher>(EditSubjects);
 
-			Teachers.CollectionChanged += TeachersChanged;
+			Teachers.CollectionChanged += OnTeachersChanged;
 		}
 
 		#endregion
@@ -94,7 +96,7 @@ namespace KafedraApp.ViewModels
 			IsBusy = true;
 
 			var res = await _dialogService.ShowQuestion(
-				$"Ви дійсно бажаєте видалити { teacher.LastName } { teacher.FirstName } { teacher.MiddleName }?");
+				$"Ви дійсно бажаєте видалити { teacher.FullName }?");
 
 			if (res)
 				Teachers.Remove(teacher);
@@ -104,18 +106,52 @@ namespace KafedraApp.ViewModels
 
 		private async void ClearTeachers()
 		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
 			var res = await _dialogService.ShowQuestion(
-				$"Ви дійсно бажаєте видалити всіх викладачів?");
+				"Ви дійсно бажаєте видалити всіх викладачів?");
 
 			if (res)
 				Teachers.Clear();
+
+			IsBusy = false;
+		}
+
+		private async void EditSubjects(Teacher teacher)
+		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
+			if (_dataService.SubjectNames?.Any() != true)
+			{
+				await _dialogService.ShowError("Спочатку додайте предмети в базу даних");
+				return;
+			}
+
+			var subjects = await _dialogService.ShowSubjectPickerPopup(
+				teacher.FullName,
+				teacher.SubjectsSpecializesIn?.ToList());
+
+			if (subjects != null)
+			{
+				teacher.SubjectsSpecializesIn =
+					new ObservableCollection<string>(subjects);
+
+				var id = Teachers.IndexOf(Teachers.GetById(teacher.Id));
+				Teachers[id] = teacher;
+			}
+
+			IsBusy = false;
 		}
 
 		#endregion
 
 		#region Event Handlers
 
-		private void TeachersChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void OnTeachersChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			OnPropertyChanged(nameof(IsTeachersEmpty));
 		}

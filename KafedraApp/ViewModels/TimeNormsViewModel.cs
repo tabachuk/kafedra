@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace KafedraApp.ViewModels
 {
-	public class AcademicStatusesViewModel : BindableBase
+	public class TimeNormsViewModel : BindableBase
 	{
 		#region Fields
 
@@ -15,14 +15,13 @@ namespace KafedraApp.ViewModels
 
 		#region Properties
 
-		public ObservableCollection<AcademicStatusInfo> AcademicStatuses =>
-			_dataService.AcademicStatuses;
+		public ObservableCollection<TimeNorm> TimeNorms => _dataService.TimeNorms;
 
 		#endregion
 
 		#region Constructors
 
-		public AcademicStatusesViewModel()
+		public TimeNormsViewModel()
 		{
 			_dataService = Container.Resolve<IDataService>();
 		}

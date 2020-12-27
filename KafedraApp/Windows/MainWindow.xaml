@@ -22,8 +22,17 @@
         <DataTemplate x:Key="TeachersSection" DataType="{x:Type views:TeachersView}">
             <views:TeachersView/>
         </DataTemplate>
+        <DataTemplate x:Key="GroupsSection" DataType="{x:Type views:GroupsView}">
+            <views:GroupsView/>
+        </DataTemplate>
         <DataTemplate x:Key="AcademicStatusesSection" DataType="{x:Type views:AcademicStatusesView}">
             <views:AcademicStatusesView/>
+        </DataTemplate>
+        <DataTemplate x:Key="TimeNormsSection" DataType="{x:Type views:TimeNormsView}">
+            <views:TimeNormsView/>
+        </DataTemplate>
+        <DataTemplate x:Key="LoadDistributionSection" DataType="{x:Type views:LoadDistributionView}">
+            <views:LoadDistributionView/>
         </DataTemplate>
         <DataTemplate x:Key="SettingsSection" DataType="{x:Type views:SettingsView}">
             <views:SettingsView/>
@@ -42,7 +51,7 @@
         <ContentControl
             Grid.Column="1"
             Content="{Binding }"
-            Margin="20,15">
+            Margin="20,5">
             <ContentControl.Style>
                 <Style TargetType="{x:Type ContentControl}">
                     <Setter Property="ContentTemplate" Value="{StaticResource SubjectsSection}" />
@@ -50,8 +59,17 @@
                         <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.Teachers}">
                             <Setter Property="ContentTemplate" Value="{StaticResource TeachersSection}" />
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.Groups}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource GroupsSection}" />
+                        </DataTrigger>
                         <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.AcademicStatuses}">
                             <Setter Property="ContentTemplate" Value="{StaticResource AcademicStatusesSection}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.TimeNorms}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource TimeNormsSection}" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.LoadDistribution}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource LoadDistributionSection}" />
                         </DataTrigger>
                         <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.Settings}">
                             <Setter Property="ContentTemplate" Value="{StaticResource SettingsSection}" />

@@ -54,6 +54,23 @@
     </Grid.RowDefinitions>
 
     <StackPanel
+        Margin="10,0"
+        Orientation="Horizontal">
+        <Label
+            Content="&#xf51c;"
+            FontSize="32"
+            Margin="0,0,10,0"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            VerticalContentAlignment="Center"
+            FontFamily="{StaticResource FontAwesome}"/>
+        <Label
+            FontSize="28"
+            VerticalContentAlignment="Center"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Content="Викладачі"/>
+    </StackPanel>
+    
+    <StackPanel
         HorizontalAlignment="Right"
         Orientation="Horizontal">
         <controls:IconButton
@@ -202,9 +219,14 @@
                             </StackPanel>
                             <Button
                                 Grid.Column="5"
-                                Content="{Binding SubjectsSpecializesInCount}"
+                                Content="{Binding SubjectsSpecializesInCount,
+                                                  TargetNullValue=0,
+                                                  FallbackValue=0}"
                                 ContentStringFormat="{}{0:f0} предметів"
-                                Style="{StaticResource SubjectsButtonStyle}"/>
+                                Style="{StaticResource SubjectsButtonStyle}"
+                                Command="{Binding DataContext.EditSubjectsCommand,
+                                                  ElementName=ThisTeachersView}"
+                                CommandParameter="{Binding }"/>
                             <StackPanel
                                 Grid.Column="6"
                                 Orientation="Horizontal"
@@ -216,7 +238,8 @@
                                     FontSize="20"
                                     Style="{StaticResource SmallButtonStyle}"
                                     Foreground="{DynamicResource ForegroundColor}"
-                                    Command="{Binding DataContext.EditTeacherCommand, ElementName=ThisTeachersView}"
+                                    Command="{Binding DataContext.EditTeacherCommand,
+                                                      ElementName=ThisTeachersView}"
                                     CommandParameter="{Binding }"/>
                                 <Button
                                     Content="&#xf2ed;"

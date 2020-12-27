@@ -109,22 +109,35 @@
     </Compile>
     <Compile Include="Converters\BaseModelJsonConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
+    <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
     <Compile Include="Converters\ArithmeticConverter.cs" />
+    <Compile Include="Converters\EqualityConverter.cs" />
+    <Compile Include="Converters\InverseCountToVisibilityConverter.cs" />
     <Compile Include="Extensions\ExcelExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\SerializationExtensions.cs" />
+    <Compile Include="Helpers\Attach.cs" />
     <Compile Include="Helpers\Container.cs" />
     <Compile Include="Helpers\ExcelHelper.cs" />
     <Compile Include="Helpers\Watch.cs" />
     <Compile Include="Models\AcademicStatusInfo.cs" />
     <Compile Include="Models\ExcelLoadProgressChangedEventArgs.cs" />
+    <Compile Include="Models\Group.cs" />
+    <Compile Include="Models\LoadItem.cs" />
     <Compile Include="Models\Subject.cs" />
+    <Compile Include="Models\TimeNorm.cs" />
+    <Compile Include="Popups\GroupPopup.xaml.cs">
+      <DependentUpon>GroupPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popups\MessagePopup.xaml.cs">
       <DependentUpon>MessagePopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\SubjectImportPopup.xaml.cs">
       <DependentUpon>SubjectImportPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\SubjectPickerPopup.xaml.cs">
+      <DependentUpon>SubjectPickerPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Popups\SubjectPopup.xaml.cs">
       <DependentUpon>SubjectPopup.xaml</DependentUpon>
@@ -138,20 +151,29 @@
     <Compile Include="Services\DataService.cs" />
     <Compile Include="ViewModels\AcademicStatusesViewModel.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
+    <Compile Include="ViewModels\GroupsViewModel.cs" />
     <Compile Include="ViewModels\HelpViewModel.cs" />
+    <Compile Include="ViewModels\LoadDistributionViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="ViewModels\SubjectsViewModel.cs" />
     <Compile Include="ViewModels\TeachersViewModel.cs" />
     <Compile Include="ViewModels\TerminalViewModel.cs" />
+    <Compile Include="ViewModels\TimeNormsViewModel.cs" />
     <Compile Include="Views\AcademicStatusesView.xaml.cs">
       <DependentUpon>AcademicStatusesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AcademicStatusView.xaml.cs">
       <DependentUpon>AcademicStatusView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\GroupsView.xaml.cs">
+      <DependentUpon>GroupsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HelpView.xaml.cs">
       <DependentUpon>HelpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoadDistributionView.xaml.cs">
+      <DependentUpon>LoadDistributionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
@@ -165,6 +187,12 @@
     <Compile Include="Views\TeachersView.xaml.cs">
       <DependentUpon>TeachersView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TimeNormsView.xaml.cs">
+      <DependentUpon>TimeNormsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimeNormView.xaml.cs">
+      <DependentUpon>TimeNormView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\PreloaderWindow.xaml.cs">
       <DependentUpon>PreloaderWindow.xaml</DependentUpon>
     </Compile>
@@ -175,11 +203,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Popups\GroupPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Popups\MessagePopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\SubjectImportPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\SubjectPickerPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,7 +235,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\GroupsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HelpView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoadDistributionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -216,6 +260,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TeachersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimeNormsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimeNormView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

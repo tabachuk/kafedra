@@ -1,0 +1,79 @@
+﻿<Grid
+    x:Class="KafedraApp.Views.TimeNormsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    mc:Ignorable="d">
+
+    <Grid.RowDefinitions>
+        <RowDefinition Height="80"/>
+        <RowDefinition/>
+    </Grid.RowDefinitions>
+
+    <StackPanel
+        Margin="10,0"
+        Orientation="Horizontal">
+        <Label
+            Content="&#xf017;"
+            FontSize="32"
+            Margin="0,0,10,0"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            VerticalContentAlignment="Center"
+            FontFamily="{StaticResource FontAwesome}"/>
+        <Label
+            FontSize="28"
+            VerticalContentAlignment="Center"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Content="Норми часу"/>
+    </StackPanel>
+
+    <StackPanel
+        Grid.Row="1"
+        Orientation="Vertical">
+        <Grid
+            Background="{DynamicResource FadeForegroundColor}"
+            Height="50"
+            Margin="10,5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label
+                Content="Вид роботи"
+                Foreground="{DynamicResource BackgroundColor}"
+                FontSize="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            <Label
+                Grid.Column="1"
+                Content="Норма в годинах"
+                Foreground="{DynamicResource BackgroundColor}"
+                FontSize="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+            <Label
+                Grid.Column="2"
+                Content="Вид розподілу"
+                Foreground="{DynamicResource BackgroundColor}"
+                FontSize="20"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+        </Grid>
+        <ItemsControl ItemsSource="{Binding TimeNorms}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Vertical"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <local:TimeNormView DataContext="{Binding}"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+    
+</Grid>

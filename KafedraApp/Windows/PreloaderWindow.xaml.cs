@@ -1,6 +1,7 @@
 ﻿using KafedraApp.Helpers;
 using KafedraApp.Services;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -48,6 +49,8 @@ namespace KafedraApp.Windows
             if (_isInitialized)
                 return;
             _isInitialized = true;
+
+            await Task.Delay(2000);
 
             var watch = new Watch().Start();
             Console.WriteLine("Initialization started.");

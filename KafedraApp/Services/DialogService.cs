@@ -4,6 +4,7 @@ using System.Windows.Controls;
 using KafedraApp.Windows;
 using KafedraApp.Popups;
 using KafedraApp.Models;
+using System.Collections.Generic;
 
 namespace KafedraApp.Services
 {
@@ -110,6 +111,19 @@ namespace KafedraApp.Services
 			return result;
 		}
 
+		public async Task<Group> ShowGroupForm(Group group = null)
+		{
+			if (!CanShowDialog)
+				return null;
+
+			var popup = new GroupPopup(group);
+
+			Push(popup);
+			var result = await popup.Result;
+			Pop(popup);
+			return result;
+		}
+
 		public async Task ShowSubjectImportPopup()
 		{
 			if (!CanShowDialog)
@@ -120,6 +134,22 @@ namespace KafedraApp.Services
 			Push(popup);
 			await popup.Result;
 			Pop(popup);
+		}
+
+		public async Task<List<string>> ShowSubjectPickerPopup(
+			string teacherName,
+			List<string> subjects)
+		{
+			if (!CanShowDialog)
+				return null;
+
+			var popup = new SubjectPickerPopup(teacherName, subjects);
+
+			Push(popup);
+			var res = await popup.Result;
+			Pop(popup);
+
+			return res;
 		}
 
 		private void Push(UIElement popup) =>

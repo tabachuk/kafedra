@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace KafedraApp.Helpers
@@ -27,7 +28,7 @@ namespace KafedraApp.Helpers
 
 		public static int DataStartRow = 3;
 
-		public static char DataStartColumn = 'A';
+		public static string DataStartColumn = "A";
 
 		public static int HeaderRow = 1;
 
@@ -75,7 +76,7 @@ namespace KafedraApp.Helpers
 				string leftTopCell = $"{ DataStartColumn }{ DataStartRow }";
 
 				string rightBottomCell =
-					$"{ (char)(DataStartColumn + _titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
+					$"{ IncCol(DataStartColumn, _titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
 
 				_data = GetData(workSheet, leftTopCell, rightBottomCell);
 
@@ -140,9 +141,14 @@ namespace KafedraApp.Helpers
 		{
 			var titles = new List<string>();
 
-			for (char i = DataStartColumn; workSheet.GetValue(i, HeaderRow) != null; ++i)
+			for (string i = DataStartColumn; ; i = IncCol(i))
 			{
-				titles.Add(workSheet.GetValue(i, HeaderRow));
+				var value = workSheet.GetValue(i, HeaderRow);
+
+				if (string.IsNullOrWhiteSpace(value))
+					break;
+
+				titles.Add(value);
 			}
 
 			return titles;
@@ -152,7 +158,7 @@ namespace KafedraApp.Helpers
 		{
 			int rows = DataStartRow;
 
-			while (workSheet.GetValue(DataStartColumn, rows++) != null) ;
+			while (!string.IsNullOrWhiteSpace(workSheet.GetValue(DataStartColumn, rows++))) ;
 
 			return rows;
 		}
@@ -165,6 +171,32 @@ namespace KafedraApp.Helpers
 			var range = workSheet.get_Range(leftTopCell, rightBottomCell);
 			var data = (object[,])range.Cells.Value;
 			return data;
+		}
+
+		private static string IncCol(string col, int steps = 1)
+		{
+			if (col.Any(x => !char.IsUpper(x)))
+				throw new ArgumentException();
+
+			var chars = new StringBuilder(col);
+
+			while (steps-- > 0)
+			{
+				int i = chars.Length - 1;
+
+				while (i >= 0 && chars[i] == 'Z')
+				{
+					chars[i] = 'A';
+					i--;
+				}
+
+				if (i == -1)
+					chars.Insert(0, 'A');
+				else
+					chars[i]++;
+			}
+
+			return chars.ToString();
 		}
 
 		#endregion
