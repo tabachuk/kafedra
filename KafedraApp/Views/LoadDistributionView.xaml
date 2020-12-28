@@ -44,6 +44,7 @@
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
                 </Grid.ColumnDefinitions>
                 <TextBox
                     VerticalAlignment="Center"
@@ -85,6 +86,29 @@
                     FontSize="18"/>
                 <StackPanel
                     Grid.Column="4"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Orientation="Vertical"
+                    Margin="10,5"
+                    Visibility="{Binding Subgroup, Converter={StaticResource CountToVisibilityConverter}}">
+                    <Label
+                        Content="{Binding Subgroup}"
+                        HorizontalAlignment="Center"
+                        Padding="0"
+                        Margin="0"
+                        Foreground="{DynamicResource FadeForegroundColor}"
+                        FontSize="18"/>
+                    <Label
+                        HorizontalAlignment="Center"
+                        Content="підгрупа"
+                        Opacity="0.9"
+                        Padding="0"
+                        Margin="0,-5,0,0"
+                        Foreground="{DynamicResource FadeForegroundColor}"
+                        FontSize="15"/>
+                </StackPanel>
+                <StackPanel
+                    Grid.Column="5"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Orientation="Vertical"

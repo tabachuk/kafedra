@@ -231,107 +231,132 @@ namespace KafedraApp.Services
 
 		private List<LoadItem> GetLoadItemsByTeacher(Subject subject)
 		{
+			var groups = GetGroupsBySpecAndCourse(subject.Specialty, subject.Course);
 			var loadItems = new List<LoadItem>();
 
-			if (subject.LectureHours > 0)
+			foreach (var group in groups)
 			{
-				var loadItem = GetLoadItem(
-					subject,
-					LoadItemTypes.Lectures,
-					subject.LectureHours);
-
-				loadItems.Add(loadItem);
-			}
-
-			if (subject.PracticalWorkHours > 0)
-			{
-				if (subject.Subgroups > 1)
-				{
-					for (int i = 1; i <= subject.Subgroups; ++i)
-					{
-						var loadItem = GetLoadItem(
-							subject,
-							LoadItemTypes.PracticalWork,
-							subject.PracticalWorkHours, i);
-
-						loadItems.Add(loadItem);
-					}
-				}
-				else
+				if (subject.LectureHours > 0)
 				{
 					var loadItem = GetLoadItem(
+						subject,
+						LoadItemTypes.Lectures,
+						subject.LectureHours,
+						group);
+
+					loadItems.Add(loadItem);
+				}
+
+				if (subject.PracticalWorkHours > 0)
+				{
+					if (group.SubgroupsCount > 1)
+					{
+						for (int i = 1; i <= group.SubgroupsCount; ++i)
+						{
+							var loadItem = GetLoadItem(
+								subject,
+								LoadItemTypes.PracticalWork,
+								subject.PracticalWorkHours,
+								group,
+								i);
+
+							loadItems.Add(loadItem);
+						}
+					}
+					else
+					{
+						var loadItem = GetLoadItem(
 						subject,
 						LoadItemTypes.PracticalWork,
-						subject.PracticalWorkHours);
-
-					loadItems.Add(loadItem);
-				}
-			}
-
-			if (subject.LaboratoryWorkHours > 0)
-			{
-				if (subject.Subgroups > 1)
-				{
-					for (int i = 1; i <= subject.Subgroups; ++i)
-					{
-						var loadItem = GetLoadItem(
-							subject,
-							LoadItemTypes.LaboratoryWork,
-							subject.LaboratoryWorkHours,
-							i);
+						subject.PracticalWorkHours,
+						group);
 
 						loadItems.Add(loadItem);
 					}
 				}
-				else
+
+				if (subject.LaboratoryWorkHours > 0)
+				{
+					if (group.SubgroupsCount > 1)
+					{
+						for (int i = 1; i <= group.SubgroupsCount; ++i)
+						{
+							var loadItem = GetLoadItem(
+								subject,
+								LoadItemTypes.LaboratoryWork,
+								subject.LaboratoryWorkHours,
+								group,
+								i);
+
+							loadItems.Add(loadItem);
+						}
+					}
+					else
+					{
+						var loadItem = GetLoadItem(
+						subject,
+						LoadItemTypes.LaboratoryWork,
+						subject.LaboratoryWorkHours,
+						group);
+
+					loadItems.Add(loadItem);
+					}
+				}
+
+				if (subject.TestHours > 0)
+				{
+					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Test);
+
+					if (timeNorm != null && timeNorm.Hours > 0)
+					{
+						var loadItem = GetLoadItem(
+							subject,
+							LoadItemTypes.Test,
+							timeNorm.Hours,
+							group);
+
+						loadItems.Add(loadItem);
+					}
+				}
+
+				if (subject.ExamHours > 0)
+				{
+					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Exam);
+
+					if (timeNorm != null && timeNorm.Hours > 0)
+					{
+						var loadItem = GetLoadItem(
+							subject,
+							LoadItemTypes.Exam,
+							timeNorm.Hours,
+							group);
+
+						loadItems.Add(loadItem);
+					}
+				}
+
+				if (subject.IndividualTasksHours > 0)
 				{
 					var loadItem = GetLoadItem(
 						subject,
-						LoadItemTypes.LaboratoryWork,
-						subject.LaboratoryWorkHours);
+						LoadItemTypes.IndividualTasks,
+						subject.IndividualTasksHours,
+						group);
 
 					loadItems.Add(loadItem);
 				}
-			}
-
-			if (subject.TestHours > 0)
-			{
-				var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Test);
-
-				if (timeNorm != null && timeNorm.Hours > 0)
-				{
-					var loadItem = GetLoadItem(subject, LoadItemTypes.Test, timeNorm.Hours);
-					loadItems.Add(loadItem);
-				}
-			}
-
-			if (subject.ExamHours > 0)
-			{
-				var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Exam);
-
-				if (timeNorm != null && timeNorm.Hours > 0)
-				{
-					var loadItem = GetLoadItem(subject, LoadItemTypes.Exam, timeNorm.Hours);
-					loadItems.Add(loadItem);
-				}
-			}
-
-			if (subject.IndividualTasksHours > 0)
-			{
-				var loadItem = GetLoadItem(subject, LoadItemTypes.IndividualTasks, subject.IndividualTasksHours);
-				loadItems.Add(loadItem);
 			}
 
 			return loadItems;
 		}
 
-		private LoadItem GetLoadItem(Subject subject, LoadItemTypes type, double hours, double subgroup = 0)
+		private LoadItem GetLoadItem(Subject subject, LoadItemTypes type, double hours, Group group, double subgroup = 0)
 		{
 			return new LoadItem
 			{
 				Subject = subject.Name,
 				Semester = subject.Semester,
-				Group = $"{ subject.Specialty }-{ subject.Course }1",
+				Group = group.Name,
 				Type = type,
 				Hours = hours,
 				Subgroup = subgroup
@@ -388,6 +413,14 @@ namespace KafedraApp.Services
 			}
 
 			return loadItems;
+		}
+
+		private List<Group> GetGroupsBySpecAndCourse(string specialty, double course)
+		{
+			var groups = Groups
+				.Where(x => x.Specialty == specialty && x.Course == course).ToList();
+
+			return groups;
 		}
 
 		#endregion

@@ -1,7 +1,5 @@
 ﻿using KafedraApp.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace KafedraApp.Models
 {
@@ -16,14 +14,6 @@ namespace KafedraApp.Models
 
 		[ExcelColumn("Курс")]
 		public double Course { get; set; }
-
-		private double _subgroups;
-		[ExcelColumn("Кількість підгруп")]
-		public double Subgroups
-		{
-			get => _subgroups;
-			set => _subgroups = value < 1 ? 1 : value;
-		}
 
 		[ExcelColumn("Семестр")]
 		public double Semester { get; set; }
@@ -69,7 +59,6 @@ namespace KafedraApp.Models
 				Name = Name,
 				Specialty = Specialty,
 				Course = Course,
-				Subgroups = Subgroups,
 				Semester = Semester,
 				Credits = Credits,
 				TotalHours = TotalHours,

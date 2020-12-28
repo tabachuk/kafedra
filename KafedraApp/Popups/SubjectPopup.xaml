@@ -175,7 +175,6 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
@@ -210,118 +209,109 @@
                         Margin="5"/>
                     <Label
                         Grid.Row="3"
-                        Content="Кількість підгруп:"
+                        Content="Семестр:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
                         Grid.Row="3"
                         Grid.Column="1"
-                        Text="{Binding Subgroups}"
-                        Margin="5"/>
-                    <Label
-                        Grid.Row="4"
-                        Content="Семестр:"
-                        VerticalContentAlignment="Center"/>
-                    <TextBox
-                        Grid.Row="4"
-                        Grid.Column="1"
                         Text="{Binding Semester}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="5"
+                        Grid.Row="4"
                         Content="Кредити:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="5"
+                        Grid.Row="4"
                         Grid.Column="1"
                         Text="{Binding Credits}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="6"
+                        Grid.Row="5"
                         Content="Всього:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="6"
+                        Grid.Row="5"
                         Grid.Column="1"
                         Text="{Binding TotalHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="7"
+                        Grid.Row="6"
                         Content="Всього (ауд.):"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="7"
+                        Grid.Row="6"
                         Grid.Column="1"
                         Text="{Binding TotalClassroomHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="8"
+                        Grid.Row="7"
                         Content="Лекції:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="8"
+                        Grid.Row="7"
                         Grid.Column="1"
                         Text="{Binding LectureHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="9"
+                        Grid.Row="8"
                         Content="Практичні:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="9"
+                        Grid.Row="8"
                         Grid.Column="1"
                         Text="{Binding PracticalWorkHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="10"
+                        Grid.Row="9"
                         Content="Лабораторні:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="10"
+                        Grid.Row="9"
                         Grid.Column="1"
                         Text="{Binding LaboratoryWorkHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="11"
+                        Grid.Row="10"
                         Content="Контрольна робота:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="11"
+                        Grid.Row="10"
                         Grid.Column="1"
                         Text="{Binding ControlWorkHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="12"
+                        Grid.Row="11"
                         Content="Курсова:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="12"
+                        Grid.Row="11"
                         Grid.Column="1"
                         Text="{Binding CourseWorkHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="13"
+                        Grid.Row="12"
                         Content="ІНДЗ:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="13"
+                        Grid.Row="12"
                         Grid.Column="1"
                         Text="{Binding IndividualTasksHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="14"
+                        Grid.Row="13"
                         Content="Екзамен:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="14"
+                        Grid.Row="13"
                         Grid.Column="1"
                         Text="{Binding ExamHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="15"
+                        Grid.Row="14"
                         Content="Залік:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="15"
+                        Grid.Row="14"
                         Grid.Column="1"
                         Text="{Binding TestHours}"
                         Margin="5"/>
