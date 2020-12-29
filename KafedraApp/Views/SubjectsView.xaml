@@ -112,7 +112,6 @@
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Name="ExtraHeaderColumn"/>
                 </Grid.ColumnDefinitions>
@@ -205,14 +204,6 @@
                 </Label>
                 <Label
                     Grid.Column="11"
-                    Content="Курсова"
-                    Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
-                    Grid.Column="12"
                     Content="ІНДЗ"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -220,7 +211,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="13"
+                    Grid.Column="12"
                     Content="Екзамен"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -228,7 +219,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="14"
+                    Grid.Column="13"
                     Content="Залік"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -236,7 +227,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="15"
+                    Grid.Column="14"
                     Content="Дії"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -268,7 +259,6 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MinWidth="220"/>
                                 <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
@@ -338,22 +328,18 @@
                                 Style="{StaticResource DataStyle}"/>
                             <Label
                                 Grid.Column="11"
-                                Content="{Binding CourseWorkHours}"
-                                Style="{StaticResource DataStyle}"/>
-                            <Label
-                                Grid.Column="12"
                                 Content="{Binding IndividualTasksHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="13"
+                                Grid.Column="12"
                                 Content="{Binding ExamHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
-                                Grid.Column="14"
+                                Grid.Column="13"
                                 Content="{Binding TestHours}"
                                 Style="{StaticResource DataStyle}"/>
                             <StackPanel
-                                Grid.Column="15"
+                                Grid.Column="14"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
