@@ -377,7 +377,7 @@
                 Margin="15,10"/>
             <Label
                 Content="{Binding NotDistributedLoadHours}"
-                ContentStringFormat="{}{0:# 000} год не розподілено"
+                ContentStringFormat="{}{0:### ### ###} год не розподілено"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 FontStyle="Italic"
