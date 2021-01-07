@@ -85,7 +85,14 @@ namespace KafedraApp.ViewModels
 			ResetLoadCommand = new DelegateCommand(async () => await ResetLoad());
 
 			CurrentTeacher = _dataService.Teachers.FirstOrDefault();
+
+			//var load = _dataService.GetLoadItems();
+			//var distributedLoad = Teachers?.Where(x => x?.LoadItems?.Count > 0)
+			//	.SelectMany(x => x?.LoadItems).ToList();
+			//var notDistributedLoad = load.Except(distributedLoad, new LoadItemEqualityComparer<LoadItem>()).ToList();
+
 			NotDistributedLoad = new ObservableCollection<LoadItem>(_dataService.GetLoadItems());
+			
 			InitNotDistributedLoadToShow();
 		}
 
@@ -142,8 +149,6 @@ namespace KafedraApp.ViewModels
 
 			foreach (var teacher in Teachers)
 			{
-				var rateHours = Math.Ceiling(teacher.MaxHours * teacher.Rate);
-
 				if (teacher.LoadItems == null)
 					teacher.LoadItems = new ObservableCollection<LoadItem>();
 
@@ -151,7 +156,7 @@ namespace KafedraApp.ViewModels
 				{
 					var loadItems = NotDistributedLoad.Where(x => x.Subject == subject).ToList();
 
-					for (int i = 0; i < loadItems.Count && teacher.LoadHours < rateHours; ++i)
+					for (int i = 0; i < loadItems.Count && teacher.LoadHours < teacher.RateHours; ++i)
 					{
 						var loadItem = loadItems[i];
 						IEnumerable<LoadItem> relatedLoadItems;

@@ -11,9 +11,7 @@
     Name="ThisTeachersView">
 
     <Grid.Resources>
-        
-        <converters:ArithmeticConverter x:Key="ArithmeticConverter"/>
-        
+
         <Style x:Key="HeaderStyle" TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -200,22 +198,14 @@
                                     Margin="0"
                                     Padding="0"/>
                                 <Label
+                                    Content="{Binding RateHours}"
                                     Style="{StaticResource DataStyle}"
                                     FontStyle="Italic"
                                     Foreground="{DynamicResource FadeForegroundColor}"
                                     FontSize="15"
                                     Margin="0"
                                     Padding="0"
-                                    ContentStringFormat="{}{0:f0} год">
-                                    <Label.Content>
-                                        <MultiBinding
-                                            Converter="{StaticResource ArithmeticConverter}"
-                                            ConverterParameter="*">
-                                            <Binding Path="MaxHours"/>
-                                            <Binding Path="Rate"/>
-                                        </MultiBinding>
-                                    </Label.Content>
-                                </Label>
+                                    ContentStringFormat="{}{0:f0} год"/>
                             </StackPanel>
                             <Button
                                 Grid.Column="5"

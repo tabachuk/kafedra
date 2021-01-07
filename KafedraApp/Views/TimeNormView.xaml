@@ -8,17 +8,16 @@
     mc:Ignorable="d" 
     Background="{DynamicResource BackgroundColor}"
     Height="50"
-    Margin="10,5"
     Name="ThisTimeNormView">
     
     <Grid.ColumnDefinitions>
         <ColumnDefinition/>
-        <ColumnDefinition/>
-        <ColumnDefinition/>
+        <ColumnDefinition Width="200"/>
+        <ColumnDefinition Width="200"/>
     </Grid.ColumnDefinitions>
     
     <Label
-        Content="{Binding WorkType}"
+        Content="{Binding Name}"
         Foreground="{DynamicResource FadeForegroundColor}"
         FontSize="20"
         HorizontalAlignment="Center"

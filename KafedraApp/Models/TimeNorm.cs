@@ -17,10 +17,8 @@ namespace KafedraApp.Models
 		ControlWork,
 		[Description("Курсова робота")]
 		CourseWork,
-		[Description("Бакалаврська робота")]
-		BachalorWork,
-		[Description("Магістерська робота")]
-		MasterWork
+		[Description("Інше")]
+		Other,
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
@@ -29,13 +27,40 @@ namespace KafedraApp.Models
 		[Description("на групу")]
 		PerGroup,
 		[Description("на студента")]
-		PerStudent
+		PerStudent,
+		[Description("на роботу")]
+		PerWork
+	}
+
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum TimeNormCategories
+	{
+		[Description("Підсумковий контроль")]
+		FinalControl,
+		[Description("Семестровий екзамен")]
+		SemesterExam,
+		[Description("Аспірантура")]
+		Postgraduate,
+		[Description("Державна атестація")]
+		StateAttestation,
+		[Description("Практика")]
+		Practice,
+		[Description("Бакалаврська робота")]
+		BachalorWork,
+		[Description("Магістерська робота")]
+		MasterWork,
+		[Description("Інше")]
+		Other
 	}
 
 	[CollectionName("TimeNorms")]
 	public class TimeNorm : BaseModel
 	{
+		public string Name { get; set; }
+
 		public WorkTypes WorkType { get; set; }
+
+		public TimeNormCategories Category { get; set; }
 
 		public DistributionTypes DistributionType { get; set; }
 

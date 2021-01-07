@@ -15,7 +15,7 @@
         <converters:EqualityConverter x:Key="EqualityConverter"/>
         <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
         <converters:InverseCountToVisibilityConverter x:Key="InverseCountToVisibilityConverter"/>
-        <converters:ArithmeticConverter x:Key="ArithmeticConverter"/>
+        <converters:PercentMultiConverter x:Key="PercentMultiConverter"/>
         <InputBindingCollection
             x:Key="UndistributedLoadInputCollection"
             x:Shared="False">
@@ -196,7 +196,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="260"/>
             <ColumnDefinition Width="10"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -219,7 +219,6 @@
                         FontSize="20"
                         Height="50"
                         HorizontalAlignment="Stretch"
-                        Content="{Binding LastNameAndInitials}"
                         Command="{Binding DataContext.SwitchTeacherCommand, ElementName=ThisLoadDistributionView}"
                         CommandParameter="{Binding .}">
                         <Button.Style>
@@ -228,14 +227,13 @@
                                 <Setter Property="Cursor" Value="Hand"/>
                                 <Setter Property="BorderThickness" Value="0"/>
                                 <Setter Property="VerticalContentAlignment" Value="Center"/>
-                                <Setter Property="Padding" Value="30,0"/>
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="Button">
                                             <Border Background="{TemplateBinding Background}">
                                                 <ContentPresenter
                                                     VerticalAlignment="Center"
-                                                    Margin="20,0"/>
+                                                    Margin="10,0"/>
                                             </Border>
                                         </ControlTemplate>
                                     </Setter.Value>
@@ -249,6 +247,30 @@
                                 </Style.Triggers>
                             </Style>
                         </Button.Style>
+                        <Button.Content>
+                            <Grid>
+                                <Label
+                                    Content="{Binding LastNameAndInitials}"
+                                    HorizontalAlignment="Left"
+                                    FontSize="18"
+                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
+                                <Label
+                                    HorizontalAlignment="Right"
+                                    Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}"
+                                    FontStyle="Italic"
+                                    ContentStringFormat="{}{0:#0'%'}"
+                                    VerticalAlignment="Center"
+                                    FontSize="16"
+                                    ToolTip="Рівень завантаженості">
+                                    <Label.Content>
+                                        <MultiBinding Converter="{StaticResource PercentMultiConverter}">
+                                            <Binding Path="LoadHours"/>
+                                            <Binding Path="RateHours"/>
+                                        </MultiBinding>
+                                    </Label.Content>
+                                </Label>
+                            </Grid>
+                        </Button.Content>
                     </Button>
                     <DataTemplate.Triggers>
                         <DataTrigger Value="True">
@@ -304,18 +326,7 @@
                 Margin="15,10">
                 <Run Text="{Binding CurrentTeacher.LoadHours, Mode=OneWay}"/>
                 <Run Text=" год / "/>
-                <Run>
-                    <Run.Text>
-                        <MultiBinding
-                            StringFormat="{}{0:f0}"
-                            Mode="OneWay"
-                            Converter="{StaticResource ArithmeticConverter}"
-                            ConverterParameter="*">
-                            <Binding Path="CurrentTeacher.MaxHours"/>
-                            <Binding Path="CurrentTeacher.Rate"/>
-                        </MultiBinding>
-                    </Run.Text>
-                </Run>
+                <Run Text="{Binding CurrentTeacher.RateHours, Mode=OneWay}"/>
                 <Run Text=" год"/>
             </TextBlock>
             <ScrollViewer

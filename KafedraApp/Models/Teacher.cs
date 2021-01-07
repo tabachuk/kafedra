@@ -44,7 +44,10 @@ namespace KafedraApp.Models
 		}
 
 		[JsonIgnore]
-		public double LoadHours => LoadItems?.Sum(x => x.Hours) ?? 0;
+		public int RateHours => (int)Math.Ceiling(MaxHours * Rate);
+
+		[JsonIgnore]
+		public double LoadHours => Math.Ceiling(LoadItems?.Sum(x => x.Hours) ?? 0);
 
 		private ObservableCollection<string> _subjectsSpecializesIn;
 		public ObservableCollection<string> SubjectsSpecializesIn

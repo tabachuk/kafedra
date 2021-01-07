@@ -111,9 +111,10 @@
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="Converters\ArithmeticConverter.cs" />
     <Compile Include="Converters\EqualityConverter.cs" />
     <Compile Include="Converters\InverseCountToVisibilityConverter.cs" />
+    <Compile Include="Converters\PercentConverter.cs" />
+    <Compile Include="Converters\PercentMultiConverter.cs" />
     <Compile Include="Extensions\ExcelExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\SerializationExtensions.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Models\LoadItem.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\TimeNorm.cs" />
+    <Compile Include="Models\TimeNormsGroup.cs" />
     <Compile Include="Popups\GroupPopup.xaml.cs">
       <DependentUpon>GroupPopup.xaml</DependentUpon>
     </Compile>
@@ -186,6 +188,9 @@
     </Compile>
     <Compile Include="Views\TeachersView.xaml.cs">
       <DependentUpon>TeachersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TimeNormsGroupView.xaml.cs">
+      <DependentUpon>TimeNormsGroupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TimeNormsView.xaml.cs">
       <DependentUpon>TimeNormsView.xaml</DependentUpon>
@@ -260,6 +265,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TeachersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TimeNormsGroupView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
