@@ -1,12 +1,13 @@
-﻿using System;
+﻿using KafedraApp.Helpers;
+using KafedraApp.Properties;
+using KafedraApp.Services;
+using NLog;
+using NLog.Targets;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows;
-using KafedraApp.Properties;
-using KafedraApp.Services;
-using KafedraApp.Helpers;
-using System.Threading.Tasks;
 
 namespace KafedraApp
 {
@@ -61,6 +62,8 @@ namespace KafedraApp
 		{
 			ShutDownIfAlreadyRuns();
 
+			LogConfig();
+
 #if !DEBUG
 			AppDomain.CurrentDomain.UnhandledException += async (s, e) =>
 				await CatchUnhandledException((Exception)e.ExceptionObject);
@@ -102,6 +105,26 @@ namespace KafedraApp
 			}
 		}
 #endif
+
+		private void LogConfig()
+		{
+			var config = LogManager.Configuration;
+
+			var nowStr = DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss-fff");
+
+			var fileTarget = new FileTarget
+			{
+				Layout = "[${longdate}] [${uppercase:${level}}] [${logger}] ${message}",
+				FileName = "${basedir}\\logs\\" + nowStr + ".log"
+			};
+
+			LogManager.Configuration.AddTarget("file", fileTarget);
+
+			var rule = LogManager.Configuration.FindRuleByName("main");
+			rule.Targets.Add(fileTarget);
+
+			LogManager.Configuration = config;
+		}
 
 		public void SetTheme(string themeName)
 		{

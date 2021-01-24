@@ -1,12 +1,12 @@
 ﻿using KafedraApp.Attributes;
 using KafedraApp.Extensions;
-using KafedraApp.Helpers;
 using KafedraApp.Models;
+using NLog;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,13 +17,14 @@ namespace KafedraApp.Services
 	{
 		#region Fields
 
+		private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 		private readonly object _locker = new object();
 
 		#endregion
 
 		#region Properties
 
-		public string DataFolder => "Data";
+		public string DataFolderName => "Data";
 
 		public ObservableCollection<Subject> Subjects { get; set; }
 
@@ -47,93 +48,151 @@ namespace KafedraApp.Services
 
 		#region Private Methods
 
-		private string GetPath<T>(string key) => $@"{ DataFolder }\{ key }.json";
+		private string GetPath<T>(string key) => $@"{ DataFolderName }\{ key }.json";
 
 		private T Read<T>(string key = null)
 		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
-
-			if (File.Exists(path))
+			try
 			{
-				var watch = new Watch().Start();
-				var res = File.ReadAllText(path).FromJson<T>();
-				Debug.Write($"'{ key }' has been read. ");
-				watch.Stop("Duration: ");
-				return res;
+				key = key ?? GetKey<T>();
+
+				if (string.IsNullOrEmpty(key))
+					throw new Exception("Key is null or empty.");
+
+				var path = GetPath<T>(key);
+
+				_logger.Info("Started reading '{0}.json'.", key);
+
+				if (File.Exists(path))
+				{
+					var res = File.ReadAllText(path).FromJson<T>();
+					_logger.Info("'{0}.json' has been read.", key);
+					return res;
+				}
+
+				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "Can't read '{0}.json'.", key);
 			}
 
-			Debug.WriteLine($"Can't read '{ key }'.");
 			return default;
 		}
 
 		private async Task<T> ReadAsync<T>(string key = null)
 		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
-
-			if (File.Exists(path))
+			try
 			{
-				var watch = new Watch().Start();
-				var res = await Task.Run(() => File.ReadAllText(path).FromJson<T>());
-				Debug.Write($"'{ key }' has been read. ");
-				watch.Stop("Duration: ");
-				return res;
+				key = key ?? GetKey<T>();
+
+				if (string.IsNullOrEmpty(key))
+					throw new Exception("Key is null or empty.");
+
+				var path = GetPath<T>(key);
+
+				_logger.Info("Started reading '{0}.json'.", key);
+
+				if (File.Exists(path))
+				{
+					var res = await Task.Run(() => File.ReadAllText(path).FromJson<T>());
+					_logger.Info("'{0}.json' has been read.", key);
+					return res;
+				}
+
+				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "Can't read '{0}.json'.", key);
 			}
 
-			Debug.WriteLine($"Can't read '{ key }'. File does not exist.");
 			return default;
 		}
 
 		private List<T> ReadList<T>(string key = null)
 		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
-
-			if (File.Exists(path))
+			try
 			{
-				var watch = new Watch().Start();
-				var res = File.ReadAllText(path).FromJson<List<T>>();
-				Debug.Write($"'{ key }' has been read. { res.Count } items. ");
-				watch.Stop("Duration: ");
-				return res;
+				key = key ?? GetKey<T>();
+
+				if (string.IsNullOrEmpty(key))
+					throw new Exception("Key is null or empty.");
+
+				var path = GetPath<T>(key);
+
+				_logger.Info("Started reading '{0}.json'.", key);
+
+				if (File.Exists(path))
+				{
+					var res = File.ReadAllText(path).FromJson<List<T>>();
+					_logger.Info("'{0}.json' has been read.", key);
+					return res;
+				}
+
+				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "Can't read '{0}.json'.", key);
 			}
 
-			Debug.WriteLine($"Can't read '{ key }'. File does not exist.");
 			return default;
 		}
 
 		private async Task<List<T>> ReadListAsync<T>(string key = null)
 		{
-			key = key ?? GetKey<T>();
-			var path = GetPath<T>(key);
-
-			if (File.Exists(path))
+			try
 			{
-				var watch = new Watch().Start();
-				var res = await Task.Run(() => File.ReadAllText(path).FromJson<List<T>>());
-				Debug.Write($"'{ key }' has been read. { res.Count } items. ");
-				watch.Stop("Duration: ");
-				return res;
+				key = key ?? GetKey<T>();
+
+				if (string.IsNullOrEmpty(key))
+					throw new Exception("Key is null or empty.");
+
+				var path = GetPath<T>(key);
+
+				_logger.Info("Started reading '{0}.json'.", key);
+
+				if (File.Exists(path))
+				{
+					var res = await Task.Run(() => File.ReadAllText(path).FromJson<List<T>>());
+					_logger.Info("'{0}.json' has been read.", key);
+					return res;
+				}
+
+				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "Can't read '{0}.json'.", key);
 			}
 
-			Debug.WriteLine($"Can't read '{ key }'. File does not exist.");
 			return default;
 		}
 
 		private void Write<T>(T data, string key = null)
 		{
-			lock (_locker)
+			try
 			{
-				var watch = new Watch().Start();
-				key = key ?? GetKey<T>();
+				lock (_locker)
+				{
+					key = key ?? GetKey<T>();
 
-				if (!Directory.Exists(DataFolder))
-					Directory.CreateDirectory(DataFolder);
+					if (string.IsNullOrEmpty(key))
+						throw new Exception("Key is null or empty.");
 
-				File.WriteAllText(GetPath<T>(key), data.ToJson());
-				Debug.Write($"'{ key }' has been written. ");
-				watch.Stop("Duration: ");
+					_logger.Info("Started writing data to '{0}.json'.", key);
+
+					if (!Directory.Exists(DataFolderName))
+						Directory.CreateDirectory(DataFolderName);
+
+					File.WriteAllText(GetPath<T>(key), data.ToJson());
+					_logger.Info("Data has been written to '{0}.json'.", key);
+				}
+			}
+			catch (Exception ex)
+			{
+				_logger.Error(ex, "Can't write data to '{0}.json'.", key);
 			}
 		}
 
@@ -299,7 +358,7 @@ namespace KafedraApp.Services
 						subject.LaboratoryWorkHours,
 						group);
 
-					loadItems.Add(loadItem);
+						loadItems.Add(loadItem);
 					}
 				}
 

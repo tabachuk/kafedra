@@ -5,11 +5,18 @@ using KafedraApp.Windows;
 using KafedraApp.Popups;
 using KafedraApp.Models;
 using System.Collections.Generic;
+using NLog;
 
 namespace KafedraApp.Services
 {
 	public class DialogService : IDialogService
 	{
+		#region Fields
+
+		private readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+		#endregion
+
 		#region Properties
 
 		private Panel MainView => MainWindow.Instance.Content as Panel;
@@ -36,6 +43,7 @@ namespace KafedraApp.Services
 			};
 
 			Push(popup);
+			_logger.Info("Error popup showed. Caption: '{0}'. Message: '{1}'.", caption, message);
 			await popup.Result;
 			Pop(popup);
 		}
@@ -56,6 +64,7 @@ namespace KafedraApp.Services
 			};
 
 			Push(popup);
+			_logger.Info("Info popup showed. Caption: '{0}'. Message: '{1}'.", caption, message);
 			await popup.Result;
 			Pop(popup);
 		}
@@ -80,8 +89,10 @@ namespace KafedraApp.Services
 			};
 
 			Push(popup);
+			_logger.Info("Question popup showed. Caption: '{0}'. Message: '{1}'. Options: '{2}'/'{3}'.", caption, message, OKButtonText, cancelButtonText);
 			var result = await popup.Result;
 			Pop(popup);
+			_logger.Info("User has chosen '{0}'.", result? OKButtonText : cancelButtonText);
 			return result;
 		}
 
