@@ -89,11 +89,32 @@
                         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
                     </Style>
                     <Style
+                        x:Key="LightTextBoxStyle"
+                        TargetType="TextBox"
+                        BasedOn="{StaticResource MaterialDesignTextBoxBase}">
+                        <Setter Property="md:TextFieldAssist.UnderlineBrush" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="CaretBrush" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                    </Style>
+                    <Style
                         TargetType="ComboBox"
                         BasedOn="{StaticResource MaterialDesignComboBox}">
                         <Setter Property="md:TextFieldAssist.UnderlineBrush" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
                         <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="VerticalContentAlignment" Value="Bottom"/>
+                    </Style>
+                    <Style
+                        x:Key="LightComboBoxStyle"
+                        TargetType="ComboBox"
+                        BasedOn="{StaticResource MaterialDesignComboBox}">
+                        <Setter Property="md:TextFieldAssist.UnderlineBrush" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
+                        <Setter Property="FontSize" Value="20"/>
+                        <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="VerticalContentAlignment" Value="Bottom"/>
                     </Style>
                     <Style

@@ -1,6 +1,5 @@
 ﻿using KafedraApp.Converters;
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using System.ComponentModel;
 
 namespace KafedraApp.Models
@@ -34,7 +33,7 @@ namespace KafedraApp.Models
 		PedagogicalPractice,
 	}
 
-	public class LoadItem : BaseModel
+	public class LoadItem : BaseModel, IEquatable<LoadItem>
 	{
 		public string Subject { get; set; }
 
@@ -47,5 +46,26 @@ namespace KafedraApp.Models
 		public double Subgroup { get; set; }
 
 		public double Semester { get; set; }
+
+		public override bool Equals(object obj)
+		{
+			return Equals(obj as LoadItem);
+		}
+
+		public bool Equals(LoadItem other)
+		{
+			return other != null
+				&& Subject == other.Subject
+				&& Type == other.Type
+				&& Hours == other.Hours
+				&& Group == other.Group
+				&& Subgroup == other.Subgroup
+				&& Semester == other.Semester;
+		}
+
+		public override int GetHashCode()
+		{
+			return (Subject, Type, Hours, Group, Subgroup, Semester).GetHashCode();
+		}
 	}
 }

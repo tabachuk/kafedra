@@ -32,5 +32,5 @@ namespace KafedraApp.Models
             OnPropertyChanged(propertyName);
             return true;
         }
-    }
+	}
 }
