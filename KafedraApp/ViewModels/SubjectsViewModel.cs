@@ -17,6 +17,12 @@ namespace KafedraApp.ViewModels
 {
 	public class SubjectsViewModel : BindableBase
 	{
+		#region Constants
+
+		private const int MaxSubjectsToShow = 20;
+
+		#endregion
+
 		#region Fields
 
 		private readonly IDataService _dataService;
@@ -274,7 +280,7 @@ namespace KafedraApp.ViewModels
 			if (FilteredSubjects?.Any() == true)
 			{
 				SubjectsToShow = new ObservableCollection<Subject>(
-					FilteredSubjects.Take(Math.Min(10, FilteredSubjects.Count)));
+					FilteredSubjects.Take(Math.Min(MaxSubjectsToShow, FilteredSubjects.Count)));
 			}
 			else
 			{
@@ -314,7 +320,7 @@ namespace KafedraApp.ViewModels
 			switch (e.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					if (_isImporting && SubjectsToShow.Count >= 10)
+					if (_isImporting && SubjectsToShow.Count >= MaxSubjectsToShow)
 						break;
 
 					var subject = e.NewItems[0] as Subject;

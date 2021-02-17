@@ -201,9 +201,12 @@
                     Grid.ColumnSpan="18"
                     Fill="{DynamicResource FadeForegroundColor}"/>
                 <Label
-                    Grid.Column="0"
+                    Name="NameHeaderLabel"
                     Content="Предмет"
-                    Style="{StaticResource HeaderStyle}"/>
+                    Style="{StaticResource HeaderStyle}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    SizeChanged="OnNameHeaderLabelSizeChanged"/>
                 <Label
                     Grid.Column="1"
                     Content="Спеціальність"
@@ -356,8 +359,7 @@
                                 <ColumnDefinition Width="90"/>
                             </Grid.ColumnDefinitions>
                             <TextBox
-                                Grid.Column="0"
-                                MaxWidth="200"
+                                MaxWidth="{Binding ActualWidth, ElementName=NameHeaderLabel}"
                                 Text="{Binding Name}"
                                 TextWrapping="Wrap"
                                 IsReadOnly="True"

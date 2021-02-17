@@ -437,7 +437,7 @@
                     Foreground="{DynamicResource BackgroundColor}"
                     FontFamily="{StaticResource FontAwesome}"
                     Margin="20,0,10,0"/>
-                    <Label
+                <Label
                     Grid.Column="1"
                     FontSize="20"
                     Content="Сортувати за полем"

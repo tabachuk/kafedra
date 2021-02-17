@@ -14,6 +14,12 @@ namespace KafedraApp.ViewModels
 {
 	public class LoadDistributionViewModel : BindableBase
 	{
+		#region Constants
+
+		private const int MaxLoadItemsToShow = 20;
+
+		#endregion
+
 		#region Fields
 
 		private readonly IDataService _dataService;
@@ -198,7 +204,7 @@ namespace KafedraApp.ViewModels
 			if (FilteredNotDistributedLoad?.Any() == true)
 			{
 				NotDistributedLoadToShow = new ObservableCollection<LoadItem>(
-					FilteredNotDistributedLoad.Take(Math.Min(10, FilteredNotDistributedLoad.Count)));
+					FilteredNotDistributedLoad.Take(Math.Min(MaxLoadItemsToShow, FilteredNotDistributedLoad.Count)));
 			}
 			else
 			{
@@ -322,7 +328,7 @@ namespace KafedraApp.ViewModels
 			switch (e.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					if (NotDistributedLoadToShow.Count >= 10)
+					if (NotDistributedLoadToShow.Count >= MaxLoadItemsToShow)
 						break;
 
 					var loadItem = e.NewItems[0] as LoadItem;
