@@ -4,11 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:KafedraApp.Popups"
-    xmlns:models="clr-namespace:KafedraApp.Models"
     xmlns:controls="clr-namespace:KafedraApp.Controls"
-    xmlns:converters="clr-namespace:KafedraApp.Converters"
     mc:Ignorable="d"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
@@ -19,8 +16,6 @@
     Name="ThisSubjectPickerPopup">
 
     <Grid.Resources>
-
-        <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
 
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>

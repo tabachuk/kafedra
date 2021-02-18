@@ -16,6 +16,7 @@
                 </ResourceDictionary>
                 <ResourceDictionary Source="Styles\Fonts.xaml" />
                 <ResourceDictionary Source="Styles\MaterialDesign.xaml" />
+                <ResourceDictionary Source="Styles\Converters.xaml" />
                 <ResourceDictionary>
                     <Style
                         x:Key="DefaultButtonStyle"

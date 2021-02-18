@@ -6,16 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:KafedraApp.Views"
     xmlns:controls="clr-namespace:KafedraApp.Controls"
-    xmlns:converters="clr-namespace:KafedraApp.Converters"
     xmlns:helpers="clr-namespace:KafedraApp.Helpers"
     mc:Ignorable="d"
     Name="ThisLoadDistributionView">
 
     <Grid.Resources>
-        <converters:EqualityConverter x:Key="EqualityConverter"/>
-        <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
-        <converters:InverseCountToVisibilityConverter x:Key="InverseCountToVisibilityConverter"/>
-        <converters:PercentMultiConverter x:Key="PercentMultiConverter"/>
         <InputBindingCollection
             x:Key="UndistributedLoadInputCollection"
             x:Shared="False">

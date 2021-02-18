@@ -20,8 +20,6 @@
 
     <Grid.Resources>
 
-        <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
-
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
             <Setter Property="FontSize" Value="20"/>

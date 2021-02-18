@@ -4,7 +4,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:local="clr-namespace:KafedraApp.Views" xmlns:controls="clr-namespace:KafedraApp.Controls"
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    xmlns:controls="clr-namespace:KafedraApp.Controls"
     mc:Ignorable="d"
     Name="ThisGroupsView">
 
@@ -109,7 +110,7 @@
                     Fill="{DynamicResource FadeForegroundColor}"/>
                 <Label
                     Grid.Column="0"
-                    Content="Предмет"
+                    Content="Група"
                     Style="{StaticResource HeaderStyle}"/>
                 <Label
                     Grid.Column="1"

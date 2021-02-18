@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:converters="clr-namespace:KafedraApp.Converters">
+
+    <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
+    <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
+    <converters:EqualityConverter x:Key="EqualityConverter"/>
+    <converters:InverseCountToVisibilityConverter x:Key="InverseCountToVisibilityConverter"/>
+    <converters:PercentConverter x:Key="PercentConverter"/>
+    <converters:PercentMultiConverter x:Key="PercentMultiConverter"/>
+
+</ResourceDictionary>

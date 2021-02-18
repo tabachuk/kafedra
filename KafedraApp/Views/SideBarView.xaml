@@ -7,13 +7,8 @@
     xmlns:local="clr-namespace:KafedraApp.Views"
     xmlns:viewModels="clr-namespace:KafedraApp.ViewModels"
     xmlns:controls="clr-namespace:KafedraApp.Controls"
-    xmlns:converters="clr-namespace:KafedraApp.Converters"
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     mc:Ignorable="d">
-
-    <StackPanel.Resources>
-        <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
-    </StackPanel.Resources>
 
     <StackPanel.Style>
         <Style TargetType="StackPanel">

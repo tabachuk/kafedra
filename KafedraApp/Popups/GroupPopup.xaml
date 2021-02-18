@@ -8,7 +8,6 @@
     xmlns:local="clr-namespace:KafedraApp.Popups"
     xmlns:models="clr-namespace:KafedraApp.Models"
     xmlns:controls="clr-namespace:KafedraApp.Controls"
-    xmlns:converters="clr-namespace:KafedraApp.Converters"
     mc:Ignorable="d"
     HorizontalAlignment="Stretch"
     VerticalAlignment="Stretch"
@@ -19,8 +18,6 @@
     Name="ThisGroupPopup">
 
     <Grid.Resources>
-
-        <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
 
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
