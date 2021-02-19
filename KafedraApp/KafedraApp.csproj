@@ -240,9 +240,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Styles\Converters.xaml">
+    <Resource Include="Styles\Converters.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </Page>
+    </Resource>
     <Page Include="Views\AcademicStatusesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

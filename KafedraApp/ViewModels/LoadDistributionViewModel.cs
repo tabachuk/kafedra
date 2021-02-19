@@ -39,72 +39,47 @@ namespace KafedraApp.ViewModels
 		public ObservableCollection<Teacher> Teachers =>
 			_dataService.Teachers;
 
-		private ObservableCollection<LoadItem> _notDistributedLoad;
-		public ObservableCollection<LoadItem> NotDistributedLoad
+		private ObservableCollection<LoadItem> _undistributedLoadItems;
+		public ObservableCollection<LoadItem> UndistributedLoadItems
 		{
-			get => _notDistributedLoad;
+			get => _undistributedLoadItems;
 			set
 			{
-				if (_notDistributedLoad != null)
-					_notDistributedLoad.CollectionChanged -= NotDistributedLoadChanged;
+				if (_undistributedLoadItems != null)
+					_undistributedLoadItems.CollectionChanged -= NotDistributedLoadChanged;
 
-				SetProperty(ref _notDistributedLoad, value);
-				OnPropertyChanged(nameof(NotDistributedLoadHours));
+				SetProperty(ref _undistributedLoadItems, value);
+				OnPropertyChanged(nameof(UndistributedLoadHours));
 
-				if (_notDistributedLoad != null)
-					_notDistributedLoad.CollectionChanged += NotDistributedLoadChanged;
+				if (_undistributedLoadItems != null)
+					_undistributedLoadItems.CollectionChanged += NotDistributedLoadChanged;
 			}
 		}
 
-		private ObservableCollection<LoadItem> _notDistributedLoadToShow;
-		public ObservableCollection<LoadItem> NotDistributedLoadToShow
+		private ObservableCollection<LoadItem> _undistributedLoadItemsToShow;
+		public ObservableCollection<LoadItem> UndistributedLoadItemsToShow
 		{
-			get => _notDistributedLoadToShow;
-			set => SetProperty(ref _notDistributedLoadToShow, value);
+			get => _undistributedLoadItemsToShow;
+			set => SetProperty(ref _undistributedLoadItemsToShow, value);
 		}
 
-		public List<LoadItem> FilteredNotDistributedLoad
+		public List<LoadItem> OrderedFilteredUndistributedLoadItems
 		{
 			get
 			{
-				if (NotDistributedLoad?.Any() != true)
+				if (UndistributedLoadItems?.Any() != true)
 				{
-					return NotDistributedLoad?.ToList();
+					return UndistributedLoadItems?.ToList();
 				}
 
-				IEnumerable<LoadItem> filteredLoadItems = NotDistributedLoad;
+				var filteredLoadItems = FilterLoadItems(UndistributedLoadItems, SearchText);
+				var orderedFilteredLoadItems = OrderLoadItems(filteredLoadItems, SelectedSortingField);
 
-				if (!string.IsNullOrWhiteSpace(SearchText))
-				{
-					filteredLoadItems = NotDistributedLoad
-						.Where(x => x.Subject.ToLower().Contains(SearchText.ToLower()))
-						.ToList();
-				}
-
-				switch (SelectedSortingField)
-				{
-					case "Предмет":
-						filteredLoadItems = OrderBy(filteredLoadItems, x => x.Subject);
-						break;
-					case "Тип роботи":
-						filteredLoadItems = OrderBy(filteredLoadItems, x => x.Type);
-						break;
-					case "К-сть годин":
-						filteredLoadItems = OrderBy(filteredLoadItems, x => x.Hours);
-						break;
-					case "Група":
-						filteredLoadItems = OrderBy(filteredLoadItems, x => x.Group);
-						break;
-					case "Семестр":
-						filteredLoadItems = OrderBy(filteredLoadItems, x => x.Semester);
-						break;
-				}
-
-				return filteredLoadItems.ToList();
+				return orderedFilteredLoadItems.ToList();
 			}
 		}
 
-		public double NotDistributedLoadHours => NotDistributedLoad?.Sum(x => x.Hours) ?? 0;
+		public double UndistributedLoadHours => UndistributedLoadItems?.Sum(x => x.Hours) ?? 0;
 
 		private string _searchText;
 		public string SearchText
@@ -170,7 +145,7 @@ namespace KafedraApp.ViewModels
 				.SelectMany(x => x?.LoadItems).ToList();
 			var notDistributedLoad = load.Except(distributedLoad).ToList();
 
-			NotDistributedLoad = new ObservableCollection<LoadItem>(notDistributedLoad);
+			UndistributedLoadItems = new ObservableCollection<LoadItem>(notDistributedLoad);
 			
 			InitNotDistributedLoadToShow();
 		}
@@ -190,35 +165,35 @@ namespace KafedraApp.ViewModels
 				CurrentTeacher.LoadItems = new ObservableCollection<LoadItem>();
 
 			CurrentTeacher.LoadItems.Add(loadItem);
-			NotDistributedLoad.Remove(loadItem);
+			UndistributedLoadItems.Remove(loadItem);
 		}
 
 		private void UnassignLoad(LoadItem loadItem)
 		{
 			CurrentTeacher.LoadItems.Remove(loadItem);
-			NotDistributedLoad.Add(loadItem);
+			UndistributedLoadItems.Add(loadItem);
 		}
 
 		private void InitNotDistributedLoadToShow()
 		{
-			if (FilteredNotDistributedLoad?.Any() == true)
+			if (OrderedFilteredUndistributedLoadItems?.Any() == true)
 			{
-				NotDistributedLoadToShow = new ObservableCollection<LoadItem>(
-					FilteredNotDistributedLoad.Take(Math.Min(MaxLoadItemsToShow, FilteredNotDistributedLoad.Count)));
+				UndistributedLoadItemsToShow = new ObservableCollection<LoadItem>(
+					OrderedFilteredUndistributedLoadItems.Take(Math.Min(MaxLoadItemsToShow, OrderedFilteredUndistributedLoadItems.Count)));
 			}
 			else
 			{
-				NotDistributedLoadToShow = new ObservableCollection<LoadItem>();
+				UndistributedLoadItemsToShow = new ObservableCollection<LoadItem>();
 			}
 		}
 
 		public void AddNotDistributedLoadItemToShow()
 		{
-			if (NotDistributedLoadToShow.Count >= FilteredNotDistributedLoad.Count)
+			if (UndistributedLoadItemsToShow.Count >= OrderedFilteredUndistributedLoadItems.Count)
 				return;
 
-			NotDistributedLoadToShow
-				.Add(FilteredNotDistributedLoad[NotDistributedLoadToShow.Count]);
+			UndistributedLoadItemsToShow
+				.Add(OrderedFilteredUndistributedLoadItems[UndistributedLoadItemsToShow.Count]);
 		}
 
 		private async void FormLoad()
@@ -233,7 +208,7 @@ namespace KafedraApp.ViewModels
 
 				foreach (var subject in teacher.SubjectsSpecializesIn)
 				{
-					var loadItems = NotDistributedLoad.Where(x => x.Subject == subject).ToList();
+					var loadItems = UndistributedLoadItems.Where(x => x.Subject == subject).ToList();
 
 					for (int i = 0; i < loadItems.Count && teacher.LoadHours < teacher.RateHours; ++i)
 					{
@@ -244,7 +219,7 @@ namespace KafedraApp.ViewModels
 						{
 							case LoadItemTypes.Lectures:
 								teacher.LoadItems.Add(loadItem);
-								NotDistributedLoad.Remove(loadItem);
+								UndistributedLoadItems.Remove(loadItem);
 
 								relatedLoadItems = loadItems.Where(x =>
 									x.Subject == loadItem.Subject
@@ -253,9 +228,9 @@ namespace KafedraApp.ViewModels
 
 								foreach (var relatedLoadItem in relatedLoadItems)
 								{
-									if (NotDistributedLoad.Contains(relatedLoadItem))
+									if (UndistributedLoadItems.Contains(relatedLoadItem))
 									{
-										NotDistributedLoad.Remove(relatedLoadItem);
+										UndistributedLoadItems.Remove(relatedLoadItem);
 										teacher.LoadItems.Add(relatedLoadItem);
 									}
 								}
@@ -263,7 +238,7 @@ namespace KafedraApp.ViewModels
 							case LoadItemTypes.LaboratoryWork:
 							case LoadItemTypes.PracticalWork:
 								teacher.LoadItems.Add(loadItem);
-								NotDistributedLoad.Remove(loadItem);
+								UndistributedLoadItems.Remove(loadItem);
 
 								relatedLoadItems = loadItems.Where(x =>
 									x.Subject == loadItem.Subject
@@ -272,9 +247,9 @@ namespace KafedraApp.ViewModels
 
 								foreach (var relatedLoadItem in relatedLoadItems)
 								{
-									if (NotDistributedLoad.Contains(relatedLoadItem))
+									if (UndistributedLoadItems.Contains(relatedLoadItem))
 									{
-										NotDistributedLoad.Remove(relatedLoadItem);
+										UndistributedLoadItems.Remove(relatedLoadItem);
 										teacher.LoadItems.Add(relatedLoadItem);
 									}
 								}
@@ -293,7 +268,7 @@ namespace KafedraApp.ViewModels
 			if (!await _dialogService.ShowQuestion("Ви дійсно бажаєте скинути поточний розподіл?"))
 				return false;
 
-			NotDistributedLoad = new ObservableCollection<LoadItem>(_dataService.GetLoadItems());
+			UndistributedLoadItems = new ObservableCollection<LoadItem>(_dataService.GetLoadItems());
 			InitNotDistributedLoadToShow();
 
 			foreach (var teacher in Teachers)
@@ -302,6 +277,35 @@ namespace KafedraApp.ViewModels
 			}
 
 			return true;
+		}
+
+		private IEnumerable<LoadItem> FilterLoadItems(IEnumerable<LoadItem> loadItems, string searchText)
+		{
+			if (string.IsNullOrWhiteSpace(searchText))
+			{
+				return loadItems;
+			}
+
+			return loadItems.Where(x => x.Subject.ToLower().Contains(searchText.ToLower()));
+		}
+
+		private IEnumerable<LoadItem> OrderLoadItems(IEnumerable<LoadItem> loadItems, string byField)
+		{
+			switch (byField)
+			{
+				case "Предмет":
+					return OrderBy(loadItems, x => x.Subject);
+				case "Тип роботи":
+					return OrderBy(loadItems, x => x.Type);
+				case "К-сть годин":
+					return OrderBy(loadItems, x => x.Hours);
+				case "Група":
+					return OrderBy(loadItems, x => x.Group);
+				case "Семестр":
+					return OrderBy(loadItems, x => x.Semester);
+			}
+
+			return loadItems;
 		}
 
 		private IEnumerable<LoadItem> OrderBy<TKey>(
@@ -323,42 +327,37 @@ namespace KafedraApp.ViewModels
 
 		private void NotDistributedLoadChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
-			OnPropertyChanged(nameof(NotDistributedLoadHours));
+			OnPropertyChanged(nameof(UndistributedLoadHours));
 
 			switch (e.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					if (NotDistributedLoadToShow.Count >= MaxLoadItemsToShow)
-						break;
-
 					var loadItem = e.NewItems[0] as LoadItem;
-					var index = FilteredNotDistributedLoad.IndexOf(loadItem);
+					var index = OrderedFilteredUndistributedLoadItems.IndexOf(loadItem);
 
-					if (index >= 0 && index <= NotDistributedLoadToShow.Count)
+					if (index >= 0 && index <= UndistributedLoadItemsToShow.Count)
 					{
-						NotDistributedLoadToShow.Insert(index, loadItem);
+						UndistributedLoadItemsToShow.Insert(index, loadItem);
 					}
 					break;
 				case NotifyCollectionChangedAction.Remove:
 					loadItem = e.OldItems[0] as LoadItem;
-					NotDistributedLoadToShow.Remove(loadItem);
+					UndistributedLoadItemsToShow.Remove(loadItem);
 					AddNotDistributedLoadItemToShow();
 					break;
 				case NotifyCollectionChangedAction.Replace:
 					var newSubject = e.NewItems[0] as LoadItem;
 
-					index = FilteredNotDistributedLoad.IndexOf(newSubject);
+					index = OrderedFilteredUndistributedLoadItems.IndexOf(newSubject);
 
-					if (index >= 0 && index <= NotDistributedLoadToShow.Count)
+					if (index >= 0 && index <= UndistributedLoadItemsToShow.Count)
 					{
-						NotDistributedLoadToShow.RemoveAt(index);
-						NotDistributedLoadToShow.Insert(index, newSubject);
+						UndistributedLoadItemsToShow.RemoveAt(index);
+						UndistributedLoadItemsToShow.Insert(index, newSubject);
 					}
 					break;
-				case NotifyCollectionChangedAction.Move:
-					break;
 				case NotifyCollectionChangedAction.Reset:
-					NotDistributedLoadToShow.Clear();
+					UndistributedLoadItemsToShow.Clear();
 					break;
 			}
 		}
@@ -366,7 +365,6 @@ namespace KafedraApp.ViewModels
 		private void OnSearchTextChanged()
 		{
 			InitNotDistributedLoadToShow();
-			//OnPropertyChanged(nameof(IsSubjectsEmpty));
 		}
 
 		private void OnSelectedSortingFieldChanged()

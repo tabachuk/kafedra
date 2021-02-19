@@ -36,7 +36,7 @@ namespace KafedraApp.ViewModels
 
 		public ObservableCollection<Subject> Subjects => _dataService.Subjects;
 
-		public List<Subject> FilteredSubjects
+		public List<Subject> OrderedFilteredSubjects
 		{
 			get
 			{
@@ -45,56 +45,10 @@ namespace KafedraApp.ViewModels
 					return Subjects?.ToList();
 				}
 
-				IEnumerable<Subject> filteredSubjects = Subjects;
+				var filteredSubjects = FilterSubjects(Subjects, SearchText);
+				var orderedFilteredSubjects = OrderSubjects(filteredSubjects, SelectedSortingField);
 
-				if (!string.IsNullOrWhiteSpace(SearchText))
-				{
-					filteredSubjects = Subjects
-						.Where(x => x.Name.ToLower().Contains(SearchText.ToLower()))
-						.ToList();
-				}
-
-				switch (SelectedSortingField)
-				{
-					case "Предмет":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.Name);
-						break;
-					case "Спеціальність":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.Specialty);
-						break;
-					case "Курс":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.Course);
-						break;
-					case "Семестр":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.Semester);
-						break;
-					case "Кредити":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.Credits);
-						break;
-					case "Всього":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.TotalHours);
-						break;
-					case "Всього (аудиторних)":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.TotalClassroomHours);
-						break;
-					case "Лекції":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.LectureHours);
-						break;
-					case "Практичні":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.PracticalWorkHours);
-						break;
-					case "Лабораторні":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.LaboratoryWorkHours);
-						break;
-					case "Екзамен":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.ExamHours);
-						break;
-					case "Залік":
-						filteredSubjects = OrderBy(filteredSubjects, x => x.TestHours);
-						break;
-				}
-
-				return filteredSubjects.ToList();
+				return orderedFilteredSubjects.ToList();
 			}
 		}
 
@@ -105,7 +59,7 @@ namespace KafedraApp.ViewModels
 			set => SetProperty(ref _subjectsToShow, value);
 		}
 
-		public bool IsSubjectsEmpty => FilteredSubjects?.Any() != true;
+		public bool IsSubjectsEmpty => OrderedFilteredSubjects?.Any() != true;
 
 		private string _searchText;
 		public string SearchText
@@ -277,10 +231,10 @@ namespace KafedraApp.ViewModels
 
 		private void InitSubjectsToShow()
 		{
-			if (FilteredSubjects?.Any() == true)
+			if (OrderedFilteredSubjects?.Any() == true)
 			{
 				SubjectsToShow = new ObservableCollection<Subject>(
-					FilteredSubjects.Take(Math.Min(MaxSubjectsToShow, FilteredSubjects.Count)));
+					OrderedFilteredSubjects.Take(Math.Min(MaxSubjectsToShow, OrderedFilteredSubjects.Count)));
 			}
 			else
 			{
@@ -290,10 +244,53 @@ namespace KafedraApp.ViewModels
 
 		public void AddSubjectToShow()
 		{
-			if (SubjectsToShow.Count >= FilteredSubjects.Count)
+			if (SubjectsToShow.Count >= OrderedFilteredSubjects.Count)
 				return;
 
-			SubjectsToShow.Add(FilteredSubjects[SubjectsToShow.Count]);
+			SubjectsToShow.Add(OrderedFilteredSubjects[SubjectsToShow.Count]);
+		}
+
+		private IEnumerable<Subject> FilterSubjects(IEnumerable<Subject> subjects, string searchText)
+		{
+			if (string.IsNullOrWhiteSpace(searchText))
+			{
+				return subjects;
+			}
+
+			return subjects.Where(x => x.Name.ToLower().Contains(searchText.ToLower()));
+		}
+
+		private IEnumerable<Subject> OrderSubjects(IEnumerable<Subject> subjects, string byField)
+		{
+			switch (byField)
+			{
+				case "Предмет":
+					return OrderBy(subjects, x => x.Name);
+				case "Спеціальність":
+					return OrderBy(subjects, x => x.Specialty);
+				case "Курс":
+					return OrderBy(subjects, x => x.Course);
+				case "Семестр":
+					return OrderBy(subjects, x => x.Semester);
+				case "Кредити":
+					return OrderBy(subjects, x => x.Credits);
+				case "Всього":
+					return OrderBy(subjects, x => x.TotalHours);
+				case "Всього (аудиторних)":
+					return OrderBy(subjects, x => x.TotalClassroomHours);
+				case "Лекції":
+					return OrderBy(subjects, x => x.LectureHours);
+				case "Практичні":
+					return OrderBy(subjects, x => x.PracticalWorkHours);
+				case "Лабораторні":
+					return OrderBy(subjects, x => x.LaboratoryWorkHours);
+				case "Екзамен":
+					return OrderBy(subjects, x => x.ExamHours);
+				case "Залік":
+					return OrderBy(subjects, x => x.TestHours);
+			}
+
+			return subjects;
 		}
 
 		private IEnumerable<Subject> OrderBy<TKey>(
@@ -320,11 +317,11 @@ namespace KafedraApp.ViewModels
 			switch (e.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
-					if (_isImporting && SubjectsToShow.Count >= MaxSubjectsToShow)
+					if (_isImporting)
 						break;
 
 					var subject = e.NewItems[0] as Subject;
-					var index = FilteredSubjects.IndexOf(subject);
+					var index = OrderedFilteredSubjects.IndexOf(subject);
 
 					if (index >= 0 && index <= SubjectsToShow.Count)
 					{
@@ -339,15 +336,13 @@ namespace KafedraApp.ViewModels
 				case NotifyCollectionChangedAction.Replace:
 					var newSubject = e.NewItems[0] as Subject;
 
-					index = FilteredSubjects.IndexOf(newSubject);
+					index = OrderedFilteredSubjects.IndexOf(newSubject);
 
 					if (index >= 0 && index <= SubjectsToShow.Count)
 					{
 						SubjectsToShow.RemoveAt(index);
 						SubjectsToShow.Insert(index, newSubject);
 					}
-					break;
-				case NotifyCollectionChangedAction.Move:
 					break;
 				case NotifyCollectionChangedAction.Reset:
 					SubjectsToShow.Clear();

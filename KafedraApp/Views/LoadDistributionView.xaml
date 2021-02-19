@@ -12,7 +12,7 @@
 
     <Grid.Resources>
         <InputBindingCollection
-            x:Key="UndistributedLoadInputCollection"
+            x:Key="UndistributedLoadItemsInputCollection"
             x:Shared="False">
             <MouseBinding
                 Gesture="LeftClick"
@@ -465,13 +465,13 @@
                 FontSize="20"
                 Margin="15,10"/>
             <Label
-                Content="{Binding NotDistributedLoadHours}"
+                Content="{Binding UndistributedLoadHours}"
                 ContentStringFormat="{}{0:### ### ###} год не розподілено"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Center"
                 FontStyle="Italic"
                 Foreground="{DynamicResource BackgroundColor}"
-                Visibility="{Binding NotDistributedLoadHours,
+                Visibility="{Binding UndistributedLoadHours,
                                      Converter={StaticResource CountToVisibilityConverter}}"
                 FontSize="18"
                 Margin="15,10"/>
@@ -482,7 +482,7 @@
                 VerticalScrollBarVisibility="Auto"
                 ScrollChanged="OnNotDistributedLoadSVScrollChanged">
                 <ItemsControl
-                    ItemsSource="{Binding NotDistributedLoadToShow}"
+                    ItemsSource="{Binding UndistributedLoadItemsToShow}"
                     ItemTemplate="{StaticResource LoadItemView}"
                     Margin="0,3,0,0">
                     <ItemsControl.ItemsPanel>
@@ -496,7 +496,7 @@
                         <Style>
                             <Setter
                                 Property="helpers:Attach.InputBindings"
-                                Value="{StaticResource UndistributedLoadInputCollection}"/>
+                                Value="{StaticResource UndistributedLoadItemsInputCollection}"/>
                         </Style>
                     </ItemsControl.ItemContainerStyle>
                 </ItemsControl>
@@ -506,7 +506,7 @@
                 Opacity="0.8"
                 Orientation="Vertical"
                 VerticalAlignment="Center"
-                Visibility="{Binding NotDistributedLoadHours,
+                Visibility="{Binding UndistributedLoadHours,
                                      Converter={StaticResource InverseCountToVisibilityConverter}}">
                 <Label
                     Content="&#xf058;"
