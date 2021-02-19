@@ -117,10 +117,9 @@
     </Compile>
     <Compile Include="Converters\BaseModelJsonConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
-    <Compile Include="Converters\CountToVisibilityConverter.cs" />
     <Compile Include="Converters\EnumDescriptionTypeConverter.cs" />
-    <Compile Include="Converters\EqualityConverter.cs" />
-    <Compile Include="Converters\InverseCountToVisibilityConverter.cs" />
+    <Compile Include="Converters\EqualityMultiConverter.cs" />
+    <Compile Include="Converters\ZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentConverter.cs" />
     <Compile Include="Converters\PercentMultiConverter.cs" />
     <Compile Include="Extensions\ExcelExtensions.cs" />

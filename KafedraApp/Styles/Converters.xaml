@@ -4,10 +4,9 @@
     xmlns:converters="clr-namespace:KafedraApp.Converters">
 
     <converters:BoolToStringConverter x:Key="BoolToStringConverter"/>
-    <converters:CountToVisibilityConverter x:Key="CountToVisibilityConverter"/>
-    <converters:EqualityConverter x:Key="EqualityConverter"/>
-    <converters:InverseCountToVisibilityConverter x:Key="InverseCountToVisibilityConverter"/>
+    <converters:EqualityMultiConverter x:Key="EqualityMultiConverter"/>
     <converters:PercentConverter x:Key="PercentConverter"/>
     <converters:PercentMultiConverter x:Key="PercentMultiConverter"/>
+    <converters:ZeroToVisibilityConverter x:Key="ZeroToVisibilityConverter"/>
 
 </ResourceDictionary>

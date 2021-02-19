@@ -85,7 +85,7 @@
                     HorizontalAlignment="Center"
                     Orientation="Vertical"
                     Margin="10,5"
-                    Visibility="{Binding Subgroup, Converter={StaticResource CountToVisibilityConverter}}">
+                    Visibility="{Binding Subgroup, Converter={StaticResource NotZeroToVisibilityConverter}}">
                     <Label
                         Content="{Binding Subgroup}"
                         HorizontalAlignment="Center"
@@ -272,7 +272,7 @@
                     <DataTemplate.Triggers>
                         <DataTrigger Value="True">
                             <DataTrigger.Binding>
-                                <MultiBinding Converter="{StaticResource EqualityConverter}">
+                                <MultiBinding Converter="{StaticResource EqualityMultiConverter}">
                                     <Binding
                                         Path="DataContext.CurrentTeacher"
                                         ElementName="ThisLoadDistributionView"/>
@@ -354,7 +354,7 @@
                 Orientation="Vertical"
                 VerticalAlignment="Center"
                 Visibility="{Binding CurrentTeacher.LoadHours,
-                                     Converter={StaticResource InverseCountToVisibilityConverter}}">
+                                     Converter={StaticResource ZeroToVisibilityConverter}}">
                 <Label
                     Content="&#xf24e;"
                     FontSize="90"
@@ -472,7 +472,7 @@
                 FontStyle="Italic"
                 Foreground="{DynamicResource BackgroundColor}"
                 Visibility="{Binding UndistributedLoadHours,
-                                     Converter={StaticResource CountToVisibilityConverter}}"
+                                     Converter={StaticResource NotZeroToVisibilityConverter}}"
                 FontSize="18"
                 Margin="15,10"/>
             <ScrollViewer
@@ -507,7 +507,7 @@
                 Orientation="Vertical"
                 VerticalAlignment="Center"
                 Visibility="{Binding UndistributedLoadHours,
-                                     Converter={StaticResource InverseCountToVisibilityConverter}}">
+                                     Converter={StaticResource ZeroToVisibilityConverter}}">
                 <Label
                     Content="&#xf058;"
                     FontSize="90"

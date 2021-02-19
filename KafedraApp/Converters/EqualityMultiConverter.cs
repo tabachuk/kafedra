@@ -4,7 +4,7 @@ using System.Windows.Data;
 
 namespace KafedraApp.Converters
 {
-	public class EqualityConverter : IMultiValueConverter
+	public class EqualityMultiConverter : IMultiValueConverter
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {

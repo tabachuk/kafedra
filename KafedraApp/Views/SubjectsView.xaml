@@ -379,12 +379,12 @@
                                 Grid.Column="2"
                                 Content="{Binding Course}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding Course, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding Course, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="3"
                                 Content="{Binding Semester}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding Semester, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding Semester, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="4"
                                 Content="{Binding Credits}"
@@ -393,47 +393,47 @@
                                 Grid.Column="5"
                                 Content="{Binding TotalHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding TotalHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding TotalHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="6"
                                 Content="{Binding TotalClassroomHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding TotalClassroomHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding TotalClassroomHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="7"
                                 Content="{Binding LectureHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding LectureHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding LectureHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="8"
                                 Content="{Binding PracticalWorkHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding PracticalWorkHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding PracticalWorkHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="9"
                                 Content="{Binding LaboratoryWorkHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding LaboratoryWorkHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding LaboratoryWorkHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="10"
                                 Content="{Binding ControlWorkHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding ControlWorkHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding ControlWorkHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="11"
                                 Content="{Binding IndividualTasksHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding IndividualTasksHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding IndividualTasksHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="12"
                                 Content="{Binding ExamHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding ExamHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding ExamHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="13"
                                 Content="{Binding TestHours}"
                                 Style="{StaticResource DataStyle}"
-                                Visibility="{Binding TestHours, Converter={StaticResource CountToVisibilityConverter}}"/>
+                                Visibility="{Binding TestHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <StackPanel
                                 Grid.Column="14"
                                 Orientation="Horizontal"
