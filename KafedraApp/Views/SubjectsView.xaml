@@ -179,8 +179,8 @@
             <Grid
                 Height="200"
                 Margin="0,10,0,0"
-                Visibility="{Binding IsSubjectsEmpty,
-                                     Converter={StaticResource InverseBoolToVisConverter}}">
+                Visibility="{Binding SubjectsToShow.Count,
+                                     Converter={StaticResource NotZeroToVisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" MinWidth="220"/>
                     <ColumnDefinition Width="80"/>
@@ -485,5 +485,10 @@
             HorizontalAlignment="Center"
             Foreground="{DynamicResource FadeForegroundColor}"/>
     </StackPanel>
+
+    <local:NotFoundView
+        Grid.Row="2"
+        Visibility="{Binding IsSubjectNotFound,
+                             Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
 </Grid>

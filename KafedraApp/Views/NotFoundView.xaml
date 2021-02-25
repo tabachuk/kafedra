@@ -1,0 +1,23 @@
+﻿<StackPanel
+    x:Class="KafedraApp.Views.NotFoundView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:local="clr-namespace:KafedraApp.Views"
+    mc:Ignorable="d" 
+    Opacity="0.8"
+    Orientation="Vertical"
+    VerticalAlignment="Center">
+    <Label
+        Content="&#xf002;"
+        FontSize="200"
+        FontFamily="{StaticResource FontAwesome}"
+        Foreground="{DynamicResource FadeForegroundColor}"
+        HorizontalAlignment="Center"/>
+    <Label
+        Content="Нічого не знайдено"
+        FontSize="36"
+        HorizontalAlignment="Center"
+        Foreground="{DynamicResource FadeForegroundColor}"/>
+</StackPanel>
