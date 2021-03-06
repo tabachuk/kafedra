@@ -30,11 +30,11 @@ namespace KafedraApp.ViewModels
 
 		#region Commands
 
-		public ICommand AddTeacherCommand { get; private set; }
-		public ICommand EditTeacherCommand { get; private set; }
-		public ICommand DeleteTeacherCommand { get; private set; }
-		public ICommand ClearTeachersCommand { get; private set; }
-		public ICommand EditSubjectsCommand { get; private set; }
+		public ICommand AddTeacherCommand { get; }
+		public ICommand EditTeacherCommand { get; }
+		public ICommand DeleteTeacherCommand { get; }
+		public ICommand ClearTeachersCommand { get; }
+		public ICommand EditSubjectsCommand { get; }
 
 		#endregion
 

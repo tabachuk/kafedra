@@ -65,11 +65,7 @@ namespace KafedraApp.ViewModels
 		public string SearchText
 		{
 			get => _searchText;
-			set
-			{
-				SetProperty(ref _searchText, value);
-				OnSearchTextChanged();
-			}
+			set => SetProperty(ref _searchText, value, OnSearchTextChanged);
 		}
 
 		public List<string> SortingFields => new List<string>
@@ -92,11 +88,7 @@ namespace KafedraApp.ViewModels
 		public string SelectedSortingField
 		{
 			get => _selectedSortingField;
-			set
-			{
-				SetProperty(ref _selectedSortingField, value);
-				OnSelectedSortingFieldChanged();
-			}
+			set => SetProperty(ref _selectedSortingField, value, OnSelectedSortingFieldChanged);
 		}
 
 		#endregion
@@ -125,11 +117,11 @@ namespace KafedraApp.ViewModels
 
 		#region Commands
 
-		public ICommand ImportSubjectsCommand { get; set; }
-		public ICommand AddSubjectCommand { get; set; }
-		public ICommand EditSubjectCommand { get; set; }
-		public ICommand DeleteSubjectCommand { get; set; }
-		public ICommand ClearSubjectsCommand { get; set; }
+		public ICommand ImportSubjectsCommand { get; }
+		public ICommand AddSubjectCommand { get; }
+		public ICommand EditSubjectCommand { get; }
+		public ICommand DeleteSubjectCommand { get; }
+		public ICommand ClearSubjectsCommand { get; }
 
 		#endregion
 

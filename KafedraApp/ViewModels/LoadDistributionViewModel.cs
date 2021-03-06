@@ -48,8 +48,7 @@ namespace KafedraApp.ViewModels
 				if (_undistributedLoadItems != null)
 					_undistributedLoadItems.CollectionChanged -= NotDistributedLoadChanged;
 
-				SetProperty(ref _undistributedLoadItems, value);
-				OnPropertyChanged(nameof(UndistributedLoadHours));
+				SetProperty(ref _undistributedLoadItems, value, OnUndistributedLoadItemsChanged);
 
 				if (_undistributedLoadItems != null)
 					_undistributedLoadItems.CollectionChanged += NotDistributedLoadChanged;
@@ -85,11 +84,7 @@ namespace KafedraApp.ViewModels
 		public string SearchText
 		{
 			get => _searchText;
-			set
-			{
-				SetProperty(ref _searchText, value);
-				OnSearchTextChanged();
-			}
+			set => SetProperty(ref _searchText, value, OnSearchTextChanged);
 		}
 
 		public List<string> SortingFields => new List<string>
@@ -105,22 +100,18 @@ namespace KafedraApp.ViewModels
 		public string SelectedSortingField
 		{
 			get => _selectedSortingField;
-			set
-			{
-				SetProperty(ref _selectedSortingField, value);
-				OnSelectedSortingFieldChanged();
-			}
+			set => SetProperty(ref _selectedSortingField, value, OnSelectedSortingFieldChanged);
 		}
 
 		#endregion
 
 		#region Commands
 
-		public ICommand SwitchTeacherCommand { get; private set; }
-		public ICommand AssignLoadCommand { get; private set; }
-		public ICommand UnassignLoadCommand { get; private set; }
-		public ICommand FormLoadCommand { get; private set; }
-		public ICommand ResetLoadCommand { get; private set; }
+		public ICommand SwitchTeacherCommand { get; }
+		public ICommand AssignLoadCommand { get; }
+		public ICommand UnassignLoadCommand { get; }
+		public ICommand FormLoadCommand { get; }
+		public ICommand ResetLoadCommand { get; }
 
 		#endregion
 
@@ -370,6 +361,11 @@ namespace KafedraApp.ViewModels
 		private void OnSelectedSortingFieldChanged()
 		{
 			InitNotDistributedLoadToShow();
+		}
+
+		private void OnUndistributedLoadItemsChanged()
+		{
+			OnPropertyChanged(nameof(UndistributedLoadHours));
 		}
 
 		#endregion

@@ -35,7 +35,7 @@ namespace KafedraApp.ViewModels
 
 		#region Commands
 
-		public ICommand SwitchSectionCommand { get; private set; }
+		public ICommand SwitchSectionCommand { get; }
 
 		#endregion
 

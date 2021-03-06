@@ -31,11 +31,11 @@ namespace KafedraApp.ViewModels
 
 		#region Commands
 
-		public ICommand AddGroupCommand { get; private set; }
-		public ICommand EditGroupCommand { get; private set; }
-		public ICommand DeleteGroupCommand { get; private set; }
-		public ICommand ClearGroupsCommand { get; private set; }
-		public ICommand AutogenerateGroupsCommand { get; private set; }
+		public ICommand AddGroupCommand { get; }
+		public ICommand EditGroupCommand { get; }
+		public ICommand DeleteGroupCommand { get; }
+		public ICommand ClearGroupsCommand { get; }
+		public ICommand AutogenerateGroupsCommand { get; }
 
 		#endregion
 
