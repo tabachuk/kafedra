@@ -46,12 +46,12 @@ namespace KafedraApp.ViewModels
 			set
 			{
 				if (_undistributedLoadItems != null)
-					_undistributedLoadItems.CollectionChanged -= NotDistributedLoadChanged;
+					_undistributedLoadItems.CollectionChanged -= OnUndistributedLoadChanged;
 
 				SetProperty(ref _undistributedLoadItems, value, OnUndistributedLoadItemsChanged);
 
 				if (_undistributedLoadItems != null)
-					_undistributedLoadItems.CollectionChanged += NotDistributedLoadChanged;
+					_undistributedLoadItems.CollectionChanged += OnUndistributedLoadChanged;
 			}
 		}
 
@@ -59,7 +59,17 @@ namespace KafedraApp.ViewModels
 		public ObservableCollection<LoadItem> UndistributedLoadItemsToShow
 		{
 			get => _undistributedLoadItemsToShow;
-			set => SetProperty(ref _undistributedLoadItemsToShow, value);
+			set
+			{
+				if (_undistributedLoadItemsToShow != null)
+					_undistributedLoadItemsToShow.CollectionChanged -= OnUndistributedLoadItemsToShowChanged;
+
+				SetProperty(ref _undistributedLoadItemsToShow, value);
+				OnPropertyChanged(nameof(IsLoadItemNotFound));
+
+				if (_undistributedLoadItemsToShow != null)
+					_undistributedLoadItemsToShow.CollectionChanged += OnUndistributedLoadItemsToShowChanged;
+			}
 		}
 
 		public List<LoadItem> OrderedFilteredUndistributedLoadItems
@@ -79,6 +89,8 @@ namespace KafedraApp.ViewModels
 		}
 
 		public double UndistributedLoadHours => UndistributedLoadItems?.Sum(x => x.Hours) ?? 0;
+
+		public bool IsLoadItemNotFound => UndistributedLoadHours > 0 && _undistributedLoadItemsToShow?.Any() != true;
 
 		private string _searchText;
 		public string SearchText
@@ -316,7 +328,7 @@ namespace KafedraApp.ViewModels
 
 		#region Event Handlers
 
-		private void NotDistributedLoadChanged(object sender, NotifyCollectionChangedEventArgs e)
+		private void OnUndistributedLoadChanged(object sender, NotifyCollectionChangedEventArgs e)
 		{
 			OnPropertyChanged(nameof(UndistributedLoadHours));
 
@@ -351,6 +363,11 @@ namespace KafedraApp.ViewModels
 					UndistributedLoadItemsToShow.Clear();
 					break;
 			}
+		}
+
+		private void OnUndistributedLoadItemsToShowChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			OnPropertyChanged(nameof(IsLoadItemNotFound));
 		}
 
 		private void OnSearchTextChanged()

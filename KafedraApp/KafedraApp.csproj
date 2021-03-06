@@ -184,6 +184,9 @@
     <Compile Include="Views\LoadDistributionView.xaml.cs">
       <DependentUpon>LoadDistributionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NotFoundView.xaml.cs">
+      <DependentUpon>NotFoundView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SettingsView.xaml.cs">
       <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
@@ -240,7 +243,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Resource Include="Styles\Converters.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </Resource>
     <Page Include="Views\AcademicStatusesView.xaml">
       <SubType>Designer</SubType>
@@ -259,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoadDistributionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NotFoundView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

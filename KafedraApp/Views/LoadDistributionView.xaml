@@ -520,6 +520,10 @@
                     HorizontalAlignment="Center"
                     Foreground="{DynamicResource FadeForegroundColor}"/>
             </StackPanel>
+            <local:NotFoundView
+                Grid.Row="1"
+                Visibility="{Binding IsLoadItemNotFound,
+                                     Converter={StaticResource BooleanToVisibilityConverter}}"/>
         </Grid>
     </Grid>
 

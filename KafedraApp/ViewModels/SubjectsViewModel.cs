@@ -56,10 +56,22 @@ namespace KafedraApp.ViewModels
 		public ObservableCollection<Subject> SubjectsToShow
 		{
 			get => _subjectsToShow;
-			set => SetProperty(ref _subjectsToShow, value);
+			set
+			{
+				if (_subjectsToShow != null)
+					_subjectsToShow.CollectionChanged -= OnSubjectsToShowChanged;
+
+				SetProperty(ref _subjectsToShow, value);
+				OnPropertyChanged(nameof(IsSubjectNotFound));
+
+				if (_subjectsToShow != null)
+					_subjectsToShow.CollectionChanged -= OnSubjectsToShowChanged;
+			}
 		}
 
-		public bool IsSubjectsEmpty => OrderedFilteredSubjects?.Any() != true;
+		public bool IsSubjectsEmpty => Subjects?.Any() != true;
+
+		public bool IsSubjectNotFound => !IsSubjectsEmpty && _subjectsToShow?.Any() != true;
 
 		private string _searchText;
 		public string SearchText
@@ -342,10 +354,14 @@ namespace KafedraApp.ViewModels
 			}
 		}
 
+		private void OnSubjectsToShowChanged(object sender, NotifyCollectionChangedEventArgs e)
+		{
+			OnPropertyChanged(nameof(IsSubjectNotFound));
+		}
+
 		private void OnSearchTextChanged()
 		{
 			InitSubjectsToShow();
-			OnPropertyChanged(nameof(IsSubjectsEmpty));
 		}
 
 		private void OnSelectedSortingFieldChanged()
