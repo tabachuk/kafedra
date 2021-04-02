@@ -22,7 +22,7 @@ namespace KafedraApp.ViewModels
 
 		#region Properties
 
-		public ObservableCollection<Group> Groups => _dataService.Groups;
+		public ObservableCollection<Group> Groups { get; }
 
 		public bool IsGroupsEmpty => Groups?.Any() != true;
 
@@ -51,6 +51,7 @@ namespace KafedraApp.ViewModels
 			ClearGroupsCommand = new DelegateCommand(ClearGroups);
 			AutogenerateGroupsCommand = new DelegateCommand(AutogenerateGroups);
 
+			Groups = _dataService.Groups;
 			Groups.CollectionChanged += OnGroupsChanged;
 		}
 

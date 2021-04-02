@@ -18,7 +18,7 @@ namespace KafedraApp.ViewModels
 
 		#region Properties
 
-		private ObservableCollection<TimeNorm> TimeNorms => _dataService.TimeNorms;
+		private ObservableCollection<TimeNorm> TimeNorms { get; }
 
 		public ObservableCollection<TimeNormsGroup> TimeNormsGroups
 		{
@@ -44,6 +44,7 @@ namespace KafedraApp.ViewModels
 		public TimeNormsViewModel()
 		{
 			_dataService = Container.Resolve<IDataService>();
+			TimeNorms = _dataService.TimeNorms;
 		}
 
 		#endregion

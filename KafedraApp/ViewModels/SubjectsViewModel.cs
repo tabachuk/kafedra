@@ -34,7 +34,7 @@ namespace KafedraApp.ViewModels
 
 		#region Properties
 
-		public ObservableCollection<Subject> Subjects => _dataService.Subjects;
+		public ObservableCollection<Subject> Subjects { get; }
 
 		public List<Subject> OrderedFilteredSubjects
 		{
@@ -111,6 +111,8 @@ namespace KafedraApp.ViewModels
 		{
 			_dataService = Container.Resolve<IDataService>();
 			_dialogService = Container.Resolve<IDialogService>();
+
+			Subjects = _dataService.Subjects;
 
 			SelectedSortingField = SortingFields[0];
 
@@ -321,10 +323,12 @@ namespace KafedraApp.ViewModels
 			switch (e.Action)
 			{
 				case NotifyCollectionChangedAction.Add:
+					var subject = e.NewItems[0] as Subject;
+					_dataService.Subjects.Add(subject);
+
 					if (_isImporting)
 						break;
 
-					var subject = e.NewItems[0] as Subject;
 					var index = OrderedFilteredSubjects.IndexOf(subject);
 
 					if (index >= 0 && index <= SubjectsToShow.Count)
@@ -334,6 +338,7 @@ namespace KafedraApp.ViewModels
 					break;
 				case NotifyCollectionChangedAction.Remove:
 					subject = e.OldItems[0] as Subject;
+					_dataService.Subjects.Remove(subject);
 					SubjectsToShow.Remove(subject);
 					AddSubjectToShow();
 					break;
@@ -344,11 +349,15 @@ namespace KafedraApp.ViewModels
 
 					if (index >= 0 && index <= SubjectsToShow.Count)
 					{
+						_dataService.Subjects.RemoveAt(index);
+						_dataService.Subjects.Insert(index, newSubject);
+
 						SubjectsToShow.RemoveAt(index);
 						SubjectsToShow.Insert(index, newSubject);
 					}
 					break;
 				case NotifyCollectionChangedAction.Reset:
+					_dataService.Subjects.Clear();
 					SubjectsToShow.Clear();
 					break;
 			}

@@ -36,8 +36,7 @@ namespace KafedraApp.ViewModels
 			set => SetProperty(ref _currentTeacher, value);
 		}
 
-		public ObservableCollection<Teacher> Teachers =>
-			_dataService.Teachers;
+		public ObservableCollection<Teacher> Teachers { get; }
 
 		private ObservableCollection<LoadItem> _undistributedLoadItems;
 		public ObservableCollection<LoadItem> UndistributedLoadItems
@@ -140,6 +139,7 @@ namespace KafedraApp.ViewModels
 			FormLoadCommand = new DelegateCommand(FormLoad);
 			ResetLoadCommand = new DelegateCommand(async () => await ResetLoad());
 
+			Teachers = _dataService.Teachers;
 			CurrentTeacher = _dataService.Teachers.FirstOrDefault();
 			SelectedSortingField = SortingFields[0];
 
