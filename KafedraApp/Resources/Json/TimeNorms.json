@@ -1,0 +1,186 @@
+[
+  {
+    "Id": "7318df36-d896-45fa-b5b6-343dede25f67",
+    "Name": "Залік",
+    "WorkType": 1,
+    "Category": 0,
+    "DistributionType": 0,
+    "Hours": 2.0
+  },
+  {
+    "Id": "15500486-e788-4dcb-a05d-b041e036536d",
+    "Name": "Модульна робота з фах. дисципліни",
+    "WorkType": 5,
+    "Category": 0,
+    "DistributionType": 2,
+    "Hours": 0.1
+  },
+  {
+    "Id": "0ad93fe6-f993-4b22-81b0-e5a283cb6782",
+    "Name": "Усний",
+    "WorkType": 2,
+    "Category": 1,
+    "DistributionType": 1,
+    "Hours": 0.33
+  },
+  {
+    "Id": "3f5587f6-d925-4488-9b49-9024448a1f3b",
+    "Name": "Тестування",
+    "WorkType": 2,
+    "Category": 1,
+    "DistributionType": 0,
+    "Hours": 2.0
+  },
+  {
+    "Id": "cb0bce46-40b6-4d22-b0e9-a5a9ea52e945",
+    "Name": "Рецензування рефератів при вступі",
+    "WorkType": 5,
+    "Category": 2,
+    "DistributionType": 0,
+    "Hours": 3.0
+  },
+  {
+    "Id": "07c01f84-1589-4070-8e12-1fa64ee74058",
+    "Name": "Вступний іспит",
+    "WorkType": 5,
+    "Category": 2,
+    "DistributionType": 1,
+    "Hours": 1.0
+  },
+  {
+    "Id": "cb35744f-1482-4e40-80e1-d08492920ffe",
+    "Name": "Консультування здобувачів ст. доктора наук",
+    "WorkType": 5,
+    "Category": 2,
+    "DistributionType": 1,
+    "Hours": 50.0
+  },
+  {
+    "Id": "5134d509-e87c-4b93-adc1-d0634aebac47",
+    "Name": "Керівництво здобувачами ст. доктора філософії",
+    "WorkType": 5,
+    "Category": 2,
+    "DistributionType": 1,
+    "Hours": 50.0
+  },
+  {
+    "Id": "a172d8f9-0c5e-4bbd-ac90-9223a7bceb63",
+    "Name": "Консультація",
+    "WorkType": 5,
+    "Category": 3,
+    "DistributionType": 0,
+    "Hours": 2.0
+  },
+  {
+    "Id": "57cd2c05-6e9b-4b73-832d-44c6d2bc451e",
+    "Name": "Проведення атестації",
+    "WorkType": 5,
+    "Category": 3,
+    "DistributionType": 1,
+    "Hours": 0.5
+  },
+  {
+    "Id": "9a985ade-1ec4-4719-b90c-87d6f0547c57",
+    "Name": "Голова",
+    "WorkType": 5,
+    "Category": 5,
+    "DistributionType": 2,
+    "Hours": 0.5
+  },
+  {
+    "Id": "6c6059a1-ee62-4a16-8673-7c9b5864bd57",
+    "Name": "Екзаменатор",
+    "WorkType": 5,
+    "Category": 5,
+    "DistributionType": 2,
+    "Hours": 0.5
+  },
+  {
+    "Id": "024681fe-b29e-4d6f-ab8b-f50c6443c84c",
+    "Name": "Керівник/консультант",
+    "WorkType": 5,
+    "Category": 5,
+    "DistributionType": 2,
+    "Hours": 20.0
+  },
+  {
+    "Id": "46822fe1-41db-413d-80d0-524aa7978111",
+    "Name": "Голова",
+    "WorkType": 5,
+    "Category": 6,
+    "DistributionType": 2,
+    "Hours": 0.5
+  },
+  {
+    "Id": "8c43358a-a7d5-464c-8121-6c9efe7f3b2c",
+    "Name": "Екзаменатор",
+    "WorkType": 5,
+    "Category": 6,
+    "DistributionType": 2,
+    "Hours": 0.5
+  },
+  {
+    "Id": "542e64c4-8db8-4535-8e0d-e0cb2ac1890e",
+    "Name": "Керівник/консультант",
+    "WorkType": 5,
+    "Category": 6,
+    "DistributionType": 2,
+    "Hours": 28.0
+  },
+  {
+    "Id": "0e76c25f-7c23-4b83-8298-7cd8e246b430",
+    "Name": "Курсова робота",
+    "WorkType": 4,
+    "Category": 7,
+    "DistributionType": 1,
+    "Hours": 3.0
+  },
+  {
+    "Id": "4532fcb1-a69d-4598-a310-f5d300b14d63",
+    "Name": "Контрольна робота",
+    "WorkType": 3,
+    "Category": 7,
+    "DistributionType": 1,
+    "Hours": 0.1
+  },
+  {
+    "Id": "adda775d-78f8-4098-bf64-54caad7b7025",
+    "Name": "Навчально-педагогічна",
+    "WorkType": 5,
+    "Category": 4,
+    "DistributionType": 1,
+    "Hours": 2.0
+  },
+  {
+    "Id": "74b4520f-4307-4ee9-922d-74220573b3ff",
+    "Name": "Педагогічна (пропедевтична)",
+    "WorkType": 5,
+    "Category": 4,
+    "DistributionType": 1,
+    "Hours": 2.0
+  },
+  {
+    "Id": "8b569df3-5b98-45b1-81a1-3d0842102ba3",
+    "Name": "Асистентська",
+    "WorkType": 5,
+    "Category": 4,
+    "DistributionType": 1,
+    "Hours": 2.0
+  },
+  {
+    "Id": "5af631f1-8805-4f47-ba14-4de89257b2eb",
+    "Name": "Переддипломна",
+    "WorkType": 5,
+    "Category": 4,
+    "DistributionType": 1,
+    "Hours": 2.0
+  },
+  {
+    "Id": "ded2df87-029e-4f4d-bdf4-e236aee4e717",
+    "Name": "Педагогічна",
+    "WorkType": 5,
+    "Category": 4,
+    "DistributionType": 1,
+    "Hours": 2.0
+  }
+]

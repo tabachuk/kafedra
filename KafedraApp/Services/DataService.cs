@@ -9,6 +9,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace KafedraApp.Services
@@ -259,8 +260,15 @@ namespace KafedraApp.Services
 			var academicStatuses = await ReadListAsync<AcademicStatusInfo>();
 
 			if (academicStatuses == null)
-				throw new FileNotFoundException(
-					"Файл із вченими ступенями не знайдений. Перевірте його наявність в папці з даними");
+			{
+				ExtractJsonResource<AcademicStatusInfo>();
+				academicStatuses = await ReadListAsync<AcademicStatusInfo>();
+			}
+
+			if (academicStatuses == null)
+			{
+				throw new Exception("Не вдалось ініціалізувати вчені ступені");
+			}
 
 			AcademicStatuses = new ObservableCollection<AcademicStatusInfo>(academicStatuses);
 			AcademicStatuses.CollectionChanged += OnAcademicStatusesInfoChanged;
@@ -276,8 +284,15 @@ namespace KafedraApp.Services
 			var timeNorms = await ReadListAsync<TimeNorm>();
 
 			if (timeNorms == null)
-				throw new FileNotFoundException(
-					"Файл із нормами часу не знайдений. Перевірте його наявність в папці з даними");
+			{
+				ExtractJsonResource<TimeNorm>();
+				timeNorms = await ReadListAsync<TimeNorm>();
+			}
+
+			if (timeNorms == null)
+			{
+				throw new Exception("Не вдалось ініціалізувати часові норми");
+			}
 
 			TimeNorms = new ObservableCollection<TimeNorm>(timeNorms);
 			TimeNorms.CollectionChanged += OnTimeNormsChanged;
@@ -285,6 +300,20 @@ namespace KafedraApp.Services
 			foreach (var timeNorm in TimeNorms)
 			{
 				timeNorm.PropertyChanged += OnTimeNormChanged;
+			}
+		}
+
+		private void ExtractJsonResource<T>()
+		{
+			var key = GetKey<T>();
+
+			using (FileStream fileStream = File.Create($@"{DataFolderName}\{key}.json"))
+			{
+				var resName = $"KafedraApp.Resources.Json.{key}.json";
+
+				Assembly.GetExecutingAssembly()
+					.GetManifestResourceStream(resName)
+					.CopyTo(fileStream);
 			}
 		}
 

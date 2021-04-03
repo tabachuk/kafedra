@@ -366,6 +366,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EmbeddedResource Include="Resources\Json\AcademicStatuses.json" />
+    <EmbeddedResource Include="Resources\Json\TimeNorms.json" />
     <Resource Include="Resources\Fonts\Anodina-Bold.otf" />
     <Resource Include="Resources\Fonts\Anodina-ExtraBold.otf" />
     <Resource Include="Resources\Fonts\Anodina-ExtraLight.otf" />
