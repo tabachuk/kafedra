@@ -1,6 +1,7 @@
 ﻿using KafedraApp.Attributes;
 using KafedraApp.Extensions;
 using KafedraApp.Models;
+using KafedraApp.Properties;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,12 @@ namespace KafedraApp.Services
 {
 	public class DataService : IDataService
 	{
+		#region Constants
+
+		public const string DefaultDataFolderName = "Data";
+
+		#endregion
+
 		#region Fields
 
 		private readonly Logger _logger = LogManager.GetCurrentClassLogger();
@@ -25,7 +32,7 @@ namespace KafedraApp.Services
 
 		#region Properties
 
-		public string DataFolderName => "Data";
+		public string DataPath { get; private set; } 
 
 		public ObservableCollection<Subject> Subjects { get; set; }
 
@@ -47,9 +54,30 @@ namespace KafedraApp.Services
 
 		#endregion
 
+		#region Constructors
+
+		public DataService()
+		{
+			InitDataPath();
+		}
+
+		#endregion
+
 		#region Private Methods
 
-		private string GetPath<T>(string key) => $@"{ DataFolderName }\{ key }.json";
+		private void InitDataPath()
+		{
+			if (Directory.Exists(Settings.Default.DataPath))
+			{
+				DataPath = Settings.Default.DataPath;
+			}
+			else
+			{
+				DataPath = $@"{Directory.GetCurrentDirectory()}\{DefaultDataFolderName}";
+			}
+		}
+
+		private string GetPath(string key) => $@"{ DataPath }\{ key }.json";
 
 		private T Read<T>(string key = null)
 		{
@@ -60,7 +88,7 @@ namespace KafedraApp.Services
 				if (string.IsNullOrEmpty(key))
 					throw new Exception("Key is null or empty.");
 
-				var path = GetPath<T>(key);
+				var path = GetPath(key);
 
 				_logger.Info("Started reading '{0}.json'.", key);
 
@@ -90,7 +118,7 @@ namespace KafedraApp.Services
 				if (string.IsNullOrEmpty(key))
 					throw new Exception("Key is null or empty.");
 
-				var path = GetPath<T>(key);
+				var path = GetPath(key);
 
 				_logger.Info("Started reading '{0}.json'.", key);
 
@@ -120,7 +148,7 @@ namespace KafedraApp.Services
 				if (string.IsNullOrEmpty(key))
 					throw new Exception("Key is null or empty.");
 
-				var path = GetPath<T>(key);
+				var path = GetPath(key);
 
 				_logger.Info("Started reading '{0}.json'.", key);
 
@@ -150,7 +178,7 @@ namespace KafedraApp.Services
 				if (string.IsNullOrEmpty(key))
 					throw new Exception("Key is null or empty.");
 
-				var path = GetPath<T>(key);
+				var path = GetPath(key);
 
 				_logger.Info("Started reading '{0}.json'.", key);
 
@@ -184,10 +212,10 @@ namespace KafedraApp.Services
 
 					_logger.Info("Started writing data to '{0}.json'.", key);
 
-					if (!Directory.Exists(DataFolderName))
-						Directory.CreateDirectory(DataFolderName);
+					if (!Directory.Exists(DataPath))
+						Directory.CreateDirectory(DataPath);
 
-					File.WriteAllText(GetPath<T>(key), data.ToJson());
+					File.WriteAllText(GetPath(key), data.ToJson());
 					_logger.Info("Data has been written to '{0}.json'.", key);
 				}
 			}
@@ -307,7 +335,7 @@ namespace KafedraApp.Services
 		{
 			var key = GetKey<T>();
 
-			using (FileStream fileStream = File.Create($@"{DataFolderName}\{key}.json"))
+			using (FileStream fileStream = File.Create($@"{DataPath}\{key}.json"))
 			{
 				var resName = $"KafedraApp.Resources.Json.{key}.json";
 
@@ -456,6 +484,12 @@ namespace KafedraApp.Services
 			var assignedSubjects = Teachers.SelectMany(x => x.SubjectsSpecializesIn);
 			var subjects = Subjects.Where(x => assignedSubjects.Contains(x.Name));
 			return subjects.ToList();
+		}
+
+		public void SetDataPath(string path)
+		{
+			DataPath = path;
+			Settings.Default.DataPath = path;
 		}
 
 		#endregion
