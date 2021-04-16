@@ -32,7 +32,7 @@ namespace KafedraApp.Services
 
 		#region Properties
 
-		public string DataPath { get; private set; } 
+		public string DataPath { get; private set; }
 
 		public ObservableCollection<Subject> Subjects { get; set; }
 
@@ -73,7 +73,13 @@ namespace KafedraApp.Services
 			}
 			else
 			{
-				DataPath = $@"{Directory.GetCurrentDirectory()}\{DefaultDataFolderName}";
+				string currentDirectory = Directory.GetCurrentDirectory();
+				DataPath = $@"{currentDirectory}\{DefaultDataFolderName}";
+
+				if (!Directory.Exists(DataPath))
+				{
+					Directory.CreateDirectory(DataPath);
+				}
 			}
 		}
 
