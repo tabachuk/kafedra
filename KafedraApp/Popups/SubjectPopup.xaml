@@ -332,17 +332,18 @@
                         Style="{StaticResource RoundedButtonStyle}"/>
                 </Border>
 
-                <controls:IconButton
-                    Icon="&#xf00d;"
-                    MinWidth="200"
-                    Height="45"
-                    Text="Скасувати"
-                    Margin="10"
-                    HorizontalContentAlignment="Center"
-                    Command="{Binding SetResultCommand}"
-                    Foreground="{DynamicResource ForegroundColor}"
-                    Style="{StaticResource RoundedButtonStyle}">
-                </controls:IconButton>
+                <Border CornerRadius="10">
+                    <controls:IconButton
+                        Icon="&#xf00d;"
+                        MinWidth="200"
+                        Height="45"
+                        Text="Скасувати"
+                        Margin="10"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding SetResultCommand}"
+                        Foreground="{DynamicResource ForegroundColor}"
+                        Style="{StaticResource RoundedButtonStyle}"/>
+                </Border>
             </StackPanel>
 
         </Grid>

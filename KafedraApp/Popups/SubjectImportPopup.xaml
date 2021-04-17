@@ -157,19 +157,22 @@
                     Margin="0,5"/>
             </StackPanel>
 
-            <controls:IconButton
+            <Border
                 Grid.Row="2"
-                Icon="&#xf00d;"
-                MinWidth="200"
-                Height="45"
-                Text="Скасувати імпорт"
-                HorizontalAlignment="Center"
-                Margin="10"
-                HorizontalContentAlignment="Center"
-                Style="{StaticResource RoundedButtonStyle}"
-                Command="{Binding CancelCommand}"
-                CommandParameter="False"
-                Foreground="{DynamicResource ForegroundColor}"/>
+                CornerRadius="10">
+                <controls:IconButton
+                    Icon="&#xf00d;"
+                    MinWidth="200"
+                    Height="45"
+                    Text="Скасувати імпорт"
+                    HorizontalAlignment="Center"
+                    Margin="10"
+                    HorizontalContentAlignment="Center"
+                    Style="{StaticResource RoundedButtonStyle}"
+                    Command="{Binding CancelCommand}"
+                    CommandParameter="False"
+                    Foreground="{DynamicResource ForegroundColor}"/>
+            </Border>
 
         </Grid>
 

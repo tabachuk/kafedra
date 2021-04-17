@@ -178,34 +178,36 @@
                         Style="{StaticResource RoundedButtonStyle}"/>
                 </Border>
 
-                <controls:IconButton
-                    Icon="&#xf00d;"
-                    MinWidth="200"
-                    Height="45"
-                    Text="{Binding CancelButtonText}"
-                    Margin="10"
-                    HorizontalContentAlignment="Center"
-                    Command="{Binding SetResultCommand}"
-                    CommandParameter="False"
-                    Foreground="{DynamicResource ForegroundColor}">
-                    <controls:IconButton.Style>
-                        <Style
-                            TargetType="controls:IconButton"
-                            BasedOn="{StaticResource RoundedButtonStyle}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding MessageType}" Value="Info">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding MessageType}" Value="Error">
-                                    <Setter Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding MessageType}" Value="Question">
-                                    <Setter Property="Visibility" Value="Visible"/>
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </controls:IconButton.Style>
-                </controls:IconButton>
+                <Border CornerRadius="10">
+                    <controls:IconButton
+                        Icon="&#xf00d;"
+                        MinWidth="200"
+                        Height="45"
+                        Text="{Binding CancelButtonText}"
+                        Margin="10"
+                        HorizontalContentAlignment="Center"
+                        Command="{Binding SetResultCommand}"
+                        CommandParameter="False"
+                        Foreground="{DynamicResource ForegroundColor}">
+                        <controls:IconButton.Style>
+                            <Style
+                                TargetType="controls:IconButton"
+                                BasedOn="{StaticResource RoundedButtonStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding MessageType}" Value="Info">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding MessageType}" Value="Error">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding MessageType}" Value="Question">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </controls:IconButton.Style>
+                    </controls:IconButton>
+                </Border>
             </StackPanel>
             
         </Grid>
