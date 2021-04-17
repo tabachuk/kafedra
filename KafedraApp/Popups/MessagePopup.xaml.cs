@@ -20,7 +20,7 @@ namespace KafedraApp.Popups
 
 		#endregion
 
-		#region Dependency properties
+		#region Dependency Properties
 
 		public static readonly DependencyProperty MessageProperty =
 			DependencyProperty.Register(
@@ -123,7 +123,7 @@ namespace KafedraApp.Popups
 
 		#region Commands
 
-		public ICommand SetResultCommand { get; private set; }
+		public ICommand SetResultCommand { get; }
 
 		#endregion
 

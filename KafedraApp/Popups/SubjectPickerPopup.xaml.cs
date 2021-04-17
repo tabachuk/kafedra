@@ -38,9 +38,9 @@ namespace KafedraApp.Popups
 
 		#region Commands
 
-		public ICommand SetResultCommand { get; private set; }
-		public ICommand MoveSubjectToLeftColumnCommand { get; private set; }
-		public ICommand MoveSubjectToRightColumnCommand { get; private set; }
+		public ICommand SetResultCommand { get; }
+		public ICommand MoveSubjectToLeftColumnCommand { get; }
+		public ICommand MoveSubjectToRightColumnCommand { get; }
 
 		#endregion
 

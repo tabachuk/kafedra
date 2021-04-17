@@ -50,7 +50,7 @@ namespace KafedraApp.Popups
 
 		#region Commands
 
-		public ICommand SetResultCommand { get; private set; }
+		public ICommand SetResultCommand { get; }
 
 		#endregion
 

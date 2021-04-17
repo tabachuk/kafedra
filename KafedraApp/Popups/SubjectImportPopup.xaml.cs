@@ -65,7 +65,7 @@ namespace KafedraApp.Popups
 
 		#region Commands
 
-		public ICommand CancelCommand { get; private set; }
+		public ICommand CancelCommand { get; }
 
 		#endregion
 
