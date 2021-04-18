@@ -81,6 +81,13 @@
                         <Setter Property="Opacity" Value="0.7"/>
                     </Style>
                     <Style
+                        TargetType="CheckBox"
+                        BasedOn="{StaticResource MaterialDesignCheckBox}">
+                        <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="BorderBrush" Value="{DynamicResource FadeForegroundColor}"/>
+                        <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
+                    </Style>
+                    <Style
                         TargetType="TextBox"
                         BasedOn="{StaticResource MaterialDesignTextBoxBase}">
                         <Setter Property="md:TextFieldAssist.UnderlineBrush" Value="{DynamicResource FadeForegroundColor}"/>

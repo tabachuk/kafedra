@@ -1,4 +1,5 @@
 ﻿using KafedraApp.Models;
+using KafedraApp.ViewModels;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,6 +25,7 @@ namespace KafedraApp.Services
 		Task<List<string>> ShowSubjectPickerPopup(
 			string teacherName,
 			List<string> subjects);
+		Task ShowChangeDataStoragePopup(SettingsViewModel settingsViewModel);
 		bool CanShowDialog { get; }
 	}
 }

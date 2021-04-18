@@ -8,6 +8,7 @@ namespace KafedraApp.Services
 	public interface IDataService
 	{
 		string DataPath { get; }
+		string DefaultDataPath { get; }
 		ObservableCollection<Subject> Subjects { get; set; }
 		ObservableCollection<Teacher> Teachers { get; set; }
 		ObservableCollection<Group> Groups { get; set; }
@@ -20,5 +21,6 @@ namespace KafedraApp.Services
 		Task SaveGroups();
 		List<LoadItem> GetLoadItems(IEnumerable<Subject> subjects = null);
 		void SetDataPath(string path);
+		void CopyDataTo(string path);
 	}
 }

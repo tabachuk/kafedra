@@ -6,6 +6,7 @@ using KafedraApp.Popups;
 using KafedraApp.Models;
 using System.Collections.Generic;
 using NLog;
+using KafedraApp.ViewModels;
 
 namespace KafedraApp.Services
 {
@@ -161,6 +162,21 @@ namespace KafedraApp.Services
 			Pop(popup);
 
 			return res;
+		}
+
+		public async Task ShowChangeDataStoragePopup(SettingsViewModel settingsViewModel)
+		{
+			if (!CanShowDialog)
+				return;
+
+			var popup = new ChangeDataStoragePopup
+			{
+				DataContext = settingsViewModel
+			};
+
+			Push(popup);
+			await popup.Result;
+			Pop(popup);
 		}
 
 		private void Push(UIElement popup) =>

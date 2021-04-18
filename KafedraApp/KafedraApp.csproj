@@ -137,6 +137,9 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\TimeNorm.cs" />
     <Compile Include="Models\TimeNormsGroup.cs" />
+    <Compile Include="Popups\ChangeDataStoragePopup.xaml.cs">
+      <DependentUpon>ChangeDataStoragePopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popups\GroupPopup.xaml.cs">
       <DependentUpon>GroupPopup.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,10 @@
       <DependentUpon>TerminalWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="Controls\IconButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\ChangeDataStoragePopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

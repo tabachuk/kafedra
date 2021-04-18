@@ -34,6 +34,8 @@ namespace KafedraApp.Services
 
 		public string DataPath { get; private set; }
 
+		public string DefaultDataPath => $@"{Directory.GetCurrentDirectory()}\{DefaultDataFolderName}";
+
 		public ObservableCollection<Subject> Subjects { get; set; }
 
 		public ObservableCollection<Teacher> Teachers { get; set; }
@@ -73,8 +75,7 @@ namespace KafedraApp.Services
 			}
 			else
 			{
-				string currentDirectory = Directory.GetCurrentDirectory();
-				DataPath = $@"{currentDirectory}\{DefaultDataFolderName}";
+				DataPath = DefaultDataPath;
 
 				if (!Directory.Exists(DataPath))
 				{
@@ -83,33 +84,43 @@ namespace KafedraApp.Services
 			}
 		}
 
-		private string GetPath(string key) => $@"{ DataPath }\{ key }.json";
+		private string GetPath(string key, string folder = null)
+		{
+			return $@"{ folder ?? DataPath }\{ key }.json";
+		}
+
+		private string GetPath<T>(string folder = null, string key = null)
+		{
+			key = key ?? GetKey<T>();
+
+			if (string.IsNullOrEmpty(key))
+				throw new Exception("Key is null or empty.");
+
+			return GetPath(key, folder);
+		}
 
 		private T Read<T>(string key = null)
 		{
+			string path = null;
+
 			try
 			{
-				key = key ?? GetKey<T>();
+				path = GetPath<T>(key);
 
-				if (string.IsNullOrEmpty(key))
-					throw new Exception("Key is null or empty.");
-
-				var path = GetPath(key);
-
-				_logger.Info("Started reading '{0}.json'.", key);
+				_logger.Info("Started reading '{0}.json'.", path);
 
 				if (File.Exists(path))
 				{
 					var res = File.ReadAllText(path).FromJson<T>();
-					_logger.Info("'{0}.json' has been read.", key);
+					_logger.Info("'{0}.json' has been read.", path);
 					return res;
 				}
 
-				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+				_logger.Warn("Can't read '{0}.json'. File does not exist.", path);
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex, "Can't read '{0}.json'.", key);
+				_logger.Error(ex, "Can't read '{0}.json'.", path);
 			}
 
 			return default;
@@ -117,29 +128,26 @@ namespace KafedraApp.Services
 
 		private async Task<T> ReadAsync<T>(string key = null)
 		{
+			string path = null;
+
 			try
 			{
-				key = key ?? GetKey<T>();
+				path = GetPath<T>(key);
 
-				if (string.IsNullOrEmpty(key))
-					throw new Exception("Key is null or empty.");
-
-				var path = GetPath(key);
-
-				_logger.Info("Started reading '{0}.json'.", key);
+				_logger.Info("Started reading '{0}'.", path);
 
 				if (File.Exists(path))
 				{
 					var res = await Task.Run(() => File.ReadAllText(path).FromJson<T>());
-					_logger.Info("'{0}.json' has been read.", key);
+					_logger.Info("'{0}' has been read.", path);
 					return res;
 				}
 
-				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+				_logger.Warn("Can't read '{0}'. File does not exist.", path);
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex, "Can't read '{0}.json'.", key);
+				_logger.Error(ex, "Can't read '{0}'.", path);
 			}
 
 			return default;
@@ -147,29 +155,26 @@ namespace KafedraApp.Services
 
 		private List<T> ReadList<T>(string key = null)
 		{
+			string path = null;
+
 			try
 			{
-				key = key ?? GetKey<T>();
+				path = GetPath<T>(key);
 
-				if (string.IsNullOrEmpty(key))
-					throw new Exception("Key is null or empty.");
-
-				var path = GetPath(key);
-
-				_logger.Info("Started reading '{0}.json'.", key);
+				_logger.Info("Started reading '{0}'.", path);
 
 				if (File.Exists(path))
 				{
 					var res = File.ReadAllText(path).FromJson<List<T>>();
-					_logger.Info("'{0}.json' has been read.", key);
+					_logger.Info("'{0}' has been read.", path);
 					return res;
 				}
 
-				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+				_logger.Warn("Can't read '{0}'. File does not exist.", path);
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex, "Can't read '{0}.json'.", key);
+				_logger.Error(ex, "Can't read '{0}'.", path);
 			}
 
 			return default;
@@ -177,29 +182,26 @@ namespace KafedraApp.Services
 
 		private async Task<List<T>> ReadListAsync<T>(string key = null)
 		{
+			string path = null;
+
 			try
 			{
-				key = key ?? GetKey<T>();
+				path = GetPath<T>(key);
 
-				if (string.IsNullOrEmpty(key))
-					throw new Exception("Key is null or empty.");
-
-				var path = GetPath(key);
-
-				_logger.Info("Started reading '{0}.json'.", key);
+				_logger.Info("Started reading '{0}'.", path);
 
 				if (File.Exists(path))
 				{
 					var res = await Task.Run(() => File.ReadAllText(path).FromJson<List<T>>());
-					_logger.Info("'{0}.json' has been read.", key);
+					_logger.Info("'{0}' has been read.", path);
 					return res;
 				}
 
-				_logger.Warn("Can't read '{0}.json'. File does not exist.", key);
+				_logger.Warn("Can't read '{0}'. File does not exist.", path);
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex, "Can't read '{0}.json'.", key);
+				_logger.Error(ex, "Can't read '{0}'.", path);
 			}
 
 			return default;
@@ -207,27 +209,26 @@ namespace KafedraApp.Services
 
 		private void Write<T>(T data, string key = null)
 		{
+			string path = null;
+
 			try
 			{
 				lock (_locker)
 				{
-					key = key ?? GetKey<T>();
+					path = GetPath<T>(key);
 
-					if (string.IsNullOrEmpty(key))
-						throw new Exception("Key is null or empty.");
-
-					_logger.Info("Started writing data to '{0}.json'.", key);
+					_logger.Info("Started writing data to '{0}'.", path);
 
 					if (!Directory.Exists(DataPath))
 						Directory.CreateDirectory(DataPath);
 
-					File.WriteAllText(GetPath(key), data.ToJson());
-					_logger.Info("Data has been written to '{0}.json'.", key);
+					File.WriteAllText(path, data.ToJson());
+					_logger.Info("Data has been written to '{0}'.", path);
 				}
 			}
 			catch (Exception ex)
 			{
-				_logger.Error(ex, "Can't write data to '{0}.json'.", key);
+				_logger.Error(ex, "Can't write data to '{0}'.", path);
 			}
 		}
 
@@ -492,10 +493,22 @@ namespace KafedraApp.Services
 			return subjects.ToList();
 		}
 
-		public void SetDataPath(string path)
+		private List<Group> GetGroupsBySpecAndCourse(string specialty, double course)
 		{
-			DataPath = path;
-			Settings.Default.DataPath = path;
+			var groups = Groups
+				.Where(x => x.Specialty == specialty && x.Course == course).ToList();
+
+			return groups;
+		}
+
+		private void CopyDataTo<T>(string folder, string key = null)
+		{
+			var path = GetPath<T>(key);
+
+			if (File.Exists(path))
+			{
+				File.Copy(GetPath<T>(), GetPath<T>(folder), true);
+			}
 		}
 
 		#endregion
@@ -543,12 +556,19 @@ namespace KafedraApp.Services
 			return loadItems;
 		}
 
-		private List<Group> GetGroupsBySpecAndCourse(string specialty, double course)
+		public void SetDataPath(string path)
 		{
-			var groups = Groups
-				.Where(x => x.Specialty == specialty && x.Course == course).ToList();
+			DataPath = path;
+			Settings.Default.DataPath = path;
+		}
 
-			return groups;
+		public void CopyDataTo(string folder)
+		{
+			CopyDataTo<Subject>(folder);
+			CopyDataTo<Teacher>(folder);
+			CopyDataTo<Group>(folder);
+			CopyDataTo<AcademicStatusInfo>(folder);
+			CopyDataTo<TimeNorm>(folder);
 		}
 
 		#endregion

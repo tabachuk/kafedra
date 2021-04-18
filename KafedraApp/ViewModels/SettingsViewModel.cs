@@ -14,6 +14,7 @@ namespace KafedraApp.ViewModels
 		#region Fields
 
 		private readonly IDataService _dataService;
+		private readonly IDialogService _dialogService;
 
 		#endregion
 
@@ -28,6 +29,10 @@ namespace KafedraApp.ViewModels
 
 		public bool IsDataPathCorrect => Directory.Exists(DataPath);
 
+		public bool IsDataPathDefault => DataPath == _dataService.DefaultDataPath;
+
+		public bool CanSaveDataPath => IsDataPathCorrect && _dataService.DataPath != DataPath;
+
 		#endregion
 
 		#region Commands
@@ -35,6 +40,7 @@ namespace KafedraApp.ViewModels
 		public ICommand BrowseDataPathCommand { get; }
 		public ICommand OpenDataFolderCommand { get; }
 		public ICommand SaveDataPathCommand { get; }
+		public ICommand ResetDataPathCommand { get; }
 
 		#endregion
 
@@ -44,9 +50,11 @@ namespace KafedraApp.ViewModels
 		{
 			BrowseDataPathCommand = new DelegateCommand(BrowseDataPath);
 			OpenDataFolderCommand = new DelegateCommand(OpenDataFolder);
-			SaveDataPathCommand = new DelegateCommand(async () => await SaveDataPath());
+			SaveDataPathCommand = new DelegateCommand(SaveDataPath);
+			ResetDataPathCommand = new DelegateCommand(ResetDataPath);
 
 			_dataService = Container.Resolve<IDataService>();
+			_dialogService = Container.Resolve<IDialogService>();
 
 			DataPath = _dataService.DataPath;
 		}
@@ -75,13 +83,36 @@ namespace KafedraApp.ViewModels
 			Process.Start(DataPath);
 		}
 
-		private async Task SaveDataPath()
+		private async void SaveDataPath()
 		{
-			if (!IsDataPathCorrect || _dataService.DataPath == DataPath)
+			if (!CanSaveDataPath)
 				return;
 
-			_dataService.SetDataPath(DataPath);
-			await _dataService.InitAsync();
+			await _dialogService.ShowChangeDataStoragePopup(this);
+		}
+
+		public async Task ChangeDataStorage(bool copyFromCurrentStorage)
+		{
+			if (copyFromCurrentStorage)
+			{
+				_dataService.CopyDataTo(DataPath);
+				_dataService.SetDataPath(DataPath);
+			}
+			else
+			{
+				_dataService.SetDataPath(DataPath);
+				await _dataService.InitAsync();
+			}
+
+			OnPropertyChanged(nameof(CanSaveDataPath));
+		}
+
+		private void ResetDataPath()
+		{
+			if (IsDataPathDefault)
+				return;
+
+			DataPath = _dataService.DefaultDataPath;
 		}
 
 		#endregion
@@ -91,6 +122,8 @@ namespace KafedraApp.ViewModels
 		private void OnDataPathChanged()
 		{
 			OnPropertyChanged(nameof(IsDataPathCorrect));
+			OnPropertyChanged(nameof(IsDataPathDefault));
+			OnPropertyChanged(nameof(CanSaveDataPath));
 		}
 
 		#endregion
