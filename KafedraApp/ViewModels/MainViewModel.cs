@@ -1,11 +1,21 @@
 ﻿using KafedraApp.Commands;
+using KafedraApp.Helpers;
 using KafedraApp.Properties;
+using KafedraApp.Services;
+using System.Linq;
 using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
 {
 	public class MainViewModel : BindableBase
 	{
+		#region Fields
+
+		private readonly IDataService _dataService;
+		private readonly IDialogService _dialogService;
+
+		#endregion
+
 		#region Properties
 
 		public bool IsDarkMode
@@ -59,7 +69,8 @@ namespace KafedraApp.ViewModels
 
 		public MainViewModel()
 		{
-			CurrentSection = Sections.Subjects;
+			_dataService = Container.Resolve<IDataService>();
+			_dialogService = Container.Resolve<IDialogService>();
 
 			SwitchSectionCommand = new DelegateCommand<Sections>(SwitchSection);
 
@@ -71,8 +82,23 @@ namespace KafedraApp.ViewModels
 
 		#region Methods
 
-		private void SwitchSection(Sections section)
+		private async void SwitchSection(Sections section)
 		{
+			if (section == Sections.LoadDistribution)
+			{
+				bool hasTeachersAndSubjects =
+					_dataService.Teachers?.Any() == true
+					&& _dataService.Subjects?.Any() == true;
+
+				if (!hasTeachersAndSubjects)
+				{
+					await _dialogService.ShowError(
+						"Для відкритття даної вкладки потрібно мати хоча б одного викладача та один предмет.",
+						"Неможливо відкрити вкладку");
+					return;
+				}
+			}
+
 			CurrentSection = section;
 		}
 
