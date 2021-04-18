@@ -158,7 +158,7 @@
                         MethodName="GetValues"
                         ObjectType="{x:Type System:Enum}">
                         <ObjectDataProvider.MethodParameters>
-                            <x:Type TypeName="models:AcademicStatuses"/>
+                            <x:Type TypeName="models:AcademicStatus"/>
                         </ObjectDataProvider.MethodParameters>
                     </ObjectDataProvider>
                 </Grid.Resources>

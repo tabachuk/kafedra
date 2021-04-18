@@ -37,7 +37,7 @@ namespace KafedraApp.Services
 
 			var popup = new MessagePopup
 			{
-				MessageType = MessageTypes.Error,
+				MessageType = MessageType.Error,
 				Message = message,
 				Caption = caption,
 				OKButtonText = "OK"
@@ -58,7 +58,7 @@ namespace KafedraApp.Services
 
 			var popup = new MessagePopup
 			{
-				MessageType = MessageTypes.Info,
+				MessageType = MessageType.Info,
 				Message = message,
 				Caption = caption,
 				OKButtonText = "OK"
@@ -81,7 +81,7 @@ namespace KafedraApp.Services
 
 			var popup = new MessagePopup
 			{
-				MessageType = MessageTypes.Question,
+				MessageType = MessageType.Question,
 				Message = message,
 				Caption = caption,
 				OKButtonText = OKButtonText,

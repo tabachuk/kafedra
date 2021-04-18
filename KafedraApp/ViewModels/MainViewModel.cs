@@ -9,6 +9,22 @@ namespace KafedraApp.ViewModels
 {
 	public class MainViewModel : BindableBase
 	{
+		#region Enum
+
+		public enum Tab
+		{
+			Subjects,
+			Teachers,
+			Groups,
+			AcademicStatuses,
+			TimeNorms,
+			LoadDistribution,
+			Settings,
+			Help
+		};
+
+		#endregion
+
 		#region Fields
 
 		private readonly IDataService _dataService;
@@ -34,34 +50,18 @@ namespace KafedraApp.ViewModels
 			}
 		}
 
-		private Sections _currentSection;
-		public Sections CurrentSection
+		private Tab _currentTab;
+		public Tab CurrentTab
 		{
-			get => _currentSection;
-			set => SetProperty(ref _currentSection, value);
+			get => _currentTab;
+			set => SetProperty(ref _currentTab, value);
 		}
 
 		#endregion
 
 		#region Commands
 
-		public ICommand SwitchSectionCommand { get; }
-
-		#endregion
-
-		#region Enum
-
-		public enum Sections
-		{
-			Subjects,
-			Teachers,
-			Groups,
-			AcademicStatuses,
-			TimeNorms,
-			LoadDistribution,
-			Settings,
-			Help
-		};
+		public ICommand SwitchTabCommand { get; }
 
 		#endregion
 
@@ -72,7 +72,7 @@ namespace KafedraApp.ViewModels
 			_dataService = Container.Resolve<IDataService>();
 			_dialogService = Container.Resolve<IDialogService>();
 
-			SwitchSectionCommand = new DelegateCommand<Sections>(SwitchSection);
+			SwitchTabCommand = new DelegateCommand<Tab>(SwitchTab);
 
 			App.Instance.ThemeChanged += (o, e) =>
 				OnPropertyChanged(nameof(IsDarkMode));
@@ -82,9 +82,9 @@ namespace KafedraApp.ViewModels
 
 		#region Methods
 
-		private async void SwitchSection(Sections section)
+		private async void SwitchTab(Tab tab)
 		{
-			if (section == Sections.LoadDistribution)
+			if (tab == Tab.LoadDistribution)
 			{
 				bool hasTeachersAndSubjects =
 					_dataService.Teachers?.Any() == true
@@ -99,7 +99,7 @@ namespace KafedraApp.ViewModels
 				}
 			}
 
-			CurrentSection = section;
+			CurrentTab = tab;
 		}
 
 		#endregion

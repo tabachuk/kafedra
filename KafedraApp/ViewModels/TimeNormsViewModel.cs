@@ -26,9 +26,9 @@ namespace KafedraApp.ViewModels
 			{
 				var groups = new List<TimeNormsGroup>();
 
-				foreach (var value in Enum.GetValues(typeof(TimeNormCategories)))
+				foreach (var value in Enum.GetValues(typeof(TimeNormCategory)))
 				{
-					var category = (TimeNormCategories)value;
+					var category = (TimeNormCategory)value;
 					var timeNorms = TimeNorms.Where(x => x.Category == category).ToList();
 					groups.Add(new TimeNormsGroup(category, timeNorms));
 				}

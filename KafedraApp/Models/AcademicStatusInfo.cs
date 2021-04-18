@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace KafedraApp.Models
 {
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum AcademicStatuses
+	public enum AcademicStatus
 	{
 		[Description("Викладач")]
 		Teacher,
@@ -20,7 +20,7 @@ namespace KafedraApp.Models
 	[CollectionName("AcademicStatuses")]
 	public class AcademicStatusInfo : BaseModel
 	{
-		public AcademicStatuses Status { get; set; }
+		public AcademicStatus Status { get; set; }
 
 		private int _maxHours;
 		public int MaxHours

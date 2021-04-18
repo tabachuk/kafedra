@@ -363,7 +363,7 @@ namespace KafedraApp.Services
 				{
 					var loadItem = GetLoadItem(
 						subject,
-						LoadItemTypes.Lectures,
+						LoadItemType.Lectures,
 						subject.LectureHours,
 						group);
 
@@ -378,7 +378,7 @@ namespace KafedraApp.Services
 						{
 							var loadItem = GetLoadItem(
 								subject,
-								LoadItemTypes.PracticalWork,
+								LoadItemType.PracticalWork,
 								subject.PracticalWorkHours,
 								group,
 								i);
@@ -390,7 +390,7 @@ namespace KafedraApp.Services
 					{
 						var loadItem = GetLoadItem(
 						subject,
-						LoadItemTypes.PracticalWork,
+						LoadItemType.PracticalWork,
 						subject.PracticalWorkHours,
 						group);
 
@@ -406,7 +406,7 @@ namespace KafedraApp.Services
 						{
 							var loadItem = GetLoadItem(
 								subject,
-								LoadItemTypes.LaboratoryWork,
+								LoadItemType.LaboratoryWork,
 								subject.LaboratoryWorkHours,
 								group,
 								i);
@@ -418,7 +418,7 @@ namespace KafedraApp.Services
 					{
 						var loadItem = GetLoadItem(
 						subject,
-						LoadItemTypes.LaboratoryWork,
+						LoadItemType.LaboratoryWork,
 						subject.LaboratoryWorkHours,
 						group);
 
@@ -428,13 +428,13 @@ namespace KafedraApp.Services
 
 				if (subject.TestHours > 0)
 				{
-					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Test);
+					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkType.Test);
 
 					if (timeNorm != null && timeNorm.Hours > 0)
 					{
 						var loadItem = GetLoadItem(
 							subject,
-							LoadItemTypes.Test,
+							LoadItemType.Test,
 							timeNorm.Hours,
 							group);
 
@@ -444,13 +444,13 @@ namespace KafedraApp.Services
 
 				if (subject.ExamHours > 0)
 				{
-					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkTypes.Exam);
+					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkType.Exam);
 
 					if (timeNorm != null && timeNorm.Hours > 0)
 					{
 						var loadItem = GetLoadItem(
 							subject,
-							LoadItemTypes.Exam,
+							LoadItemType.Exam,
 							timeNorm.Hours,
 							group);
 
@@ -462,7 +462,7 @@ namespace KafedraApp.Services
 				{
 					var loadItem = GetLoadItem(
 						subject,
-						LoadItemTypes.IndividualTasks,
+						LoadItemType.IndividualTasks,
 						subject.IndividualTasksHours,
 						group);
 
@@ -473,7 +473,7 @@ namespace KafedraApp.Services
 			return loadItems;
 		}
 
-		private LoadItem GetLoadItem(Subject subject, LoadItemTypes type, double hours, Group group, double subgroup = 0)
+		private LoadItem GetLoadItem(Subject subject, LoadItemType type, double hours, Group group, double subgroup = 0)
 		{
 			return new LoadItem
 			{

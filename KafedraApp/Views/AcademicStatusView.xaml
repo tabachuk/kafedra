@@ -47,22 +47,22 @@
                 <Style.Triggers>
                     <DataTrigger
                         Binding="{Binding Status}"
-                        Value="{x:Static models:AcademicStatuses.Teacher}">
+                        Value="{x:Static models:AcademicStatus.Teacher}">
                         <Setter Property="Content" Value="&#xf19d;"/>
                     </DataTrigger>
                     <DataTrigger
                         Binding="{Binding Status}"
-                        Value="{x:Static models:AcademicStatuses.SeniorTeacher}">
+                        Value="{x:Static models:AcademicStatus.SeniorTeacher}">
                         <Setter Property="Content" Value="&#xf19d; &#xf19d;"/>
                     </DataTrigger>
                     <DataTrigger
                         Binding="{Binding Status}"
-                        Value="{x:Static models:AcademicStatuses.Docent}">
+                        Value="{x:Static models:AcademicStatus.Docent}">
                         <Setter Property="Content" Value="&#xf19d; &#xf19d; &#xf19d;"/>
                     </DataTrigger>
                     <DataTrigger
                         Binding="{Binding Status}"
-                        Value="{x:Static models:AcademicStatuses.Professor}">
+                        Value="{x:Static models:AcademicStatus.Professor}">
                         <Setter Property="Content" Value="&#xf19d; &#xf19d; &#xf19d; &#xf19d;"/>
                     </DataTrigger>
                 </Style.Triggers>

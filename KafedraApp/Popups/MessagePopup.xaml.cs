@@ -9,7 +9,7 @@ using System.Windows.Media.Animation;
 
 namespace KafedraApp.Popups
 {
-	public enum MessageTypes { Info, Error, Question };
+	public enum MessageType { Info, Error, Question };
 
 	public partial class MessagePopup : INotifyPropertyChanged
 	{
@@ -53,9 +53,9 @@ namespace KafedraApp.Popups
 		public static readonly DependencyProperty MessageTypeProperty =
 			DependencyProperty.Register(
 				nameof(MessageType),
-				typeof(MessageTypes),
+				typeof(MessageType),
 				typeof(MessagePopup),
-				new PropertyMetadata(MessageTypes.Info, null));
+				new PropertyMetadata(MessageType.Info, null));
 
 		public static readonly DependencyProperty CloseIfBackgroundClickedProperty =
 			DependencyProperty.Register(
@@ -101,9 +101,9 @@ namespace KafedraApp.Popups
 			set => SetValue(CancelButtonTextProperty, value);
 		}
 
-		public MessageTypes MessageType
+		public MessageType MessageType
 		{
-			get => (MessageTypes)GetValue(MessageTypeProperty);
+			get => (MessageType)GetValue(MessageTypeProperty);
 			set => SetValue(MessageTypeProperty, value);
 		}
 		

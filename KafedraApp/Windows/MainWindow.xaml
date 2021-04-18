@@ -16,28 +16,28 @@
     Title="KAFEDRA">
 
     <Window.Resources>
-        <DataTemplate x:Key="SubjectsSection" DataType="{x:Type views:SubjectsView}">
+        <DataTemplate x:Key="SubjectsTab" DataType="{x:Type views:SubjectsView}">
             <views:SubjectsView/>
         </DataTemplate>
-        <DataTemplate x:Key="TeachersSection" DataType="{x:Type views:TeachersView}">
+        <DataTemplate x:Key="TeachersTab" DataType="{x:Type views:TeachersView}">
             <views:TeachersView/>
         </DataTemplate>
-        <DataTemplate x:Key="GroupsSection" DataType="{x:Type views:GroupsView}">
+        <DataTemplate x:Key="GroupsTab" DataType="{x:Type views:GroupsView}">
             <views:GroupsView/>
         </DataTemplate>
-        <DataTemplate x:Key="AcademicStatusesSection" DataType="{x:Type views:AcademicStatusesView}">
+        <DataTemplate x:Key="AcademicStatusesTab" DataType="{x:Type views:AcademicStatusesView}">
             <views:AcademicStatusesView/>
         </DataTemplate>
-        <DataTemplate x:Key="TimeNormsSection" DataType="{x:Type views:TimeNormsView}">
+        <DataTemplate x:Key="TimeNormsTab" DataType="{x:Type views:TimeNormsView}">
             <views:TimeNormsView/>
         </DataTemplate>
-        <DataTemplate x:Key="LoadDistributionSection" DataType="{x:Type views:LoadDistributionView}">
+        <DataTemplate x:Key="LoadDistributionTab" DataType="{x:Type views:LoadDistributionView}">
             <views:LoadDistributionView/>
         </DataTemplate>
-        <DataTemplate x:Key="SettingsSection" DataType="{x:Type views:SettingsView}">
+        <DataTemplate x:Key="SettingsTab" DataType="{x:Type views:SettingsView}">
             <views:SettingsView/>
         </DataTemplate>
-        <DataTemplate x:Key="HelpSection" DataType="{x:Type views:HelpView}">
+        <DataTemplate x:Key="HelpTab" DataType="{x:Type views:HelpView}">
             <views:HelpView/>
         </DataTemplate>
     </Window.Resources>
@@ -54,28 +54,28 @@
             Margin="20,5">
             <ContentControl.Style>
                 <Style TargetType="{x:Type ContentControl}">
-                    <Setter Property="ContentTemplate" Value="{StaticResource SubjectsSection}" />
+                    <Setter Property="ContentTemplate" Value="{StaticResource SubjectsTab}" />
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.Teachers}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource TeachersSection}" />
+                        <DataTrigger Binding="{Binding CurrentTab}" Value="{x:Static viewModels:MainViewModel+Tab.Teachers}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource TeachersTab}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.Groups}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource GroupsSection}" />
+                        <DataTrigger Binding="{Binding CurrentTab}" Value="{x:Static viewModels:MainViewModel+Tab.Groups}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource GroupsTab}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.AcademicStatuses}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource AcademicStatusesSection}" />
+                        <DataTrigger Binding="{Binding CurrentTab}" Value="{x:Static viewModels:MainViewModel+Tab.AcademicStatuses}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource AcademicStatusesTab}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.TimeNorms}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource TimeNormsSection}" />
+                        <DataTrigger Binding="{Binding CurrentTab}" Value="{x:Static viewModels:MainViewModel+Tab.TimeNorms}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource TimeNormsTab}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.LoadDistribution}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource LoadDistributionSection}" />
+                        <DataTrigger Binding="{Binding CurrentTab}" Value="{x:Static viewModels:MainViewModel+Tab.LoadDistribution}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource LoadDistributionTab}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.Settings}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource SettingsSection}" />
+                        <DataTrigger Binding="{Binding CurrentTab}" Value="{x:Static viewModels:MainViewModel+Tab.Settings}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource SettingsTab}" />
                         </DataTrigger>
-                        <DataTrigger Binding="{Binding CurrentSection}" Value="{x:Static viewModels:MainViewModel+Sections.Help}">
-                            <Setter Property="ContentTemplate" Value="{StaticResource HelpSection}" />
+                        <DataTrigger Binding="{Binding CurrentTab}" Value="{x:Static viewModels:MainViewModel+Tab.Help}">
+                            <Setter Property="ContentTemplate" Value="{StaticResource HelpTab}" />
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>

@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace KafedraApp.Models
 {
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum WorkTypes
+	public enum WorkType
 	{
 		[Description("Консультація")]
 		Advice,
@@ -22,7 +22,7 @@ namespace KafedraApp.Models
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum DistributionTypes
+	public enum DistributionType
 	{
 		[Description("на групу")]
 		PerGroup,
@@ -33,7 +33,7 @@ namespace KafedraApp.Models
 	}
 
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum TimeNormCategories
+	public enum TimeNormCategory
 	{
 		[Description("Підсумковий контроль")]
 		FinalControl,
@@ -58,11 +58,11 @@ namespace KafedraApp.Models
 	{
 		public string Name { get; set; }
 
-		public WorkTypes WorkType { get; set; }
+		public WorkType WorkType { get; set; }
 
-		public TimeNormCategories Category { get; set; }
+		public TimeNormCategory Category { get; set; }
 
-		public DistributionTypes DistributionType { get; set; }
+		public DistributionType DistributionType { get; set; }
 
 		private double _hours;
 		public double Hours

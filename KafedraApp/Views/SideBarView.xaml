@@ -60,8 +60,8 @@
     <controls:IconButton
         Icon="&#xf02d;"
         Text="Предмети"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Subjects}"
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.Subjects}"
         Margin="0,30,0,0">
         <controls:IconButton.Style>
             <Style
@@ -70,8 +70,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.Subjects}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.Subjects}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>
@@ -83,8 +83,8 @@
     <controls:IconButton
         Icon="&#xf51c;"
         Text="Викладачі"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Teachers}">
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.Teachers}">
         <controls:IconButton.Style>
             <Style
                 TargetType="{x:Type controls:IconButton}"
@@ -92,8 +92,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.Teachers}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.Teachers}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>
@@ -105,8 +105,8 @@
     <controls:IconButton
         Icon="&#xf0c0;"
         Text="Групи"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Groups}">
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.Groups}">
         <controls:IconButton.Style>
             <Style
                 TargetType="{x:Type controls:IconButton}"
@@ -114,8 +114,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.Groups}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.Groups}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>
@@ -127,8 +127,8 @@
     <controls:IconButton
         Icon="&#xf19d;"
         Text="Учені ступені"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.AcademicStatuses}">
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.AcademicStatuses}">
         <controls:IconButton.Style>
             <Style
                 TargetType="{x:Type controls:IconButton}"
@@ -136,8 +136,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.AcademicStatuses}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.AcademicStatuses}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>
@@ -149,8 +149,8 @@
     <controls:IconButton
         Icon="&#xf017;"
         Text="Норми часу"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.TimeNorms}">
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.TimeNorms}">
         <controls:IconButton.Style>
             <Style
                 TargetType="{x:Type controls:IconButton}"
@@ -158,8 +158,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.TimeNorms}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.TimeNorms}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>
@@ -171,8 +171,8 @@
     <controls:IconButton
         Icon="&#xf24e;"
         Text="Розподіл навантаження"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.LoadDistribution}">
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.LoadDistribution}">
         <controls:IconButton.Style>
             <Style
                 TargetType="{x:Type controls:IconButton}"
@@ -180,8 +180,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.LoadDistribution}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.LoadDistribution}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>
@@ -193,8 +193,8 @@
     <controls:IconButton
         Icon="&#xf013;"
         Text="Налаштування"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Settings}">
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.Settings}">
         <controls:IconButton.Style>
             <Style
                 TargetType="{x:Type controls:IconButton}"
@@ -202,8 +202,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.Settings}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.Settings}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>
@@ -215,8 +215,8 @@
     <controls:IconButton
         Icon="&#xf128;"
         Text="Довідка"
-        Command="{Binding SwitchSectionCommand}"
-        CommandParameter="{x:Static viewModels:MainViewModel+Sections.Help}">
+        Command="{Binding SwitchTabCommand}"
+        CommandParameter="{x:Static viewModels:MainViewModel+Tab.Help}">
         <controls:IconButton.Style>
             <Style
                 TargetType="{x:Type controls:IconButton}"
@@ -224,8 +224,8 @@
                 <Setter Property="Foreground" Value="{DynamicResource FadeForegroundColor}"/>
                 <Style.Triggers>
                     <DataTrigger
-                        Binding="{Binding CurrentSection}"
-                        Value="{x:Static viewModels:MainViewModel+Sections.Help}">
+                        Binding="{Binding CurrentTab}"
+                        Value="{x:Static viewModels:MainViewModel+Tab.Help}">
                         <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
                         <Setter Property="Background" Value="{DynamicResource FadeForegroundColor}"/>
                         <Setter Property="Cursor" Value="Arrow"/>

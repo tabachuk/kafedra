@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace KafedraApp.Models
 {
 	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
-	public enum LoadItemTypes
+	public enum LoadItemType
 	{
 		[Description("Лекції")]
 		Lectures,
@@ -37,7 +37,7 @@ namespace KafedraApp.Models
 	{
 		public string Subject { get; set; }
 
-		public LoadItemTypes Type { get; set; }
+		public LoadItemType Type { get; set; }
 
 		public double Hours { get; set; }
 

@@ -21,7 +21,7 @@ namespace KafedraApp.Models
 
 		public string MiddleName { get; set; }
 
-		public AcademicStatuses AcademicStatus { get; set; }
+		public AcademicStatus AcademicStatus { get; set; }
 
 		public float Rate { get; set; }
 
