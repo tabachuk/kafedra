@@ -30,7 +30,7 @@
 
     <Grid.RowDefinitions>
         <RowDefinition Height="80"/>
-        <RowDefinition Height="60"/>
+        <RowDefinition Height="Auto"/>
         <RowDefinition Height="*"/>
     </Grid.RowDefinitions>
 
@@ -87,7 +87,10 @@
     </StackPanel>
 
     <Grid
-        Grid.Row="1">
+        Grid.Row="1"
+        Height="60"
+        Visibility="{Binding IsSubjectsEmpty,
+                                 Converter={StaticResource InverseBoolToVisConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="10"/>
