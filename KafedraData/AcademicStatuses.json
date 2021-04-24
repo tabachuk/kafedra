@@ -1,0 +1,22 @@
+[
+  {
+    "Id": "afb7fa51-36b1-48e8-a3b2-1f6f9535e887",
+    "Status": 0,
+    "MaxHours": 600
+  },
+  {
+    "Id": "045921d4-2d56-4ab3-ab5b-267c3bc50361",
+    "Status": 1,
+    "MaxHours": 600
+  },
+  {
+    "Id": "c7f9b1da-6eea-41ca-9068-2df87d4afad1",
+    "Status": 2,
+    "MaxHours": 600
+  },
+  {
+    "Id": "2aeda588-b745-46f4-94e3-855df5f28e4d",
+    "Status": 3,
+    "MaxHours": 500
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "Id": "6665bc6a-a1be-4b1f-a907-a5f7bdd83375",
+    "Name": "ІН-31",
+    "Specialty": "ІН",
+    "Course": 3.0,
+    "SubgroupsCount": 2,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "3a846168-c9d0-4e92-9a1e-11462937501b",
+    "Name": "ІН-41",
+    "Specialty": "ІН",
+    "Course": 4.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "08698228-b6cc-454d-88c9-1683e2ed7052",
+    "Name": "ІН-51",
+    "Specialty": "ІН",
+    "Course": 5.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "cf863c1e-e235-48cd-bacd-cf08481fba18",
+    "Name": "ПМ-11",
+    "Specialty": "ПМ",
+    "Course": 1.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "2eb76241-23e9-4ec0-80a7-979fb8149e3e",
+    "Name": "ПМ-21",
+    "Specialty": "ПМ",
+    "Course": 2.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "8b1be780-208a-416a-9e1e-d421974d3d10",
+    "Name": "ПМ-31",
+    "Specialty": "ПМ",
+    "Course": 3.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "0eef293a-4da8-4058-876a-dde2102b0060",
+    "Name": "ПМ-41",
+    "Specialty": "ПМ",
+    "Course": 4.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "e3dba0ff-5a2e-4a10-b903-487a2cc0d801",
+    "Name": "ПМ-51",
+    "Specialty": "ПМ",
+    "Course": 5.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "176ecd41-17a7-421a-a136-722375d47424",
+    "Name": "ПМ-61",
+    "Specialty": "ПМ",
+    "Course": 6.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "84a01e80-e3be-4604-a99c-c67d74c070f7",
+    "Name": "КН-31",
+    "Specialty": "КН",
+    "Course": 3.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "7e82d595-c111-4bb2-9879-5aab5f782e3d",
+    "Name": "КН-51",
+    "Specialty": "КН",
+    "Course": 5.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  },
+  {
+    "Id": "c62f40c3-4e77-4fbd-8386-3a17ba3d74f5",
+    "Name": "КН-61",
+    "Specialty": "КН",
+    "Course": 6.0,
+    "SubgroupsCount": 1,
+    "StudentsCount": 10
+  }
+]
