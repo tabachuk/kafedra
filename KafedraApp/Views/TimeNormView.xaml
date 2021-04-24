@@ -40,7 +40,9 @@
             IsReadOnly="{Binding IsHoursInEdit,
                                  ElementName=ThisTimeNormView,
                                  Converter={StaticResource NotConverter}}"
-            BorderThickness="0"/>
+            BorderThickness="0"
+            IsHitTestVisible="{Binding IsHoursInEdit,
+                                       ElementName=ThisTimeNormView}"/>
         
         <Button
             Content="&#xf304;"

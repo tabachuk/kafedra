@@ -30,7 +30,8 @@
         BorderThickness="0"
         TextWrapping="Wrap"
         FontSize="30"
-        Foreground="{DynamicResource ForegroundColor}"/>
+        Foreground="{DynamicResource ForegroundColor}"
+        IsHitTestVisible="False"/>
 
     <Label
         Grid.Row="1"
@@ -86,7 +87,8 @@
             FontSize="18"
             Width="150"
             FontStyle="Italic"
-            Foreground="{DynamicResource FadeForegroundColor}"/>
+            Foreground="{DynamicResource FadeForegroundColor}"
+            IsHitTestVisible="False"/>
         <StackPanel
             Orientation="Horizontal"
             HorizontalAlignment="Center">
@@ -101,7 +103,9 @@
                 IsReadOnly="{Binding IsMaxHoursInEdit,
                                      ElementName=ThisAcademicStatusView,
                                      Converter={StaticResource NotConverter}}"
-                BorderThickness="0"/>
+                BorderThickness="0"
+                IsHitTestVisible="{Binding IsMaxHoursInEdit,
+                                           ElementName=ThisAcademicStatusView}"/>
             <Button
                 Content="&#xf304;"
                 FontFamily="{StaticResource FontAwesome}"
