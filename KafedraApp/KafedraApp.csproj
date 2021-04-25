@@ -66,11 +66,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="MaterialDesignColors, Version=1.2.3.981, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignColors.1.2.3-ci981\lib\net45\MaterialDesignColors.dll</HintPath>
+    <Reference Include="MaterialDesignColors, Version=2.0.0.2422, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.0\lib\net452\MaterialDesignColors.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialDesignThemes.Wpf, Version=3.1.0.981, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialDesignThemes.3.1.0-ci981\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.0.0.2054, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.0.0-ci2054\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -394,15 +394,15 @@
     <Resource Include="Resources\Images\icon_light.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.3.1.0-ci981\build\MaterialDesignThemes.targets'))" />
     <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.targets'))" />
     <Error Condition="!Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\System.Runtime.WindowsRuntime.UI.Xaml.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.0.0-ci2054\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.0.0-ci2054\build\MaterialDesignThemes.targets'))" />
   </Target>
   <Import Project="..\packages\System.Runtime.WindowsRuntime.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.targets')" />
   <Import Project="..\packages\System.Runtime.WindowsRuntime.UI.Xaml.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets" Condition="Exists('..\packages\System.Runtime.WindowsRuntime.UI.Xaml.5.0.0-preview.1.20120.5\build\net461\System.Runtime.WindowsRuntime.UI.Xaml.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.4.0.0-ci2054\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0-ci2054\build\MaterialDesignThemes.targets')" />
 </Project>
