@@ -133,6 +133,7 @@
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="Height" Value="30"/>
                         <Setter Property="Opacity" Value="0.8"/>
+                        <Setter Property="md:TransitionAssist.DisableTransitions" Value="True"/>
                     </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
