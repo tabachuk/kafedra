@@ -36,9 +36,6 @@ namespace KafedraApp.Models
 		[ExcelColumn("Лабораторні")]
 		public double LaboratoryWorkHours { get; set; }
 
-		[ExcelColumn("Контрольна робота")]
-		public double ControlWorkHours { get; set; }
-
 		[ExcelColumn("ІНДЗ")]
 		public double IndividualTasksHours { get; set; }
 
@@ -63,7 +60,6 @@ namespace KafedraApp.Models
 				LectureHours = LectureHours,
 				PracticalWorkHours = PracticalWorkHours,
 				LaboratoryWorkHours = LaboratoryWorkHours,
-				ControlWorkHours = ControlWorkHours,
 				IndividualTasksHours = IndividualTasksHours,
 				ExamHours = ExamHours,
 				TestHours = TestHours

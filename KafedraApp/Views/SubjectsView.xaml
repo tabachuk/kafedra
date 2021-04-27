@@ -198,7 +198,6 @@
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Name="ExtraHeaderColumn"/>
                 </Grid.ColumnDefinitions>
@@ -285,14 +284,6 @@
                 </Label>
                 <Label
                     Grid.Column="10"
-                    Content="Контрольна робота"
-                    Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
-                    Grid.Column="11"
                     Content="ІНДЗ"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -300,7 +291,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="12"
+                    Grid.Column="11"
                     Content="Екзамен"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -308,7 +299,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="13"
+                    Grid.Column="12"
                     Content="Залік"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -316,7 +307,7 @@
                     </Label.LayoutTransform>
                 </Label>
                 <Label
-                    Grid.Column="14"
+                    Grid.Column="13"
                     Content="Дії"
                     Style="{StaticResource HeaderStyle}">
                     <Label.LayoutTransform>
@@ -348,7 +339,6 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MinWidth="220"/>
                                 <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
                                 <ColumnDefinition Width="60"/>
@@ -419,26 +409,21 @@
                                 Visibility="{Binding LaboratoryWorkHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
                                 Grid.Column="10"
-                                Content="{Binding ControlWorkHours}"
-                                Style="{StaticResource DataStyle}"
-                                Visibility="{Binding ControlWorkHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
-                            <Label
-                                Grid.Column="11"
                                 Content="{Binding IndividualTasksHours}"
                                 Style="{StaticResource DataStyle}"
                                 Visibility="{Binding IndividualTasksHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
-                                Grid.Column="12"
+                                Grid.Column="11"
                                 Content="{Binding ExamHours}"
                                 Style="{StaticResource DataStyle}"
                                 Visibility="{Binding ExamHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <Label
-                                Grid.Column="13"
+                                Grid.Column="12"
                                 Content="{Binding TestHours}"
                                 Style="{StaticResource DataStyle}"
                                 Visibility="{Binding TestHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                             <StackPanel
-                                Grid.Column="14"
+                                Grid.Column="13"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">

@@ -169,7 +169,6 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
@@ -267,37 +266,28 @@
                         Margin="5"/>
                     <Label
                         Grid.Row="10"
-                        Content="Контрольна робота:"
+                        Content="ІНДЗ:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
                         Grid.Row="10"
                         Grid.Column="1"
-                        Text="{Binding ControlWorkHours}"
-                        Margin="5"/>
-                    <Label
-                        Grid.Row="11"
-                        Content="ІНДЗ:"
-                        VerticalContentAlignment="Center"/>
-                    <TextBox
-                        Grid.Row="11"
-                        Grid.Column="1"
                         Text="{Binding IndividualTasksHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="12"
+                        Grid.Row="11"
                         Content="Екзамен:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="12"
+                        Grid.Row="11"
                         Grid.Column="1"
                         Text="{Binding ExamHours}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="13"
+                        Grid.Row="12"
                         Content="Залік:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="13"
+                        Grid.Row="12"
                         Grid.Column="1"
                         Text="{Binding TestHours}"
                         Margin="5"/>
