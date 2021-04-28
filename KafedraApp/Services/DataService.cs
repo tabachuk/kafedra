@@ -426,7 +426,7 @@ namespace KafedraApp.Services
 					}
 				}
 
-				if (subject.TestHours > 0)
+				if (subject.FinalControlFormType == FinalControlFormType.Test)
 				{
 					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkType.Test);
 
@@ -441,8 +441,7 @@ namespace KafedraApp.Services
 						loadItems.Add(loadItem);
 					}
 				}
-
-				if (subject.ExamHours > 0)
+				else if (subject.FinalControlFormType == FinalControlFormType.Exam)
 				{
 					var timeNorm = TimeNorms.FirstOrDefault(x => x.WorkType == WorkType.Exam);
 

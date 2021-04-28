@@ -87,13 +87,12 @@ namespace KafedraApp.ViewModels
 			"Курс",
 			"Семестр",
 			"Кредити",
-			"Всього",
-			"Всього (аудиторних)",
+			"Всього годин",
+			"Всього годин (аудиторних)",
 			"Лекції",
 			"Практичні",
 			"Лабораторні",
-			"Екзамен",
-			"Залік"
+			"Підсумковий контроль"
 		};
 
 		private string _selectedSortingField;
@@ -280,9 +279,9 @@ namespace KafedraApp.ViewModels
 					return OrderBy(subjects, x => x.Semester);
 				case "Кредити":
 					return OrderBy(subjects, x => x.Credits);
-				case "Всього":
+				case "Всього годин":
 					return OrderBy(subjects, x => x.TotalHours);
-				case "Всього (аудиторних)":
+				case "Всього годин (аудиторних)":
 					return OrderBy(subjects, x => x.TotalClassroomHours);
 				case "Лекції":
 					return OrderBy(subjects, x => x.LectureHours);
@@ -290,10 +289,8 @@ namespace KafedraApp.ViewModels
 					return OrderBy(subjects, x => x.PracticalWorkHours);
 				case "Лабораторні":
 					return OrderBy(subjects, x => x.LaboratoryWorkHours);
-				case "Екзамен":
-					return OrderBy(subjects, x => x.ExamHours);
-				case "Залік":
-					return OrderBy(subjects, x => x.TestHours);
+				case "Підсумковий контроль":
+					return OrderBy(subjects, x => x.FinalControlFormType);
 			}
 
 			return subjects;
@@ -349,9 +346,6 @@ namespace KafedraApp.ViewModels
 
 					if (index >= 0 && index <= SubjectsToShow.Count)
 					{
-						_dataService.Subjects.RemoveAt(index);
-						_dataService.Subjects.Insert(index, newSubject);
-
 						SubjectsToShow.RemoveAt(index);
 						SubjectsToShow.Insert(index, newSubject);
 					}

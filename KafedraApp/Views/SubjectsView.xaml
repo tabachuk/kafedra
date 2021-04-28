@@ -5,18 +5,26 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:local="clr-namespace:KafedraApp.Views"
+    xmlns:models="clr-namespace:KafedraApp.Models"
     xmlns:controls="clr-namespace:KafedraApp.Controls"
     mc:Ignorable="d"
     Name="ThisSubjectsView">
 
     <Grid.Resources>
 
-        <Style x:Key="HeaderStyle" TargetType="Label">
+        <Style x:Key="HeaderStyle" TargetType="TextBox">
             <Setter Property="Foreground" Value="{DynamicResource BackgroundColor}"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Margin" Value="10"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="IsHitTestVisible" Value="False"/>
         </Style>
         
         <Style x:Key="DataStyle" TargetType="Label">
@@ -90,7 +98,7 @@
         Grid.Row="1"
         Height="60"
         Visibility="{Binding IsSubjectsEmpty,
-                                 Converter={StaticResource InverseBoolToVisConverter}}">
+                             Converter={StaticResource InverseBoolToVisConverter}}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="10"/>
@@ -180,140 +188,131 @@
             HorizontalScrollBarVisibility="Hidden"
             VerticalScrollBarVisibility="Hidden">
             <Grid
-                Height="200"
+                Height="150"
                 Margin="0,10,0,0"
                 Visibility="{Binding SubjectsToShow.Count,
                                      Converter={StaticResource NotZeroToVisibilityConverter}}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" MinWidth="220"/>
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
-                    <ColumnDefinition Width="60"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Name="ExtraHeaderColumn"/>
                 </Grid.ColumnDefinitions>
                 <Rectangle
                     Grid.ColumnSpan="18"
                     Fill="{DynamicResource FadeForegroundColor}"/>
-                <Label
+                <TextBox
                     Name="NameHeaderLabel"
-                    Content="Предмет"
+                    Text="Предмет"
                     Style="{StaticResource HeaderStyle}"
                     HorizontalAlignment="Stretch"
                     HorizontalContentAlignment="Center"/>
-                <Label
+                <TextBox
                     Grid.Column="1"
-                    Content="Спеціальність"
+                    Text="Спеціальність"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="2"
-                    Content="Курс"
+                    Text="Курс"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="3"
-                    Content="Семестр"
+                    Text="Семестр"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="4"
-                    Content="Кредити"
+                    Text="Кредити"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="5"
-                    Content="Всього"
+                    Text="Всього годин"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="6"
-                    Content="Всього (аудиторних)"
+                    Text="Всього годин (аудиторних)"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="7"
-                    Content="Лекції"
+                    Text="Лекції"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="8"
-                    Content="Практичні"
+                    Text="Практичні"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="9"
-                    Content="Лабораторні"
+                    Text="Лабораторні"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="10"
-                    Content="ІНДЗ"
+                    Text="ІНДЗ"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="11"
-                    Content="Екзамен"
+                    Text="Підсумковий контроль"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
+                    </TextBox.LayoutTransform>
+                </TextBox>
+                <TextBox
                     Grid.Column="12"
-                    Content="Залік"
+                    Text="Дії"
                     Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
+                    <TextBox.LayoutTransform>
                         <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
-                <Label
-                    Grid.Column="13"
-                    Content="Дії"
-                    Style="{StaticResource HeaderStyle}">
-                    <Label.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </Label.LayoutTransform>
-                </Label>
+                    </TextBox.LayoutTransform>
+                </TextBox>
 
             </Grid>
         </ScrollViewer>
@@ -339,17 +338,16 @@
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MinWidth="220"/>
                                 <ColumnDefinition Width="80"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
-                                <ColumnDefinition Width="60"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
+                                <ColumnDefinition Width="80"/>
                                 <ColumnDefinition Width="90"/>
                             </Grid.ColumnDefinitions>
                             <TextBox
@@ -412,16 +410,26 @@
                                 Content="{Binding IndividualTasksHours}"
                                 Style="{StaticResource DataStyle}"
                                 Visibility="{Binding IndividualTasksHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
-                            <Label
-                                Grid.Column="11"
-                                Content="{Binding ExamHours}"
-                                Style="{StaticResource DataStyle}"
-                                Visibility="{Binding ExamHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
-                            <Label
-                                Grid.Column="12"
-                                Content="{Binding TestHours}"
-                                Style="{StaticResource DataStyle}"
-                                Visibility="{Binding TestHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
+                            <Label Grid.Column="11">
+                                <Label.Style>
+                                    <Style
+                                        TargetType="Label"
+                                        BasedOn="{StaticResource DataStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger
+                                                Binding="{Binding FinalControlFormType}"
+                                                Value="{x:Static models:FinalControlFormType.Exam}">
+                                                <Setter Property="Content" Value="ЕКЗ"/>
+                                            </DataTrigger>
+                                            <DataTrigger
+                                                Binding="{Binding FinalControlFormType}"
+                                                Value="{x:Static models:FinalControlFormType.Test}">
+                                                <Setter Property="Content" Value="ЗЛК"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Label.Style>
+                            </Label>
                             <StackPanel
                                 Grid.Column="13"
                                 Orientation="Horizontal"

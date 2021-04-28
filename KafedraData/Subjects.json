@@ -13,8 +13,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "655a2141-de18-43b9-b813-52dbd7c0b6c8",
@@ -30,8 +30,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "6b640312-d165-4323-a175-a5f0c0bc0c05",
@@ -47,8 +47,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "fa79ca31-1fc1-4e5c-939d-dcc34c20ca58",
@@ -64,8 +64,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "4955dac2-b603-4bad-a842-ecb7bf720efc",
@@ -81,8 +81,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "15284225-2d41-486e-9c9b-f833c1ddaef8",
@@ -98,8 +98,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "d7e9309e-a983-4a9a-a374-1f7c014024a5",
@@ -115,8 +115,8 @@
     "LaboratoryWorkHours": 26.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "90cad6a5-1273-402c-aa58-84c14edda94d",
@@ -132,8 +132,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "b492c80f-f36f-4826-8537-f4f41ea83806",
@@ -149,8 +149,8 @@
     "LaboratoryWorkHours": 12.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "5e425965-d811-4f80-8790-0d02c08a4314",
@@ -166,8 +166,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "1f7da09d-a280-4237-8ca9-843f0c5321c0",
@@ -183,8 +183,8 @@
     "LaboratoryWorkHours": 32.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "8854928a-d51c-41ee-ba78-1fbad15f94e1",
@@ -200,8 +200,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 6.0
+    "ExamSemester": 0.0,
+    "TestSemester": 6.0
   },
   {
     "Id": "0c5a702a-dd08-4c63-ae3f-65643f2f0940",
@@ -217,8 +217,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "9d6dc5e9-1abf-4a5a-a2c9-32f02c1645fc",
@@ -234,8 +234,8 @@
     "LaboratoryWorkHours": 16.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "e02a5d1d-7c3c-4ea6-b452-fdcfad54da55",
@@ -251,8 +251,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 6.0
+    "ExamSemester": 0.0,
+    "TestSemester": 6.0
   },
   {
     "Id": "123999c0-9bd6-4e7e-ac8f-0d662ffe0a80",
@@ -268,8 +268,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 6.0
+    "ExamSemester": 0.0,
+    "TestSemester": 6.0
   },
   {
     "Id": "25122170-a090-4e94-adad-1bc4c4a09fbc",
@@ -285,8 +285,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 6.0
+    "ExamSemester": 0.0,
+    "TestSemester": 6.0
   },
   {
     "Id": "529e9f92-1b59-4217-9493-09068b94feee",
@@ -302,8 +302,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "7c6198f1-0840-4436-9758-e5c27ec78167",
@@ -319,8 +319,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "72dd494c-8095-43be-a09b-75ce1749a37a",
@@ -336,8 +336,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "33b0251e-bef2-4fc6-b796-51a552a88f59",
@@ -353,8 +353,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "f7a16944-4c11-4176-ba20-e4519f0eb980",
@@ -370,8 +370,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "96d3824b-b450-4640-8d31-aedb9ab82870",
@@ -387,8 +387,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "fcdfb7c8-26ca-4585-a6ed-f377f98b58ae",
@@ -404,8 +404,8 @@
     "LaboratoryWorkHours": 26.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "fe3af1c1-40ea-4ed1-92b3-679fac6c2610",
@@ -421,8 +421,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "b9a1df25-5dc6-43c5-ab07-1e5c9cda68cf",
@@ -438,8 +438,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "0f03f223-a24c-4954-a384-b97dfb4d9640",
@@ -455,8 +455,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "a889af48-2662-4da3-bf4d-2f92019b4e1f",
@@ -472,8 +472,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "94adaf9b-e317-407f-8b6a-ed7c15c9fb65",
@@ -489,8 +489,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "a3290f7e-142f-42fc-800c-b17b060df0bb",
@@ -506,8 +506,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "5eff30c9-8f0c-4f02-8ed0-333e369864e6",
@@ -523,8 +523,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "52366189-b423-4ec0-9b5f-4e46f3eb70f6",
@@ -540,8 +540,8 @@
     "LaboratoryWorkHours": 26.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "768480b9-5bc0-46cd-95cd-4e388c956f9f",
@@ -557,8 +557,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "dd65543c-0754-4dee-8505-2f190f7b07b6",
@@ -574,8 +574,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "2a73e49e-0c62-418a-b005-aab181f75545",
@@ -591,8 +591,8 @@
     "LaboratoryWorkHours": 26.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "86a131ed-4403-4255-af58-a1c4ed9ca41b",
@@ -608,8 +608,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "0f856ccb-9edf-4669-86d5-eb627c009195",
@@ -625,8 +625,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "ce044a29-deae-4b76-b96c-24c646f79586",
@@ -642,8 +642,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "00e82366-7ba3-4cf0-a193-f43c6aba2f99",
@@ -659,8 +659,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "6490d8a0-94f7-444a-9dd2-e179a1fbe202",
@@ -676,8 +676,8 @@
     "LaboratoryWorkHours": 12.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "f4b00bef-2c82-45aa-9ed0-d1d813fc5d69",
@@ -693,8 +693,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "bc8114aa-7572-4b73-929f-7f90d530d475",
@@ -710,8 +710,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "ddd38924-f7bc-4566-96b5-4d714c96d1b9",
@@ -727,8 +727,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "1c619cdd-957f-4bad-88ac-f05819d07e2b",
@@ -744,8 +744,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "b816b3bf-6d98-46d2-a4e4-29fcce3c0666",
@@ -761,8 +761,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "de907b19-29ef-4ef7-8caa-506828a680e6",
@@ -778,8 +778,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "c42516bd-b232-45d9-a576-a58371717696",
@@ -795,8 +795,8 @@
     "LaboratoryWorkHours": 16.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "e055f6e8-21c6-4a6c-ae77-5828487a1ef9",
@@ -812,8 +812,8 @@
     "LaboratoryWorkHours": 4.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "71efd637-415d-47e1-9846-0642940486e7",
@@ -829,8 +829,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "142e5877-006b-4f97-933d-7f3a5992c75c",
@@ -846,8 +846,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "a80a0dc9-a042-4119-855a-b72110064bda",
@@ -863,8 +863,8 @@
     "LaboratoryWorkHours": 16.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "b2b6507f-199c-435b-9796-cea476615d3b",
@@ -880,8 +880,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "b162681c-ec5d-439e-a64f-9d89cd9a55a6",
@@ -897,8 +897,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "2f1f077e-2482-4aa5-924c-ece418c3edd8",
@@ -914,8 +914,8 @@
     "LaboratoryWorkHours": 16.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "d0e1faa3-8bf4-48c8-8a78-cfafa115c007",
@@ -931,8 +931,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "dc1c50ef-d158-4b07-aaf8-58b8c8122da0",
@@ -948,8 +948,8 @@
     "LaboratoryWorkHours": 36.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "5ceeea0b-e47c-4a9d-af37-0f6266f0147d",
@@ -965,8 +965,8 @@
     "LaboratoryWorkHours": 16.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "1c362c14-daae-4db1-b91a-8c33e71a10e8",
@@ -982,8 +982,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 1.0,
-    "TestHours": 0.0
+    "ExamSemester": 1.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "67fae7c1-c682-4876-a0c1-ab8a042aeff8",
@@ -999,8 +999,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "0d3f07af-2c5c-45ba-ab88-f768b8580cee",
@@ -1016,8 +1016,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 1.0
+    "ExamSemester": 0.0,
+    "TestSemester": 1.0
   },
   {
     "Id": "546ff727-b6d9-4b05-aecd-0ba98ac43a8d",
@@ -1033,8 +1033,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 1.0
+    "ExamSemester": 0.0,
+    "TestSemester": 1.0
   },
   {
     "Id": "e69a44cd-5e2e-4e4d-8558-bfaf7bd51493",
@@ -1050,8 +1050,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 1.0,
-    "TestHours": 0.0
+    "ExamSemester": 1.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "553d678a-e92b-4338-bb0f-ecd47dd7269e",
@@ -1067,8 +1067,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "3863a3cd-6088-4653-9223-13f2b9917c00",
@@ -1084,8 +1084,8 @@
     "LaboratoryWorkHours": 32.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 1.0
+    "ExamSemester": 0.0,
+    "TestSemester": 1.0
   },
   {
     "Id": "87e0a7c0-0e38-41fd-9145-3287213441db",
@@ -1101,8 +1101,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 1.0,
-    "TestHours": 0.0
+    "ExamSemester": 1.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "f6cf18f8-51d8-4543-a967-bc42e1e192af",
@@ -1118,8 +1118,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 2.0
+    "ExamSemester": 0.0,
+    "TestSemester": 2.0
   },
   {
     "Id": "6af8511d-7edf-406e-8815-8f3040fa73a4",
@@ -1135,8 +1135,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "b6f7cbaa-89ae-43a0-b6cf-d94ba2a58542",
@@ -1152,8 +1152,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 2.0
+    "ExamSemester": 0.0,
+    "TestSemester": 2.0
   },
   {
     "Id": "94ed80ee-8fcb-46fc-bdd8-da20a09ce96e",
@@ -1169,8 +1169,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "4b30d7d3-e433-40b7-8ed0-f5c7b0a6b38f",
@@ -1186,8 +1186,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "338857da-b4e3-4388-a260-7ae90b16d757",
@@ -1203,8 +1203,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "80517496-6018-4d0e-8fef-291990903e3e",
@@ -1220,8 +1220,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 2.0
+    "ExamSemester": 0.0,
+    "TestSemester": 2.0
   },
   {
     "Id": "626be217-f9b2-4339-b9fa-6632ec3f2ba6",
@@ -1237,8 +1237,8 @@
     "LaboratoryWorkHours": 32.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "284f5e8a-3043-45cf-8bf4-1d1f7db3c045",
@@ -1254,8 +1254,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 11.0,
-    "TestHours": 0.0
+    "ExamSemester": 11.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "9c5e980e-1f46-49d4-a296-d903e0b137a5",
@@ -1271,8 +1271,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 11.0,
-    "TestHours": 0.0
+    "ExamSemester": 11.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "1ebd0415-9f6e-41e4-9f59-4916cf0fbd6d",
@@ -1288,8 +1288,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "a324fec9-8563-46b6-a82e-7ae77ad7456d",
@@ -1305,8 +1305,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "7aa6822b-ebc5-4452-9aeb-4092cfcc8f08",
@@ -1322,8 +1322,8 @@
     "LaboratoryWorkHours": 14.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "c023c436-31b9-4130-9d73-0ddb7da62e71",
@@ -1339,8 +1339,8 @@
     "LaboratoryWorkHours": 28.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "6d3c7b1b-8b2b-4855-b74c-746ea50fc3ec",
@@ -1356,8 +1356,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "1b980e16-3648-4a2e-8a8b-adab1c4a94ed",
@@ -1373,8 +1373,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "1c7f531c-2436-47ac-b9cb-998b8a4cf26c",
@@ -1390,8 +1390,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "4b70ccaa-1f13-40a0-befa-391d851a54ad",
@@ -1407,8 +1407,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "cd15b8f5-73e9-462a-9b08-17a06acd41d4",
@@ -1424,8 +1424,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "011964d5-2004-4d23-a8e4-44e2336a1736",
@@ -1441,8 +1441,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 5.0,
-    "TestHours": 0.0
+    "ExamSemester": 5.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "768f61a7-f028-4fb8-861c-2630bbc12637",
@@ -1458,8 +1458,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "2b332cbc-4c6e-4249-883e-309a7e48b935",
@@ -1475,8 +1475,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "034b2302-43b3-4a78-91b2-98cc725d7bec",
@@ -1492,8 +1492,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "57f7fc2d-6131-4262-8b88-2a8b1c6c57d6",
@@ -1509,8 +1509,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "d1a2686a-7b2f-46ba-ba56-69b6d621f7c4",
@@ -1526,8 +1526,8 @@
     "LaboratoryWorkHours": 30.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 6.0,
-    "TestHours": 0.0
+    "ExamSemester": 6.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "9ea1f9cf-a61f-456d-a56f-f11b9d846cd9",
@@ -1543,8 +1543,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 5.0
+    "ExamSemester": 0.0,
+    "TestSemester": 5.0
   },
   {
     "Id": "36f3aeff-cd34-4601-aa02-f3b82835aa30",
@@ -1560,8 +1560,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 6.0
+    "ExamSemester": 0.0,
+    "TestSemester": 6.0
   },
   {
     "Id": "9a958e2f-c6b1-4f7e-bb17-8183095eeca6",
@@ -1577,8 +1577,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 6.0
+    "ExamSemester": 0.0,
+    "TestSemester": 6.0
   },
   {
     "Id": "55b5bcc6-efb1-4dcd-8d21-c9eedc120d2a",
@@ -1594,8 +1594,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "562909f3-20d2-4a0d-9b59-098f6ecb415c",
@@ -1611,8 +1611,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "0af95f59-b4d6-4a36-94c7-605296a8ca23",
@@ -1628,8 +1628,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "d6f57e64-3cd5-4bd8-b3c4-d9e788e85dd4",
@@ -1645,8 +1645,8 @@
     "LaboratoryWorkHours": 32.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "d46fe5c1-6be3-48db-9116-85598a07f106",
@@ -1662,8 +1662,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "1035c121-1320-4efb-8742-e857868989cc",
@@ -1679,8 +1679,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 7.0,
-    "TestHours": 0.0
+    "ExamSemester": 7.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "1c7b4ebb-ec20-4268-b727-42ce1cf5ef5e",
@@ -1696,8 +1696,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "d7fcc02e-c6b5-436c-91c6-b4ab623a3c49",
@@ -1713,8 +1713,8 @@
     "LaboratoryWorkHours": 12.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "bf155823-badb-43e8-ba7f-258057e0e01c",
@@ -1730,8 +1730,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 7.0
+    "ExamSemester": 0.0,
+    "TestSemester": 7.0
   },
   {
     "Id": "63ec5d97-7d60-4821-9121-43c942e7d015",
@@ -1747,8 +1747,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "5f9c7834-3c39-4522-9b0d-293a6292f461",
@@ -1764,8 +1764,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "e051a9eb-0b11-4936-bdfc-e233e37c8cd2",
@@ -1781,8 +1781,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "ae7761e2-42d9-462c-8e00-66123dcfff57",
@@ -1798,8 +1798,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "d41768e3-42bc-4cd8-af95-ad8ed69e20e4",
@@ -1815,8 +1815,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "da119b5d-68d3-4943-af49-93581daea9a0",
@@ -1832,8 +1832,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "65ef358e-250d-44f6-9256-d33d86dd5469",
@@ -1849,8 +1849,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 8.0
+    "ExamSemester": 0.0,
+    "TestSemester": 8.0
   },
   {
     "Id": "c2125733-2ca4-440c-a8fe-3d506afc03f2",
@@ -1866,8 +1866,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 8.0,
-    "TestHours": 0.0
+    "ExamSemester": 8.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "62a46d30-c7df-43c5-87fb-85313e891f4d",
@@ -1883,8 +1883,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "dc9ff912-a4a4-4841-aa81-d24881d943bf",
@@ -1900,8 +1900,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "330f9883-88ac-4a93-a03b-5047091cc809",
@@ -1917,8 +1917,8 @@
     "LaboratoryWorkHours": 12.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "98ebf3a9-eb5d-482e-a654-2bc859f722ee",
@@ -1934,8 +1934,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "d9417917-166e-474b-8e3f-a4f4605f71e7",
@@ -1951,8 +1951,8 @@
     "LaboratoryWorkHours": 12.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "061ed202-8283-44da-92c5-f80aeb0b3059",
@@ -1968,8 +1968,8 @@
     "LaboratoryWorkHours": 10.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "c7ecc536-3d8c-41e2-9e58-77ee4165d939",
@@ -1985,8 +1985,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "7075ae00-77f6-470c-9536-7618b749a447",
@@ -2002,8 +2002,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "26be3e9b-db84-4131-adb0-ba464c9db560",
@@ -2019,8 +2019,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "aac15ef8-27bf-4cb1-853b-91c78355bc25",
@@ -2036,8 +2036,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "08bfb170-6fd3-4aa1-bcf2-101bef98e7ee",
@@ -2053,8 +2053,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "b103e33f-6313-4b89-8c5e-c6b675ba6918",
@@ -2070,8 +2070,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "5d3be16e-5248-4bde-be97-7c9b95dc6e94",
@@ -2087,8 +2087,8 @@
     "LaboratoryWorkHours": 8.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "4ce5e20b-2afd-4f0d-aa0c-2ef0a212be9e",
@@ -2104,8 +2104,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "e9758ddf-e159-4ec4-aa79-8813332836b2",
@@ -2121,8 +2121,8 @@
     "LaboratoryWorkHours": 28.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "23ef9177-5a24-4190-ba66-28d1347e0fce",
@@ -2138,8 +2138,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "95f51d11-d9ce-42f5-87d2-3e3e9223a03d",
@@ -2155,8 +2155,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "6d2e23e5-248a-4d0a-a37d-24cfeace01d7",
@@ -2172,8 +2172,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 11.0,
-    "TestHours": 0.0
+    "ExamSemester": 11.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "bce2c02b-77fb-4fb8-b225-6fbf02f66c20",
@@ -2189,8 +2189,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 11.0,
-    "TestHours": 0.0
+    "ExamSemester": 11.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "c7f7f3cc-a49f-431e-a434-8b91bf48435e",
@@ -2206,8 +2206,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "04585b23-e125-413d-b0d9-a2676bfaecc1",
@@ -2223,8 +2223,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "234546c8-1540-4e52-a6db-5fcf5866c4bc",
@@ -2240,8 +2240,8 @@
     "LaboratoryWorkHours": 26.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 1.0,
-    "TestHours": 0.0
+    "ExamSemester": 1.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "fe58fd5c-8b16-426e-a0b0-5ccc52ae9b1a",
@@ -2257,8 +2257,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 1.0,
-    "TestHours": 0.0
+    "ExamSemester": 1.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "7a5e7c84-7bc4-4ded-9946-79d4d227ac50",
@@ -2274,8 +2274,8 @@
     "LaboratoryWorkHours": 28.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 1.0
+    "ExamSemester": 0.0,
+    "TestSemester": 1.0
   },
   {
     "Id": "fb4b6c25-50d4-4727-9591-4759cdb8bdcd",
@@ -2291,8 +2291,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 1.0,
-    "TestHours": 0.0
+    "ExamSemester": 1.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "b041ef42-810f-4645-9d1d-dc1ee92ad7e2",
@@ -2308,8 +2308,8 @@
     "LaboratoryWorkHours": 26.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 1.0,
-    "TestHours": 0.0
+    "ExamSemester": 1.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "f2ae7ea1-b320-4333-b668-f8791d918f54",
@@ -2325,8 +2325,8 @@
     "LaboratoryWorkHours": 28.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 1.0
+    "ExamSemester": 0.0,
+    "TestSemester": 1.0
   },
   {
     "Id": "bafbd8a3-aaca-4f5d-b3ae-0d15251b72d3",
@@ -2342,8 +2342,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 1.0
+    "ExamSemester": 0.0,
+    "TestSemester": 1.0
   },
   {
     "Id": "d16c6c39-5a7f-45f6-a64e-55a6b757e3bd",
@@ -2359,8 +2359,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "7e8c2e3a-8f2b-4ff9-a8ca-7855c5cbc400",
@@ -2376,8 +2376,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "7b13b0ce-d1a1-4dcb-b5a7-ea9405862d1f",
@@ -2393,8 +2393,8 @@
     "LaboratoryWorkHours": 26.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "e36bc714-effa-4ecf-8699-dea29949c279",
@@ -2410,8 +2410,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 2.0
+    "ExamSemester": 0.0,
+    "TestSemester": 2.0
   },
   {
     "Id": "c8ad3e38-f8d0-4a2c-8175-9d84677bcae5",
@@ -2427,8 +2427,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 2.0,
-    "TestHours": 0.0
+    "ExamSemester": 2.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "2139077d-8c29-4be6-bf32-92a87fd44d28",
@@ -2444,8 +2444,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 2.0
+    "ExamSemester": 0.0,
+    "TestSemester": 2.0
   },
   {
     "Id": "ca2d1550-5e9e-4e95-a3a3-bf68113e7a09",
@@ -2461,8 +2461,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 2.0
+    "ExamSemester": 0.0,
+    "TestSemester": 2.0
   },
   {
     "Id": "f3635e92-eebb-466e-92e1-f1fe663324a8",
@@ -2478,8 +2478,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 2.0
+    "ExamSemester": 0.0,
+    "TestSemester": 2.0
   },
   {
     "Id": "b41ec312-b993-468c-8fd6-c67db126b805",
@@ -2495,8 +2495,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "ec9aa25d-0bc5-4a64-8177-b8935d68975d",
@@ -2512,8 +2512,8 @@
     "LaboratoryWorkHours": 12.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "b9270702-0126-48ce-81d0-c1b0e2ffe669",
@@ -2529,8 +2529,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "68ff13e2-4777-49d5-b1d3-e6203beda4b0",
@@ -2546,8 +2546,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "61745f9b-325d-4093-8c74-0244b3f56b82",
@@ -2563,8 +2563,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "9e5260bd-f6b4-4274-ae1e-9e8e266f7a22",
@@ -2580,8 +2580,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 9.0,
-    "TestHours": 0.0
+    "ExamSemester": 9.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "a83f571d-f7b7-4056-961e-e32d3626c44c",
@@ -2597,8 +2597,8 @@
     "LaboratoryWorkHours": 12.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "0a33facd-362c-447f-9a21-e90e7eb4884f",
@@ -2614,8 +2614,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "fa7620a0-32b3-40b6-90ce-d4fa4efc2666",
@@ -2631,8 +2631,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 9.0
+    "ExamSemester": 0.0,
+    "TestSemester": 9.0
   },
   {
     "Id": "c22c6008-8aa9-44d6-9f30-d3753ce107c5",
@@ -2648,8 +2648,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "cc8f8a31-ae22-4163-907d-779ce51c2502",
@@ -2665,8 +2665,8 @@
     "LaboratoryWorkHours": 24.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "0abcf35b-fab5-44c6-b317-41bf5eda1a82",
@@ -2682,8 +2682,8 @@
     "LaboratoryWorkHours": 8.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "10ed578a-d202-457d-99b6-77e7902a0c45",
@@ -2699,8 +2699,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "d5b42ca1-c79d-415a-a0b3-d17bce59aaa2",
@@ -2716,8 +2716,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "d9d692e2-29fa-4996-bbeb-550da8800b98",
@@ -2733,8 +2733,8 @@
     "LaboratoryWorkHours": 18.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "eb129dec-1b8b-4395-9f6c-648f789a7dd6",
@@ -2750,8 +2750,8 @@
     "LaboratoryWorkHours": 22.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 10.0,
-    "TestHours": 0.0
+    "ExamSemester": 10.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "c362055c-d6e6-43bd-809a-8042a340e999",
@@ -2767,8 +2767,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "5bf461a3-0e58-4f92-a624-1a2b1dec9c41",
@@ -2784,8 +2784,8 @@
     "LaboratoryWorkHours": 20.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "5f221ac6-b18f-46e4-8b6c-89b34449834b",
@@ -2801,8 +2801,8 @@
     "LaboratoryWorkHours": 16.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 10.0
+    "ExamSemester": 0.0,
+    "TestSemester": 10.0
   },
   {
     "Id": "953c65bc-cc49-40be-983e-77496253a5ca",
@@ -2818,8 +2818,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 11.0,
-    "TestHours": 0.0
+    "ExamSemester": 11.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "ddfcc2f6-0e11-4995-95df-575f3fb8d426",
@@ -2835,8 +2835,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 11.0,
-    "TestHours": 0.0
+    "ExamSemester": 11.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "99c579a5-6fa1-4977-b889-19f27a53aa97",
@@ -2852,8 +2852,8 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   },
   {
     "Id": "ed08e260-a0af-49ee-8b0d-3f7eb8e358a9",
@@ -2869,7 +2869,7 @@
     "LaboratoryWorkHours": 0.0,
     "ControlWorkHours": 0.0,
     "IndividualTasksHours": 0.0,
-    "ExamHours": 0.0,
-    "TestHours": 0.0
+    "ExamSemester": 0.0,
+    "TestSemester": 0.0
   }
 ]

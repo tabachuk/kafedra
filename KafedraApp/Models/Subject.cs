@@ -1,8 +1,21 @@
 ﻿using KafedraApp.Attributes;
+using KafedraApp.Converters;
 using System;
+using System.ComponentModel;
 
 namespace KafedraApp.Models
 {
+	[TypeConverter(typeof(EnumDescriptionTypeConverter))]
+	public enum FinalControlFormType
+	{
+		[Description("Відсутня")]
+		Undefined,
+		[Description("Екзамен")]
+		Exam,
+		[Description("Залік")]
+		Test
+	}
+
 	[CollectionName("Subjects")]
 	public class Subject : BaseModel, ICloneable
 	{
@@ -39,11 +52,37 @@ namespace KafedraApp.Models
 		[ExcelColumn("ІНДЗ")]
 		public double IndividualTasksHours { get; set; }
 
-		[ExcelColumn("Екзамен")]
-		public double ExamHours { get; set; }
+		public FinalControlFormType FinalControlFormType { get; set; }
 
+		private double _examSemester;
+		[Obsolete]
+		[ExcelColumn("Екзамен")]
+		public double ExamSemester
+		{
+			get => _examSemester;
+			set
+			{
+				_examSemester = value;
+
+				if (value > 0 && FinalControlFormType == FinalControlFormType.Undefined)
+					FinalControlFormType = FinalControlFormType.Exam;
+			}
+		}
+
+		private double _testSemester;
+		[Obsolete]
 		[ExcelColumn("Залік")]
-		public double TestHours { get; set; }
+		public double TestSemester
+		{
+			get => _testSemester;
+			set
+			{
+				_testSemester = value;
+
+				if (value > 0 && FinalControlFormType == FinalControlFormType.Undefined)
+					FinalControlFormType = FinalControlFormType.Test;
+			}
+		}
 
 		public object Clone()
 		{
@@ -61,8 +100,9 @@ namespace KafedraApp.Models
 				PracticalWorkHours = PracticalWorkHours,
 				LaboratoryWorkHours = LaboratoryWorkHours,
 				IndividualTasksHours = IndividualTasksHours,
-				ExamHours = ExamHours,
-				TestHours = TestHours
+				ExamSemester = ExamSemester,
+				TestSemester = TestSemester,
+				FinalControlFormType = FinalControlFormType
 			};
 		}
 	}

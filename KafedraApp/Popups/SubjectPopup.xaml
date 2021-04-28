@@ -4,7 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:System="clr-namespace:System;assembly=mscorlib"
     xmlns:local="clr-namespace:KafedraApp.Popups"
+    xmlns:models="clr-namespace:KafedraApp.Models"
     xmlns:controls="clr-namespace:KafedraApp.Controls"
     xmlns:converters="clr-namespace:KafedraApp.Converters"
     mc:Ignorable="d"
@@ -154,9 +156,16 @@
                             <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
                             <Setter Property="FontSize" Value="20"/>
                         </Style>
+                        <ObjectDataProvider
+                            x:Key="DataFromEnum"
+                            MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="models:FinalControlFormType"/>
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
                     </Grid.Resources>
                     <Grid.RowDefinitions>
-                        <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
@@ -275,21 +284,13 @@
                         Margin="5"/>
                     <Label
                         Grid.Row="11"
-                        Content="Екзамен:"
+                        Content="Форма контролю:"
                         VerticalContentAlignment="Center"/>
-                    <TextBox
+                    <ComboBox
                         Grid.Row="11"
                         Grid.Column="1"
-                        Text="{Binding ExamHours}"
-                        Margin="5"/>
-                    <Label
-                        Grid.Row="12"
-                        Content="Залік:"
-                        VerticalContentAlignment="Center"/>
-                    <TextBox
-                        Grid.Row="12"
-                        Grid.Column="1"
-                        Text="{Binding TestHours}"
+                        SelectedItem="{Binding FinalControlFormType}"
+                        ItemsSource="{Binding Source={StaticResource DataFromEnum}}"
                         Margin="5"/>
                 </Grid>
             </ScrollViewer>
