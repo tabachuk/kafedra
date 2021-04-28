@@ -99,8 +99,26 @@ namespace KafedraApp.ViewModels
 		public string SelectedSortingField
 		{
 			get => _selectedSortingField;
-			set => SetProperty(ref _selectedSortingField, value, OnSelectedSortingFieldChanged);
+			set => SetProperty(ref _selectedSortingField, value, OnSortingOptionsChanged);
 		}
+
+		private bool _sortingByDescending;
+		public bool SortingByDescending
+		{
+			get => _sortingByDescending;
+			set => SetProperty(ref _sortingByDescending, value, OnSortingOptionsChanged);
+		}
+
+		#endregion
+
+		#region Commands
+
+		public ICommand ImportSubjectsCommand { get; }
+		public ICommand AddSubjectCommand { get; }
+		public ICommand EditSubjectCommand { get; }
+		public ICommand DeleteSubjectCommand { get; }
+		public ICommand ClearSubjectsCommand { get; }
+		public ICommand ChangeSortingOrderCommand { get; }
 
 		#endregion
 
@@ -122,19 +140,10 @@ namespace KafedraApp.ViewModels
 			DeleteSubjectCommand = new DelegateCommand<Subject>(DeleteSubject);
 			ImportSubjectsCommand = new DelegateCommand(ImportSubjects);
 			ClearSubjectsCommand = new DelegateCommand(ClearSubjects);
+			ChangeSortingOrderCommand = new DelegateCommand(ChangeSortingOrder);
 
 			Subjects.CollectionChanged += OnSubjectsChanged;
 		}
-
-		#endregion
-
-		#region Commands
-
-		public ICommand ImportSubjectsCommand { get; }
-		public ICommand AddSubjectCommand { get; }
-		public ICommand EditSubjectCommand { get; }
-		public ICommand DeleteSubjectCommand { get; }
-		public ICommand ClearSubjectsCommand { get; }
 
 		#endregion
 
@@ -298,15 +307,19 @@ namespace KafedraApp.ViewModels
 
 		private IEnumerable<Subject> OrderBy<TKey>(
 			IEnumerable<Subject> subjects,
-			Func<Subject, TKey> keySelector,
-			bool byDescending = false)
+			Func<Subject, TKey> keySelector)
 		{
-			if (byDescending)
+			if (SortingByDescending)
 			{
 				return subjects.OrderByDescending(keySelector);
 			}
 
 			return subjects.OrderBy(keySelector);
+		}
+
+		private void ChangeSortingOrder()
+		{
+			SortingByDescending = !SortingByDescending;
 		}
 
 		#endregion
@@ -367,7 +380,7 @@ namespace KafedraApp.ViewModels
 			InitSubjectsToShow();
 		}
 
-		private void OnSelectedSortingFieldChanged()
+		private void OnSortingOptionsChanged()
 		{
 			InitSubjectsToShow();
 		}

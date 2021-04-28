@@ -152,6 +152,7 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label
                 FontSize="24"
@@ -175,6 +176,34 @@
                 Margin="5,0,20,0"
                 Style="{StaticResource LightComboBoxStyle}"
                 Padding="5,6,0,6"/>
+            <Button
+                Grid.Column="3"
+                FontFamily="{StaticResource FontAwesome}"
+                FontSize="26"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,0,15,0"
+                Foreground="{StaticResource BackgroundColor}"
+                Command="{Binding DataContext.ChangeSortingOrderCommand,
+                                  ElementName=ThisSubjectsView}">
+                <Button.Style>
+                    <Style
+                        TargetType="Button"
+                        BasedOn="{StaticResource SmallButtonStyle}">
+                        <Style.Triggers>
+                            <DataTrigger
+                                Binding="{Binding DataContext.SortingByDescending,
+                                                  ElementName=ThisSubjectsView}"
+                                Value="True">
+                                <Setter Property="Content" Value="&#xf160;"/>
+                                <Setter Property="ToolTip" Value="за спаданням"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                        <Setter Property="Content" Value="&#xf161;"/>
+                        <Setter Property="ToolTip" Value="за зростанням"/>
+                    </Style>
+                </Button.Style>
+            </Button>
         </Grid>
     </Grid>
     
