@@ -177,7 +177,6 @@
                         <RowDefinition/>
                         <RowDefinition/>
                         <RowDefinition/>
-                        <RowDefinition/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="200"/>
@@ -275,19 +274,10 @@
                         Margin="5"/>
                     <Label
                         Grid.Row="10"
-                        Content="ІНДЗ:"
-                        VerticalContentAlignment="Center"/>
-                    <TextBox
-                        Grid.Row="10"
-                        Grid.Column="1"
-                        Text="{Binding IndividualTasksHours}"
-                        Margin="5"/>
-                    <Label
-                        Grid.Row="11"
                         Content="Форма контролю:"
                         VerticalContentAlignment="Center"/>
                     <ComboBox
-                        Grid.Row="11"
+                        Grid.Row="10"
                         Grid.Column="1"
                         SelectedItem="{Binding FinalControlFormType}"
                         ItemsSource="{Binding Source={StaticResource DataFromEnum}}"

@@ -233,7 +233,6 @@
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="70"/>
-                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="90"/>
                     <ColumnDefinition Name="ExtraHeaderColumn"/>
                 </Grid.ColumnDefinitions>
@@ -320,14 +319,6 @@
                 </TextBox>
                 <TextBox
                     Grid.Column="10"
-                    Text="ІНДЗ"
-                    Style="{StaticResource HeaderStyle}">
-                    <TextBox.LayoutTransform>
-                        <RotateTransform Angle="-90"/>
-                    </TextBox.LayoutTransform>
-                </TextBox>
-                <TextBox
-                    Grid.Column="11"
                     Text="Підсумковий контроль"
                     Style="{StaticResource HeaderStyle}">
                     <TextBox.LayoutTransform>
@@ -335,7 +326,7 @@
                     </TextBox.LayoutTransform>
                 </TextBox>
                 <TextBox
-                    Grid.Column="12"
+                    Grid.Column="11"
                     Text="Дії"
                     Style="{StaticResource HeaderStyle}">
                     <TextBox.LayoutTransform>
@@ -366,7 +357,6 @@
                             Background="{DynamicResource BackgroundColor}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MinWidth="220"/>
-                                <ColumnDefinition Width="70"/>
                                 <ColumnDefinition Width="70"/>
                                 <ColumnDefinition Width="70"/>
                                 <ColumnDefinition Width="70"/>
@@ -434,12 +424,7 @@
                                 Content="{Binding LaboratoryWorkHours}"
                                 Style="{StaticResource DataStyle}"
                                 Visibility="{Binding LaboratoryWorkHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
-                            <Label
-                                Grid.Column="10"
-                                Content="{Binding IndividualTasksHours}"
-                                Style="{StaticResource DataStyle}"
-                                Visibility="{Binding IndividualTasksHours, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
-                            <Label Grid.Column="11">
+                            <Label Grid.Column="10">
                                 <Label.Style>
                                     <Style
                                         TargetType="Label"
@@ -460,7 +445,7 @@
                                 </Label.Style>
                             </Label>
                             <StackPanel
-                                Grid.Column="13"
+                                Grid.Column="11"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">

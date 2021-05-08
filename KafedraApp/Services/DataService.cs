@@ -456,17 +456,6 @@ namespace KafedraApp.Services
 						loadItems.Add(loadItem);
 					}
 				}
-
-				if (subject.IndividualTasksHours > 0)
-				{
-					var loadItem = GetLoadItem(
-						subject,
-						LoadItemType.IndividualTasks,
-						subject.IndividualTasksHours,
-						group);
-
-					loadItems.Add(loadItem);
-				}
 			}
 
 			return loadItems;

@@ -49,9 +49,6 @@ namespace KafedraApp.Models
 		[ExcelColumn("Лабораторні")]
 		public double LaboratoryWorkHours { get; set; }
 
-		[ExcelColumn("ІНДЗ")]
-		public double IndividualTasksHours { get; set; }
-
 		public FinalControlFormType FinalControlFormType { get; set; }
 
 		private double _examSemester;
@@ -99,7 +96,6 @@ namespace KafedraApp.Models
 				LectureHours = LectureHours,
 				PracticalWorkHours = PracticalWorkHours,
 				LaboratoryWorkHours = LaboratoryWorkHours,
-				IndividualTasksHours = IndividualTasksHours,
 				ExamSemester = ExamSemester,
 				TestSemester = TestSemester,
 				FinalControlFormType = FinalControlFormType
