@@ -28,7 +28,7 @@ namespace KafedraApp.Popups
 		private string _rateStr;
 		public string RateStr
 		{
-			get => _rateStr;
+			get => _rateStr?.Replace(',', '.');
 			set => SetProperty(ref _rateStr, value);
 		}
 
@@ -104,10 +104,10 @@ namespace KafedraApp.Popups
 				}
 
 				if (!float.TryParse(
-						RateStr,
-						NumberStyles.Any,
-						CultureInfo.InvariantCulture,
-						out float rate))
+					RateStr,
+					NumberStyles.Any,
+					CultureInfo.InvariantCulture,
+					out float rate))
 				{
 					Error = "Невірний формат ставки";
 					IsBusy = false;

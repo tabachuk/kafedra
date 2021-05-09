@@ -4,6 +4,7 @@ using KafedraApp.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -44,7 +45,7 @@ namespace KafedraApp.Views
 		private string _hoursInEdit;
 		public string HoursInEdit
 		{
-			get => _hoursInEdit;
+			get => _hoursInEdit?.Replace(',', '.');
 			set => SetProperty(ref _hoursInEdit, value);
 		}
 
@@ -95,7 +96,11 @@ namespace KafedraApp.Views
 				return;
 			}
 
-			if (!double.TryParse(HoursInEdit, out double hoursInEdit)
+			if (!double.TryParse(
+				HoursInEdit,
+				NumberStyles.Any,
+				CultureInfo.InvariantCulture,
+				out double hoursInEdit)
 				|| hoursInEdit < 0)
 			{
 				await _dialogService.ShowError("Хибне значення");
