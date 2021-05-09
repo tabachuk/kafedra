@@ -111,7 +111,14 @@ namespace KafedraApp.ViewModels
 		public string SelectedSortingField
 		{
 			get => _selectedSortingField;
-			set => SetProperty(ref _selectedSortingField, value, OnSelectedSortingFieldChanged);
+			set => SetProperty(ref _selectedSortingField, value, OnSortingOptionsChanged);
+		}
+
+		private bool _sortingByDescending;
+		public bool SortingByDescending
+		{
+			get => _sortingByDescending;
+			set => SetProperty(ref _sortingByDescending, value, OnSortingOptionsChanged);
 		}
 
 		#endregion
@@ -123,6 +130,7 @@ namespace KafedraApp.ViewModels
 		public ICommand UnassignLoadCommand { get; }
 		public ICommand FormLoadCommand { get; }
 		public ICommand ResetLoadCommand { get; }
+		public ICommand ChangeSortingOrderCommand { get; }
 
 		#endregion
 
@@ -138,6 +146,7 @@ namespace KafedraApp.ViewModels
 			UnassignLoadCommand = new DelegateCommand<LoadItem>(UnassignLoad);
 			FormLoadCommand = new DelegateCommand(FormLoad);
 			ResetLoadCommand = new DelegateCommand(async () => await ResetLoad());
+			ChangeSortingOrderCommand = new DelegateCommand(ChangeSortingOrder);
 
 			Teachers = _dataService.Teachers;
 			CurrentTeacher = _dataService.Teachers.FirstOrDefault();
@@ -313,15 +322,19 @@ namespace KafedraApp.ViewModels
 
 		private IEnumerable<LoadItem> OrderBy<TKey>(
 			IEnumerable<LoadItem> loadItems,
-			Func<LoadItem, TKey> keySelector,
-			bool byDescending = false)
+			Func<LoadItem, TKey> keySelector)
 		{
-			if (byDescending)
+			if (SortingByDescending)
 			{
 				return loadItems.OrderByDescending(keySelector);
 			}
 
 			return loadItems.OrderBy(keySelector);
+		}
+
+		private void ChangeSortingOrder()
+		{
+			SortingByDescending = !SortingByDescending;
 		}
 
 		#endregion
@@ -375,7 +388,7 @@ namespace KafedraApp.ViewModels
 			InitNotDistributedLoadToShow();
 		}
 
-		private void OnSelectedSortingFieldChanged()
+		private void OnSortingOptionsChanged()
 		{
 			InitNotDistributedLoadToShow();
 		}
