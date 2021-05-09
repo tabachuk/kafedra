@@ -434,11 +434,13 @@
                                                 Binding="{Binding FinalControlFormType}"
                                                 Value="{x:Static models:FinalControlFormType.Exam}">
                                                 <Setter Property="Content" Value="ЕКЗ"/>
+                                                <Setter Property="ToolTip" Value="Екзамен"/>
                                             </DataTrigger>
                                             <DataTrigger
                                                 Binding="{Binding FinalControlFormType}"
                                                 Value="{x:Static models:FinalControlFormType.Test}">
                                                 <Setter Property="Content" Value="ЗЛК"/>
+                                                <Setter Property="ToolTip" Value="Залік"/>
                                             </DataTrigger>
                                         </Style.Triggers>
                                     </Style>
