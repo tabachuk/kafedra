@@ -20,7 +20,6 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="IsReadOnly" Value="True"/>
-            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -374,7 +373,6 @@
                                 Text="{Binding Name}"
                                 TextWrapping="Wrap"
                                 IsReadOnly="True"
-                                BorderThickness="0"
                                 HorizontalContentAlignment="Center"
                                 Foreground="{DynamicResource ForegroundColor}"
                                 HorizontalAlignment="Center"

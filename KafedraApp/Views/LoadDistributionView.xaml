@@ -49,8 +49,6 @@
                     TextWrapping="Wrap"
                     HorizontalContentAlignment="Center"
                     IsReadOnly="True"
-                    BorderThickness="0"
-                    IsHitTestVisible="False"
                     Margin="10,5"
                     FontSize="18"/>
                 <Label
