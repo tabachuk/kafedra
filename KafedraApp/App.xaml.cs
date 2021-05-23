@@ -87,7 +87,7 @@ namespace KafedraApp
 		#region Methods
 
 #if !DEBUG
-		private async Task CatchUnhandledException(Exception exc)
+		private async System.Threading.Tasks.Task CatchUnhandledException(Exception exc)
 		{
 			var dialogService = Container.Resolve<IDialogService>();
 

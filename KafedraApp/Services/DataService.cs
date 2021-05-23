@@ -476,8 +476,12 @@ namespace KafedraApp.Services
 
 		private List<Subject> GetCathedraSubjects()
 		{
-			var assignedSubjects = Teachers.SelectMany(x => x.SubjectsSpecializesIn);
+			var assignedSubjects = Teachers
+				.Where(x => x.SubjectsSpecializesIn?.Any() == true)
+				.SelectMany(x => x.SubjectsSpecializesIn);
+
 			var subjects = Subjects.Where(x => assignedSubjects.Contains(x.Name));
+
 			return subjects.ToList();
 		}
 
