@@ -236,7 +236,7 @@ namespace KafedraApp.ViewModels
 								relatedLoadItems = loadItems.Where(x =>
 									x.Subject == loadItem.Subject
 									&& x.Semester == loadItem.Semester
-									&& (x.Type == LoadItemType.Exam || x.Type == LoadItemType.IndividualTasks));
+									&& x.Type == LoadItemType.Exam);
 
 								foreach (var relatedLoadItem in relatedLoadItems)
 								{
@@ -247,15 +247,15 @@ namespace KafedraApp.ViewModels
 									}
 								}
 								break;
-							case LoadItemType.LaboratoryWork:
-							case LoadItemType.PracticalWork:
+							case LoadItemType.LaboratoryWorks:
+							case LoadItemType.PracticalWorks:
 								teacher.LoadItems.Add(loadItem);
 								UndistributedLoadItems.Remove(loadItem);
 
 								relatedLoadItems = loadItems.Where(x =>
 									x.Subject == loadItem.Subject
 									&& x.Semester == loadItem.Semester
-									&& (x.Type == LoadItemType.Test || x.Type == LoadItemType.ControlWork));
+									&& (x.Type == LoadItemType.Test || x.Type == LoadItemType.ControlWorks));
 
 								foreach (var relatedLoadItem in relatedLoadItems)
 								{

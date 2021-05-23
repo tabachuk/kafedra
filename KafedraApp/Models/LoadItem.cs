@@ -9,28 +9,40 @@ namespace KafedraApp.Models
 	{
 		[Description("Лекції")]
 		Lectures,
-		[Description("Практичні")]
-		PracticalWork,
-		[Description("Лабораторні")]
-		LaboratoryWork,
-		[Description("Контрольні")]
-		ControlWork,
-		[Description("Курсова робота")]
-		CourseWork,
-		[Description("Дипломна робота")]
-		DiplomaWork,
-		[Description("ІНДЗ")]
-		IndividualTasks,
+		[Description("Практичні заняття")]
+		PracticalWorks,
+		[Description("Лабораторні заняття")]
+		LaboratoryWorks,
+		[Description("Семінарські заняття")]
+		SeminarWorks,
+		[Description("Індивідуальні заняття")]
+		IndividualWorks,
+		[Description("Консультації протягом семестру")]
+		Consultations,
+		[Description("Екзаменаційні консультації")]
+		ExamConsultations,
+		[Description("Контрольні роботи")]
+		ControlWorks,
+		[Description("Реферати, аналітичні огляди, переклади")]
+		AbstractsReviewsTranslations,
+		[Description("Розрахункові, графічні, розрахунково-графічні роботи")]
+		CalculationAndGraphicWorks,
+		[Description("Курсові роботи")]
+		TermPapers,
+		[Description("Дипломні роботи")]
+		DiplomaWorks,
 		[Description("Залік")]
 		Test,
 		[Description("Екзамен")]
 		Exam,
 		[Description("Виробнича практика")]
-		Internship,
+		ProductionPractice,
 		[Description("Асистентська практика")]
 		AssistantPractice,
 		[Description("Педагогічна практика")]
 		PedagogicalPractice,
+		[Description("Керівництво аспірантами")]
+		PostgraduateGuidance,
 	}
 
 	public class LoadItem : BaseModel, IEquatable<LoadItem>

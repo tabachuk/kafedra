@@ -378,7 +378,7 @@ namespace KafedraApp.Services
 						{
 							var loadItem = GetLoadItem(
 								subject,
-								LoadItemType.PracticalWork,
+								LoadItemType.PracticalWorks,
 								subject.PracticalWorkHours,
 								group,
 								i);
@@ -390,7 +390,7 @@ namespace KafedraApp.Services
 					{
 						var loadItem = GetLoadItem(
 						subject,
-						LoadItemType.PracticalWork,
+						LoadItemType.PracticalWorks,
 						subject.PracticalWorkHours,
 						group);
 
@@ -406,7 +406,7 @@ namespace KafedraApp.Services
 						{
 							var loadItem = GetLoadItem(
 								subject,
-								LoadItemType.LaboratoryWork,
+								LoadItemType.LaboratoryWorks,
 								subject.LaboratoryWorkHours,
 								group,
 								i);
@@ -418,7 +418,7 @@ namespace KafedraApp.Services
 					{
 						var loadItem = GetLoadItem(
 						subject,
-						LoadItemType.LaboratoryWork,
+						LoadItemType.LaboratoryWorks,
 						subject.LaboratoryWorkHours,
 						group);
 
