@@ -1,6 +1,7 @@
 ﻿using KafedraApp.Helpers;
 using KafedraApp.Properties;
 using KafedraApp.Services;
+using KafedraApp.Validators;
 using NLog;
 using NLog.Targets;
 using System;
@@ -179,8 +180,12 @@ namespace KafedraApp
 
 		private void RegisterSingletons()
 		{
+			// Services.
 			Container.RegisterSingleton<IDataService, DataService>();
 			Container.RegisterSingleton<IDialogService, DialogService>();
+
+			// Validators.
+			Container.RegisterSingleton<ILoadItemValidator, LoadItemValidator>();
 		}
 
 		protected override void OnExit(ExitEventArgs e)

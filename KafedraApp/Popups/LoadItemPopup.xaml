@@ -1,5 +1,5 @@
 ﻿<Grid
-    x:Class="KafedraApp.Popups.TeacherPopup"
+    x:Class="KafedraApp.Popups.LoadItemPopup"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -15,8 +15,8 @@
     Grid.ColumnSpan="100"
     Grid.RowSpan="100"
     Panel.ZIndex="100"
-    DataContext="{Binding ElementName=ThisTeacherPopup}"
-    Name="ThisTeacherPopup">
+    DataContext="{Binding ElementName=ThisLoadItemPopup}"
+    Name="ThisLoadItemPopup">
 
     <Grid.Resources>
 
@@ -34,7 +34,7 @@
                 Storyboard.TargetProperty="Opacity"
                 From="0" To="1" Duration="0:0:0.3"/>
             <DoubleAnimation
-                Storyboard.TargetName="TeacherFormBox"
+                Storyboard.TargetName="LoadItemFormBox"
                 Storyboard.TargetProperty="Opacity"
                 From="0" To="1" Duration="0:0:0.25"/>
             <DoubleAnimation
@@ -55,7 +55,7 @@
                 Storyboard.TargetProperty="Opacity"
                 From="1"  To="0" Duration="0:0:0.25"/>
             <DoubleAnimation
-                Storyboard.TargetName="TeacherFormBox"
+                Storyboard.TargetName="LoadItemFormBox"
                 Storyboard.TargetProperty="Opacity"
                 From="1"  To="0" Duration="0:0:0.25"/>
             <DoubleAnimation
@@ -89,8 +89,8 @@
         </Rectangle>
 
         <Grid
-            Name="TeacherFormBox"
-            Width="600"
+            Name="LoadItemFormBox"
+            Width="800"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="{DynamicResource BackgroundColor}"
@@ -130,7 +130,7 @@
                 <Label
                     Content="{Binding IsEditMode,
                                       Converter={StaticResource BoolToStringConverter},
-                                      ConverterParameter='&#xf4ff;|&#xf234;'}"
+                                      ConverterParameter='&#xf304;|&#xf067;'}"
                     VerticalAlignment="Center"
                     FontSize="24"
                     Margin="0,0,10,0"
@@ -139,87 +139,134 @@
                 <Label
                     Content="{Binding IsEditMode,
                                       Converter={StaticResource BoolToStringConverter},
-                                      ConverterParameter='Редагувати викладача|Додати викладача'}"
+                                      ConverterParameter='Редагувати навантаження|Додати навантаження'}"
                     Foreground="{DynamicResource ForegroundColor}"
                     FontSize="26"/>
             </StackPanel>
 
-            <Grid
+            <ScrollViewer
                 Grid.Row="1"
-                Margin="20,5"
-                DataContext="{Binding Teacher}">
-                <Grid.Resources>
-                    <Style TargetType="Label">
-                        <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
-                        <Setter Property="FontSize" Value="20"/>
-                    </Style>
-                    <ObjectDataProvider
-                        x:Key="DataFromEnum"
-                        MethodName="GetValues"
-                        ObjectType="{x:Type System:Enum}">
-                        <ObjectDataProvider.MethodParameters>
-                            <x:Type TypeName="models:AcademicStatus"/>
-                        </ObjectDataProvider.MethodParameters>
-                    </ObjectDataProvider>
-                </Grid.Resources>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="170"/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Label
-                    Grid.Row="0"
-                    Content="Прізвище:"
-                    VerticalContentAlignment="Center"/>
-                <TextBox
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    Text="{Binding LastName}"
-                    Margin="5"/>
-                <Label
-                    Grid.Row="1"
-                    Content="Ім'я:"
-                    VerticalContentAlignment="Center"/>
-                <TextBox
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    Text="{Binding FirstName}"
-                    Margin="5"/>
-                <Label
-                    Grid.Row="2"
-                    Content="По батькові:"
-                    VerticalContentAlignment="Center"/>
-                <TextBox
-                    Grid.Row="2"
-                    Grid.Column="1"
-                    Text="{Binding MiddleName}"
-                    Margin="5"/>
-                <Label
-                    Grid.Row="3"
-                    Content="Учений ступінь:"
-                    VerticalContentAlignment="Center"/>
-                <ComboBox
-                    Grid.Row="3"
-                    Grid.Column="1"
-                    SelectedItem="{Binding AcademicStatus}"
-                    ItemsSource="{Binding Source={StaticResource DataFromEnum}}"
-                    Margin="5"/>
-                <Label
-                    Grid.Row="4"
-                    Content="Ставка:"
-                    VerticalContentAlignment="Center"/>
-                <TextBox
-                    Grid.Row="4"
-                    Grid.Column="1"
-                    Text="{Binding DataContext.RateStr, ElementName=ThisTeacherPopup}"
-                    Margin="5"/>
-            </Grid>
+                Height="330"
+                VerticalScrollBarVisibility="Auto">
+                <Grid
+                    Margin="20,5"
+                    DataContext="{Binding LoadItemDto}">
+                    <Grid.Resources>
+                        <Style TargetType="Label">
+                            <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
+                            <Setter Property="FontSize" Value="20"/>
+                        </Style>
+                        <ObjectDataProvider
+                            x:Key="DataFromEnum"
+                            MethodName="GetValues"
+                            ObjectType="{x:Type System:Enum}">
+                            <ObjectDataProvider.MethodParameters>
+                                <x:Type TypeName="models:LoadItemType"/>
+                            </ObjectDataProvider.MethodParameters>
+                        </ObjectDataProvider>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        Content="Тип:"
+                        VerticalContentAlignment="Center"/>
+                    <ComboBox
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        SelectedItem="{Binding Type}"
+                        ItemsSource="{Binding Source={StaticResource DataFromEnum}}"
+                        Margin="5"/>
+                    <Label
+                        Grid.Row="1"
+                        Content="Предмет:"
+                        VerticalContentAlignment="Center"
+                        Visibility="{Binding IsSubjectsComboBoxVisible,
+                                             Converter={StaticResource BooleanToVisibilityConverter},
+                                             ElementName=ThisLoadItemPopup}"/>
+                    <ComboBox
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        IsEditable="True"
+                        SelectedItem="{Binding Subject}"
+                        ItemsSource="{Binding Subjects, ElementName=ThisLoadItemPopup}"
+                        Visibility="{Binding IsSubjectsComboBoxVisible,
+                                             Converter={StaticResource BooleanToVisibilityConverter},
+                                             ElementName=ThisLoadItemPopup}"
+                        Margin="5"/>
+                    <Label
+                        Grid.Row="2"
+                        Content="К-сть годин:"
+                        VerticalContentAlignment="Center"/>
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{Binding Hours}"
+                        Margin="5"/>
+                    <Label
+                        Grid.Row="3"
+                        Content="Група:"
+                        VerticalContentAlignment="Center"/>
+                    <ComboBox
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        SelectedItem="{Binding Group}"
+                        ItemsSource="{Binding Groups, ElementName=ThisLoadItemPopup}"
+                        DisplayMemberPath="Name"
+                        Margin="5"/>
+                    <Label
+                        Grid.Row="4"
+                        Content="Підгрупа:"
+                        VerticalContentAlignment="Center"
+                        Visibility="{Binding IsSubgroupsComboBoxVisible,
+                                             Converter={StaticResource BooleanToVisibilityConverter},
+                                             ElementName=ThisLoadItemPopup}"/>
+                    <ComboBox
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        SelectedItem="{Binding Subgroup}"
+                        ItemsSource="{Binding Subgroups, ElementName=ThisLoadItemPopup}"
+                        Margin="5"
+                        Visibility="{Binding IsSubgroupsComboBoxVisible,
+                                             Converter={StaticResource BooleanToVisibilityConverter},
+                                             ElementName=ThisLoadItemPopup}"/>
+                    <Label
+                        Grid.Row="5"
+                        Content="Семестр:"
+                        VerticalContentAlignment="Center"/>
+                    <ComboBox
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        SelectedItem="{Binding Semester}"
+                        Margin="5">
+                        <ComboBox.Items>
+                            <System:Double>1</System:Double>
+                            <System:Double>2</System:Double>
+                        </ComboBox.Items>
+                    </ComboBox>
+                    <Label
+                        Grid.Row="6"
+                        Content="Присвоїти:"
+                        VerticalContentAlignment="Center"/>
+                    <ComboBox
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        SelectedItem="{Binding Teacher}"
+                        ItemsSource="{Binding Teachers, ElementName=ThisLoadItemPopup}"
+                        Margin="5"/>
+                </Grid>
+            </ScrollViewer>
 
             <Label
                 Grid.Row="2"
@@ -244,7 +291,7 @@
                         Margin="10"
                         HorizontalContentAlignment="Center"
                         Command="{Binding SetResultCommand}"
-                        CommandParameter="{Binding Teacher}"
+                        CommandParameter="{Binding LoadItemDto}"
                         Foreground="{DynamicResource ForegroundColor}"
                         Style="{StaticResource RoundedButtonStyle}"/>
                 </Border>

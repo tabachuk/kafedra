@@ -1,4 +1,5 @@
 ﻿using KafedraApp.Converters;
+using Newtonsoft.Json;
 using System;
 using System.ComponentModel;
 
@@ -53,11 +54,19 @@ namespace KafedraApp.Models
 
 		public double Hours { get; set; }
 
-		public string Group { get; set; }
+		public Group Group { get; set; }
 
 		public double Subgroup { get; set; }
 
 		public double Semester { get; set; }
+
+		private Teacher _teacher;
+		[JsonIgnore]
+		public Teacher Teacher
+		{
+			get => _teacher;
+			set => SetProperty(ref _teacher, value);
+		}
 
 		public override bool Equals(object obj)
 		{

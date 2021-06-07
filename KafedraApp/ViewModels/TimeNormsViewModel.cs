@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace KafedraApp.ViewModels
 {
-	public class TimeNormsViewModel : BindableBase
+	public class TimeNormsViewModel : ViewModelBase
 	{
 		#region Fields
 

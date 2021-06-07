@@ -467,7 +467,7 @@ namespace KafedraApp.Services
 			{
 				Subject = subject.Name,
 				Semester = subject.Semester,
-				Group = group.Name,
+				Group = group,
 				Type = type,
 				Hours = hours,
 				Subgroup = subgroup

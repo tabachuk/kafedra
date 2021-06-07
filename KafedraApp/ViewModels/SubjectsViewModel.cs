@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
 {
-	public class SubjectsViewModel : BindableBase
+	public class SubjectsViewModel : ViewModelBase
 	{
 		#region Constants
 
@@ -227,6 +227,7 @@ namespace KafedraApp.ViewModels
 				}
 
 				await _dataService.SaveSubjects();
+				InitSubjectsToShow();
 				_isImporting = false;
 			});
 		}
@@ -334,7 +335,6 @@ namespace KafedraApp.ViewModels
 			{
 				case NotifyCollectionChangedAction.Add:
 					var subject = e.NewItems[0] as Subject;
-					_dataService.Subjects.Add(subject);
 
 					if (_isImporting)
 						break;
@@ -348,7 +348,6 @@ namespace KafedraApp.ViewModels
 					break;
 				case NotifyCollectionChangedAction.Remove:
 					subject = e.OldItems[0] as Subject;
-					_dataService.Subjects.Remove(subject);
 					SubjectsToShow.Remove(subject);
 					AddSubjectToShow();
 					break;
@@ -364,7 +363,6 @@ namespace KafedraApp.ViewModels
 					}
 					break;
 				case NotifyCollectionChangedAction.Reset:
-					_dataService.Subjects.Clear();
 					SubjectsToShow.Clear();
 					break;
 			}

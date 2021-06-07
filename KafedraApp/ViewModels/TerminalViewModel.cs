@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace KafedraApp.ViewModels
 {
-	public class TerminalViewModel : BindableBase
+	public class TerminalViewModel : ViewModelBase
 	{
 		#region Fields
 

@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
 {
-	public class GroupsViewModel : BindableBase
+	public class GroupsViewModel : ViewModelBase
 	{
 		#region Fields
 

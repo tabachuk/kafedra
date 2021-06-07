@@ -20,6 +20,7 @@ namespace KafedraApp.Services
 			string caption = "Підтвердіть дію");
 		Task<Teacher> ShowTeacherForm(Teacher teacher = null);
 		Task<Subject> ShowSubjectForm(Subject subject = null);
+		Task<LoadItem> ShowLoadItemForm(LoadItem loadItem = null);
 		Task<Group> ShowGroupForm(Group group = null);
 		Task ShowSubjectImportPopup();
 		Task<List<string>> ShowSubjectPickerPopup(

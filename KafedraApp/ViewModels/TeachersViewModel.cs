@@ -11,7 +11,7 @@ using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
 {
-	public class TeachersViewModel : BindableBase
+	public class TeachersViewModel : ViewModelBase
 	{
 		#region Fields
 

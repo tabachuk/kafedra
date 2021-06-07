@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
 {
-	public class MainViewModel : BindableBase
+	public class MainViewModel : ViewModelBase
 	{
 		#region Enum
 

@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
 {
-	public class SettingsViewModel : BindableBase
+	public class SettingsViewModel : ViewModelBase
 	{
 		#region Fields
 

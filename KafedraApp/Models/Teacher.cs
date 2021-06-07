@@ -111,7 +111,7 @@ namespace KafedraApp.Models
 
 			if (Rate < 0 || Rate > 2)
 			{
-				error = "Вказана ставка не є коректною";
+				error = "Вказана некоректна ставка";
 				return false;
 			}
 

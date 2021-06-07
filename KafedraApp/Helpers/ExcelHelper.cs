@@ -124,7 +124,19 @@ namespace KafedraApp.Helpers
 					var column = _titles.FindIndex(x => Simplify(columnAttr.Column) == Simplify(x));
 
 					if (column > -1)
-						prop.SetValue(item, _data[row + 1, column + 1]);
+					{
+						var value = _data[row + 1, column + 1];
+
+						if (value != null
+							&& (prop.Name == nameof(Subject.Semester)
+							|| prop.Name == nameof(Subject.ExamSemester)
+							|| prop.Name == nameof(Subject.TestSemester)))
+						{
+							value = 2 - (double)value % 2;
+						}
+
+						prop.SetValue(item, value);
+					}
 				}
 			}
 

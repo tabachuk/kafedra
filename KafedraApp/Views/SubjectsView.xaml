@@ -20,6 +20,7 @@
             <Setter Property="Margin" Value="10"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="IsReadOnly" Value="True"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="Transparent"/>
@@ -233,7 +234,22 @@
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="90"/>
-                    <ColumnDefinition Name="ExtraHeaderColumn"/>
+                    <ColumnDefinition>
+                        <ColumnDefinition.Style>
+                            <Style TargetType="ColumnDefinition">
+                                <Setter Property="Width" Value="0"/>
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding ComputedVerticalScrollBarVisibility, ElementName=SubjectsSV}"
+                                        Value="Visible">
+                                        <Setter
+                                            Property="Width"
+                                            Value="{Binding VerticalScrollBarWidth, ElementName=ThisSubjectsView}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ColumnDefinition.Style>
+                    </ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Rectangle
                     Grid.ColumnSpan="18"
@@ -373,6 +389,7 @@
                                 Text="{Binding Name}"
                                 TextWrapping="Wrap"
                                 IsReadOnly="True"
+                                BorderThickness="0"
                                 HorizontalContentAlignment="Center"
                                 Foreground="{DynamicResource ForegroundColor}"
                                 HorizontalAlignment="Center"

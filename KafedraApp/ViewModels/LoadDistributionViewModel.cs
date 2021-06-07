@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace KafedraApp.ViewModels
 {
-	public class LoadDistributionViewModel : BindableBase
+	public class LoadDistributionViewModel : ViewModelBase
 	{
 		#region Constants
 
@@ -126,11 +126,13 @@ namespace KafedraApp.ViewModels
 		#region Commands
 
 		public ICommand SwitchTeacherCommand { get; }
-		public ICommand AssignLoadCommand { get; }
-		public ICommand UnassignLoadCommand { get; }
+		public ICommand MoveLoadItemCommand { get; }
 		public ICommand FormLoadCommand { get; }
 		public ICommand ResetLoadCommand { get; }
 		public ICommand ChangeSortingOrderCommand { get; }
+		public ICommand AddLoadItemCommand { get; }
+		public ICommand EditLoadItemCommand { get; }
+		public ICommand DeleteLoadItemCommand { get; }
 
 		#endregion
 
@@ -142,11 +144,13 @@ namespace KafedraApp.ViewModels
 			_dialogService = Container.Resolve<IDialogService>();
 
 			SwitchTeacherCommand = new DelegateCommand<Teacher>(SwitchTeacher);
-			AssignLoadCommand = new DelegateCommand<LoadItem>(AssignLoad);
-			UnassignLoadCommand = new DelegateCommand<LoadItem>(UnassignLoad);
+			MoveLoadItemCommand = new DelegateCommand<LoadItem>(MoveLoadItem);
 			FormLoadCommand = new DelegateCommand(FormLoad);
 			ResetLoadCommand = new DelegateCommand(async () => await ResetLoad());
 			ChangeSortingOrderCommand = new DelegateCommand(ChangeSortingOrder);
+			AddLoadItemCommand = new DelegateCommand(AddLoadItem);
+			EditLoadItemCommand = new DelegateCommand<LoadItem>(EditLoadItem);
+			DeleteLoadItemCommand = new DelegateCommand<LoadItem>(DeleteLoadItem);
 
 			Teachers = _dataService.Teachers;
 			CurrentTeacher = _dataService.Teachers.FirstOrDefault();
@@ -158,7 +162,7 @@ namespace KafedraApp.ViewModels
 			var notDistributedLoad = load.Except(distributedLoad).ToList();
 
 			UndistributedLoadItems = new ObservableCollection<LoadItem>(notDistributedLoad);
-			
+
 			InitNotDistributedLoadToShow();
 		}
 
@@ -171,19 +175,23 @@ namespace KafedraApp.ViewModels
 			CurrentTeacher = teacher;
 		}
 
-		private void AssignLoad(LoadItem loadItem)
+		private void MoveLoadItem(LoadItem loadItem)
 		{
-			if (CurrentTeacher.LoadItems == null)
-				CurrentTeacher.LoadItems = new ObservableCollection<LoadItem>();
+			if (loadItem.Teacher != null)
+			{
+				CurrentTeacher.LoadItems.Remove(loadItem);
+				loadItem.Teacher = null;
+				UndistributedLoadItems.Add(loadItem);
+			}
+			else
+			{
+				if (CurrentTeacher.LoadItems == null)
+					CurrentTeacher.LoadItems = new ObservableCollection<LoadItem>();
 
-			CurrentTeacher.LoadItems.Add(loadItem);
-			UndistributedLoadItems.Remove(loadItem);
-		}
-
-		private void UnassignLoad(LoadItem loadItem)
-		{
-			CurrentTeacher.LoadItems.Remove(loadItem);
-			UndistributedLoadItems.Add(loadItem);
+				loadItem.Teacher = CurrentTeacher;
+				CurrentTeacher.LoadItems.Add(loadItem);
+				UndistributedLoadItems.Remove(loadItem);
+			}
 		}
 
 		private void InitNotDistributedLoadToShow()
@@ -230,6 +238,7 @@ namespace KafedraApp.ViewModels
 						switch (loadItems[i].Type)
 						{
 							case LoadItemType.Lectures:
+								loadItem.Teacher = teacher;
 								teacher.LoadItems.Add(loadItem);
 								UndistributedLoadItems.Remove(loadItem);
 
@@ -249,6 +258,7 @@ namespace KafedraApp.ViewModels
 								break;
 							case LoadItemType.LaboratoryWorks:
 							case LoadItemType.PracticalWorks:
+								loadItem.Teacher = teacher;
 								teacher.LoadItems.Add(loadItem);
 								UndistributedLoadItems.Remove(loadItem);
 
@@ -262,6 +272,7 @@ namespace KafedraApp.ViewModels
 									if (UndistributedLoadItems.Contains(relatedLoadItem))
 									{
 										UndistributedLoadItems.Remove(relatedLoadItem);
+										loadItem.Teacher = teacher;
 										teacher.LoadItems.Add(relatedLoadItem);
 									}
 								}
@@ -312,7 +323,7 @@ namespace KafedraApp.ViewModels
 				case "К-сть годин":
 					return OrderBy(loadItems, x => x.Hours);
 				case "Група":
-					return OrderBy(loadItems, x => x.Group);
+					return OrderBy(loadItems, x => x.Group?.Name);
 				case "Семестр":
 					return OrderBy(loadItems, x => x.Semester);
 			}
@@ -335,6 +346,84 @@ namespace KafedraApp.ViewModels
 		private void ChangeSortingOrder()
 		{
 			SortingByDescending = !SortingByDescending;
+		}
+
+		private async void AddLoadItem()
+		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
+			var loadItem = await _dialogService.ShowLoadItemForm();
+
+			if (loadItem != null)
+			{
+				if (loadItem.Teacher != null)
+				{
+					if (loadItem.Teacher.LoadItems == null)
+					{
+						loadItem.Teacher.LoadItems = new ObservableCollection<LoadItem>();
+					}
+
+					loadItem.Teacher.LoadItems.Add(loadItem);
+				}
+				else
+				{
+					UndistributedLoadItems.Add(loadItem);
+				}
+			}
+
+			IsBusy = false;
+		}
+
+		private async void EditLoadItem(LoadItem loadItem)
+		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
+			var newloadItem = await _dialogService.ShowLoadItemForm(loadItem);
+
+			if (newloadItem != null)
+			{
+				if (loadItem.Teacher != null)
+				{
+					loadItem.Teacher.LoadItems.Remove(loadItem);
+				}
+				else
+				{
+					UndistributedLoadItems.Remove(loadItem);
+				}
+
+				if (newloadItem.Teacher != null)
+				{
+					newloadItem.Teacher.LoadItems.Add(newloadItem);
+				}
+				else
+				{
+					UndistributedLoadItems.Add(newloadItem);
+				}
+			}
+
+			IsBusy = false;
+		}
+
+		private void DeleteLoadItem(LoadItem loadItem)
+		{
+			if (IsBusy)
+				return;
+			IsBusy = true;
+
+			if (loadItem.Teacher != null)
+			{
+				loadItem.Teacher.LoadItems.Remove(loadItem);
+			}
+			else
+			{
+				UndistributedLoadItems.Remove(loadItem);
+			}
+
+			IsBusy = false;
 		}
 
 		#endregion

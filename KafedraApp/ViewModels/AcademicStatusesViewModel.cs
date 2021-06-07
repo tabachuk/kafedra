@@ -5,7 +5,7 @@ using System.Collections.ObjectModel;
 
 namespace KafedraApp.ViewModels
 {
-	public class AcademicStatusesViewModel : BindableBase
+	public class AcademicStatusesViewModel : ViewModelBase
 	{
 		#region Fields
 

@@ -11,52 +11,35 @@
     Name="ThisLoadDistributionView">
 
     <Grid.Resources>
-        <InputBindingCollection
-            x:Key="UndistributedLoadItemsInputCollection"
-            x:Shared="False">
-            <MouseBinding
-                Gesture="LeftClick"
-                Command="{Binding DataContext.AssignLoadCommand,
-                                  ElementName=ThisLoadDistributionView}"
-                CommandParameter="{Binding}"/>
-        </InputBindingCollection>
-        <InputBindingCollection
-            x:Key="TeacherLoadInputCollection"
-            x:Shared="False">
-            <MouseBinding
-                Gesture="LeftClick"
-                Command="{Binding DataContext.UnassignLoadCommand,
-                                  ElementName=ThisLoadDistributionView}"
-                CommandParameter="{Binding}"/>
-        </InputBindingCollection>
         <DataTemplate x:Key="LoadItemView">
             <Grid
                 Margin="0,3,3,3"
                 Background="{DynamicResource BackgroundColor}">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
+                <Label
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Content="{Binding Type}"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    Margin="10,5"
+                    FontSize="18"/>
                 <TextBox
+                    Grid.Column="1"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Text="{Binding Subject}"
                     Foreground="{DynamicResource FadeForegroundColor}"
                     TextWrapping="Wrap"
+                    FontStyle="Italic"
                     HorizontalContentAlignment="Center"
                     IsReadOnly="True"
-                    Margin="10,5"
-                    FontSize="18"/>
-                <Label
-                    Grid.Column="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Content="{Binding Type}"
-                    Foreground="{DynamicResource FadeForegroundColor}"
                     Margin="10,5"
                     FontSize="18"/>
                 <Label
@@ -69,39 +52,33 @@
                     Margin="10,5"
                     FontStyle="Italic"
                     ContentStringFormat="{}{0} год"/>
-                <Label
+                <StackPanel
                     Grid.Column="3"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
-                    Content="{Binding Group}"
-                    Foreground="{DynamicResource FadeForegroundColor}"
-                    Margin="10,5"
-                    FontSize="18"/>
-                <StackPanel
-                    Grid.Column="4"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
                     Orientation="Vertical"
-                    Margin="10,5"
-                    Visibility="{Binding Subgroup, Converter={StaticResource NotZeroToVisibilityConverter}}">
+                    Margin="10,5">
                     <Label
-                        Content="{Binding Subgroup}"
+                        VerticalAlignment="Center"
                         HorizontalAlignment="Center"
+                        Content="{Binding Group.Name}"
+                        Foreground="{DynamicResource FadeForegroundColor}"
                         Padding="0"
                         Margin="0"
-                        Foreground="{DynamicResource FadeForegroundColor}"
                         FontSize="18"/>
                     <Label
                         HorizontalAlignment="Center"
-                        Content="підгрупа"
+                        Content="{Binding Subgroup}"
+                        ContentStringFormat="# підгрупа"
                         Opacity="0.9"
                         Padding="0"
                         Margin="0,-5,0,0"
                         Foreground="{DynamicResource FadeForegroundColor}"
-                        FontSize="15"/>
+                        FontSize="15"
+                        Visibility="{Binding Subgroup, Converter={StaticResource NotZeroToVisibilityConverter}}"/>
                 </StackPanel>
                 <StackPanel
-                    Grid.Column="5"
+                    Grid.Column="4"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Orientation="Vertical"
@@ -121,6 +98,52 @@
                         Margin="0,-5,0,0"
                         Foreground="{DynamicResource FadeForegroundColor}"
                         FontSize="15"/>
+                </StackPanel>
+                <StackPanel
+                    Grid.Column="11"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <Button
+                        Content="&#xf304;"
+                        FontFamily="{StaticResource FontAwesome}"
+                        FontSize="20"
+                        Style="{StaticResource SmallButtonStyle}"
+                        Foreground="{DynamicResource ForegroundColor}"
+                        Command="{Binding DataContext.EditLoadItemCommand,
+                                          ElementName=ThisLoadDistributionView}"
+                        CommandParameter="{Binding }"/>
+                    <Button
+                        Content="&#xf2ed;"
+                        Style="{StaticResource SmallButtonStyle}"
+                        FontFamily="{StaticResource FontAwesome}"
+                        FontSize="20"
+                        Foreground="{DynamicResource FadeForegroundColor}"
+                        Command="{Binding DataContext.DeleteLoadItemCommand,
+                                          ElementName=ThisLoadDistributionView}"
+                        CommandParameter="{Binding }"
+                        Margin="15,0,0,0"/>
+                    <Button
+                        FontFamily="{StaticResource FontAwesome}"
+                        FontSize="21"
+                        Foreground="{DynamicResource FadeForegroundColor}"
+                        Command="{Binding DataContext.MoveLoadItemCommand,
+                                          ElementName=ThisLoadDistributionView}"
+                        CommandParameter="{Binding }"
+                        Margin="15,0,0,0">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource SmallButtonStyle}">
+                                <Setter Property="Content" Value="&#xf0ab;"/>
+                                <Style.Triggers>
+                                    <DataTrigger
+                                        Binding="{Binding Teacher}"
+                                        Value="{x:Null}">
+                                        <Setter Property="Content" Value="&#xf0aa;"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
                 </StackPanel>
             </Grid>
         </DataTemplate>
@@ -151,6 +174,16 @@
     <StackPanel
         HorizontalAlignment="Right"
         Orientation="Horizontal">
+        <controls:IconButton
+            ClipToBounds="False"
+            Icon="&#xf067;"
+            Text="Додати"
+            Foreground="{DynamicResource FadeForegroundColor}"
+            Margin="10,0"
+            Width="200"
+            FontSize="8"
+            Style="{StaticResource RoundedButtonStyle}"
+            Command="{Binding AddLoadItemCommand}"/>
         <controls:IconButton
             ClipToBounds="False"
             Icon="&#xf01e;"
@@ -337,13 +370,6 @@
                             <StackPanel Orientation="Vertical"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemContainerStyle>
-                        <Style>
-                            <Setter
-                                Property="helpers:Attach.InputBindings" 
-                                Value="{StaticResource TeacherLoadInputCollection}"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
                 </ItemsControl>
             </ScrollViewer>
             <StackPanel
@@ -519,13 +545,6 @@
                                 Orientation="Vertical"/>
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemContainerStyle>
-                        <Style>
-                            <Setter
-                                Property="helpers:Attach.InputBindings"
-                                Value="{StaticResource UndistributedLoadItemsInputCollection}"/>
-                        </Style>
-                    </ItemsControl.ItemContainerStyle>
                 </ItemsControl>
             </ScrollViewer>
             <StackPanel

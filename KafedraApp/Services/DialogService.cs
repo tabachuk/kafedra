@@ -123,6 +123,19 @@ namespace KafedraApp.Services
 			return result;
 		}
 
+		public async Task<LoadItem> ShowLoadItemForm(LoadItem loadItem = null)
+		{
+			if (!CanShowDialog)
+				return null;
+
+			var popup = new LoadItemPopup(loadItem);
+
+			Push(popup);
+			var result = await popup.Result;
+			Pop(popup);
+			return result;
+		}
+
 		public async Task<Group> ShowGroupForm(Group group = null)
 		{
 			if (!CanShowDialog)

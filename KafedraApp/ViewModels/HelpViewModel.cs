@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KafedraApp.ViewModels
 {
-	public class HelpViewModel : BindableBase
+	public class HelpViewModel : ViewModelBase
 	{
 	}
 }
