@@ -124,6 +124,7 @@
     <Compile Include="Converters\PercentConverter.cs" />
     <Compile Include="Converters\PercentMultiConverter.cs" />
     <Compile Include="Dtos\LoadItemDto.cs" />
+    <Compile Include="Dtos\TeacherDto.cs" />
     <Compile Include="Extensions\ExcelExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
     <Compile Include="Extensions\SerializationExtensions.cs" />
@@ -168,6 +169,8 @@
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Validators\Contracts\ILoadItemValidator.cs" />
+    <Compile Include="Validators\Contracts\ITeacherValidator.cs" />
+    <Compile Include="Validators\TeacherValidator.cs" />
     <Compile Include="Validators\LoadItemValidator.cs" />
     <Compile Include="ViewModels\AcademicStatusesViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

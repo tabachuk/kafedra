@@ -1,5 +1,7 @@
 ﻿using KafedraApp.Commands;
+using KafedraApp.Dtos;
 using KafedraApp.Models;
+using KafedraApp.Validators;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
@@ -7,12 +9,15 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using Container = KafedraApp.Helpers.Container;
 
 namespace KafedraApp.Popups
 {
 	public partial class TeacherPopup : INotifyPropertyChanged
 	{
 		#region Fields
+
+		private readonly ITeacherValidator _teacherValidator;
 
 		private readonly TaskCompletionSource<Teacher> _tcs
 			= new TaskCompletionSource<Teacher>();
@@ -21,16 +26,9 @@ namespace KafedraApp.Popups
 
 		#region Properties
 
-		public Teacher Teacher { get; set; }
+		public TeacherDto TeacherDto { get; set; }
 
 		public Task<Teacher> Result => _tcs.Task;
-
-		private string _rateStr;
-		public string RateStr
-		{
-			get => _rateStr?.Replace(',', '.');
-			set => SetProperty(ref _rateStr, value);
-		}
 
 		public bool IsEditMode { get; }
 
@@ -66,10 +64,11 @@ namespace KafedraApp.Popups
 
 		public TeacherPopup(Teacher teacher = null)
 		{
+			_teacherValidator = Container.Resolve<ITeacherValidator>();
+
 			IsEditMode = teacher != null;
-			Teacher = teacher ?? new Teacher { Rate = 1 };
-			RateStr = Teacher.Rate.ToString(CultureInfo.InvariantCulture);
-			SetResultCommand = new DelegateCommand<Teacher>(SetResult);
+			TeacherDto = new TeacherDto(teacher);
+			SetResultCommand = new DelegateCommand<TeacherDto>(SetResult);
 
 			InitializeComponent();
 		}
@@ -86,37 +85,19 @@ namespace KafedraApp.Popups
 			BeginStoryboard(anim);
 		}
 
-		private void SetResult(Teacher teacher)
+		private void SetResult(TeacherDto teacherDto)
 		{
 			if (IsBusy)
 				return;
 			IsBusy = true;
 
-			string error = null;
+			Teacher teacher = null;
 
-			if (teacher != null)
+			if (teacherDto != null)
 			{
-				if (string.IsNullOrWhiteSpace(RateStr))
-				{
-					Error = "Вкажіть ставку";
-					IsBusy = false;
-					return;
-				}
+				teacher = _teacherValidator.Validate(teacherDto, out string error);
 
-				if (!float.TryParse(
-					RateStr,
-					NumberStyles.Any,
-					CultureInfo.InvariantCulture,
-					out float rate))
-				{
-					Error = "Невірний формат ставки";
-					IsBusy = false;
-					return;
-				}
-
-				teacher.Rate = rate;
-
-				if (!teacher.IsValid(out error))
+				if (teacher == null)
 				{
 					Error = error;
 					IsBusy = false;

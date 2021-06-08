@@ -147,7 +147,7 @@
             <Grid
                 Grid.Row="1"
                 Margin="20,5"
-                DataContext="{Binding Teacher}">
+                DataContext="{Binding TeacherDto}">
                 <Grid.Resources>
                     <Style TargetType="Label">
                         <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
@@ -217,7 +217,7 @@
                 <TextBox
                     Grid.Row="4"
                     Grid.Column="1"
-                    Text="{Binding DataContext.RateStr, ElementName=ThisTeacherPopup}"
+                    Text="{Binding Rate}"
                     Margin="5"/>
             </Grid>
 
@@ -244,7 +244,7 @@
                         Margin="10"
                         HorizontalContentAlignment="Center"
                         Command="{Binding SetResultCommand}"
-                        CommandParameter="{Binding Teacher}"
+                        CommandParameter="{Binding TeacherDto}"
                         Foreground="{DynamicResource ForegroundColor}"
                         Style="{StaticResource RoundedButtonStyle}"/>
                 </Border>

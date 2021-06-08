@@ -63,9 +63,6 @@ namespace KafedraApp.Models
 		[JsonIgnore]
 		public int SubjectsSpecializesInCount => SubjectsSpecializesIn?.Count ?? 0;
 
-		[JsonIgnore]
-		public List<Subject> SubjectsTeaches { get; set; }
-
 		private ObservableCollection<LoadItem> _loadItems;
 		[JsonIgnore]
 		public ObservableCollection<LoadItem> LoadItems
@@ -89,36 +86,6 @@ namespace KafedraApp.Models
 
 		#region Methods
 
-		public bool IsValid(out string error)
-		{
-			if (string.IsNullOrWhiteSpace(LastName))
-			{
-				error = "Вкажіть прізвище";
-				return false;
-			}
-
-			if (string.IsNullOrWhiteSpace(FirstName))
-			{
-				error = "Вкажіть ім'я";
-				return false;
-			}
-
-			if (string.IsNullOrWhiteSpace(MiddleName))
-			{
-				error = "Вкажіть по батькові";
-				return false;
-			}
-
-			if (Rate < 0 || Rate > 2)
-			{
-				error = "Вказана некоректна ставка";
-				return false;
-			}
-
-			error = null;
-			return true;
-		}
-
 		public object Clone()
 		{
 			return new Teacher()
@@ -131,8 +98,6 @@ namespace KafedraApp.Models
 				Rate = Rate,
 				SubjectsSpecializesIn = SubjectsSpecializesIn == null ?
 					null : new ObservableCollection<string>(SubjectsSpecializesIn),
-				SubjectsTeaches = SubjectsTeaches == null ?
-					null : new List<Subject>(SubjectsTeaches),
 				LoadItems = LoadItems == null ?
 					null : new ObservableCollection<LoadItem>(LoadItems)
 			};

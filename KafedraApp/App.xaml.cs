@@ -186,6 +186,7 @@ namespace KafedraApp
 
 			// Validators.
 			Container.RegisterSingleton<ILoadItemValidator, LoadItemValidator>();
+			Container.RegisterSingleton<ITeacherValidator, TeacherValidator>();
 		}
 
 		protected override void OnExit(ExitEventArgs e)
