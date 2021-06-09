@@ -123,6 +123,7 @@
     <Compile Include="Converters\ZeroToVisibilityConverter.cs" />
     <Compile Include="Converters\PercentConverter.cs" />
     <Compile Include="Converters\PercentMultiConverter.cs" />
+    <Compile Include="Dtos\GroupDto.cs" />
     <Compile Include="Dtos\LoadItemDto.cs" />
     <Compile Include="Dtos\TeacherDto.cs" />
     <Compile Include="Extensions\ExcelExtensions.cs" />
@@ -168,8 +169,10 @@
     <Compile Include="Services\Contracts\IDialogService.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\DataService.cs" />
+    <Compile Include="Validators\Contracts\IGroupValidator.cs" />
     <Compile Include="Validators\Contracts\ILoadItemValidator.cs" />
     <Compile Include="Validators\Contracts\ITeacherValidator.cs" />
+    <Compile Include="Validators\GroupValidator.cs" />
     <Compile Include="Validators\TeacherValidator.cs" />
     <Compile Include="Validators\LoadItemValidator.cs" />
     <Compile Include="ViewModels\AcademicStatusesViewModel.cs" />

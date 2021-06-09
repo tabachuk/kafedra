@@ -1,17 +1,22 @@
 ﻿using KafedraApp.Commands;
+using KafedraApp.Dtos;
 using KafedraApp.Models;
+using KafedraApp.Validators;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using Container = KafedraApp.Helpers.Container;
 
 namespace KafedraApp.Popups
 {
 	public partial class GroupPopup : INotifyPropertyChanged
 	{
 		#region Fields
+
+		private readonly IGroupValidator _groupValidator;
 
 		private readonly TaskCompletionSource<Group> _tcs
 			= new TaskCompletionSource<Group>();
@@ -20,16 +25,9 @@ namespace KafedraApp.Popups
 
 		#region Properties
 
-		public Group Group { get; set; }
+		public GroupDto GroupDto { get; set; }
 
 		public Task<Group> Result => _tcs.Task;
-
-		private string _rateStr;
-		public string RateStr
-		{
-			get => _rateStr;
-			set => SetProperty(ref _rateStr, value);
-		}
 
 		public bool IsEditMode { get; }
 
@@ -65,9 +63,18 @@ namespace KafedraApp.Popups
 
 		public GroupPopup(Group group = null)
 		{
+			_groupValidator = Container.Resolve<IGroupValidator>();
+
 			IsEditMode = group != null;
-			Group = group ?? new Group { SubgroupsCount = 1, Course = 1 };
-			SetResultCommand = new DelegateCommand<Group>(SetResult);
+			GroupDto = new GroupDto(group);
+
+			if (group == null)
+			{
+				GroupDto.Course = 1;
+				GroupDto.SubgroupsCount = 1;
+			}
+
+			SetResultCommand = new DelegateCommand<GroupDto>(SetResult);
 
 			InitializeComponent();
 		}
@@ -84,13 +91,25 @@ namespace KafedraApp.Popups
 			BeginStoryboard(anim);
 		}
 
-		private void SetResult(Group group)
+		private void SetResult(GroupDto groupDto)
 		{
 			if (IsBusy)
 				return;
 			IsBusy = true;
 
-			string error = null;
+			Group group = null;
+
+			if (groupDto != null)
+			{
+				group = _groupValidator.Validate(groupDto, out string error);
+
+				if (group == null)
+				{
+					Error = error;
+					IsBusy = false;
+					return;
+				}
+			}
 
 			var anim = Resources["PopAnimation"] as Storyboard;
 

@@ -12,13 +12,33 @@ namespace KafedraApp.Dtos
 
 		public string Id { get; set; }
 
-		public string LastName { get; set; }
+		private string _lastName;
+		public string LastName
+		{
+			get => _lastName;
+			set => SetProperty(ref _lastName, value);
+		}
 
-		public string FirstName { get; set; }
+		private string _firstName;
+		public string FirstName
+		{
+			get => _firstName;
+			set => SetProperty(ref _firstName, value);
+		}
 
-		public string MiddleName { get; set; }
+		private string _middleName;
+		public string MiddleName
+		{
+			get => _middleName;
+			set => SetProperty(ref _middleName, value);
+		}
 
-		public AcademicStatus AcademicStatus { get; set; }
+		private AcademicStatus _academicStatus;
+		public AcademicStatus AcademicStatus
+		{
+			get => _academicStatus;
+			set => SetProperty(ref _academicStatus, value);
+		}
 
 		private string _rate;
 		public string Rate

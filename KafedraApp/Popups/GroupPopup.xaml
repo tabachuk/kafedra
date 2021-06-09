@@ -146,7 +146,7 @@
             <Grid
                 Grid.Row="1"
                 Margin="20,5"
-                DataContext="{Binding Group}">
+                DataContext="{Binding GroupDto}">
                 <Grid.Resources>
                     <Style TargetType="Label">
                         <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
@@ -194,20 +194,41 @@
                     Grid.Row="2"
                     Content="Курс:"
                     VerticalContentAlignment="Center"/>
-                <TextBox
+                <ComboBox
                     Grid.Row="2"
                     Grid.Column="1"
-                    Text="{Binding Course}"
-                    Margin="5"/>
+                    SelectedItem="{Binding Course}"
+                    Margin="5">
+                    <ComboBox.Items>
+                        <System:Double>1</System:Double>
+                        <System:Double>2</System:Double>
+                        <System:Double>3</System:Double>
+                        <System:Double>4</System:Double>
+                        <System:Double>5</System:Double>
+                        <System:Double>6</System:Double>
+                        <System:Double>7</System:Double>
+                        <System:Double>8</System:Double>
+                        <System:Double>9</System:Double>
+                        <System:Double>10</System:Double>
+                    </ComboBox.Items>
+                </ComboBox>
                 <Label
                     Grid.Row="3"
                     Content="К-сть підгруп:"
                     VerticalContentAlignment="Center"/>
-                <TextBox
+                <ComboBox
                     Grid.Row="3"
                     Grid.Column="1"
-                    Text="{Binding SubgroupsCount}"
-                    Margin="5"/>
+                    SelectedItem="{Binding SubgroupsCount}"
+                    Margin="5">
+                    <ComboBox.Items>
+                        <System:Int32>1</System:Int32>
+                        <System:Int32>2</System:Int32>
+                        <System:Int32>3</System:Int32>
+                        <System:Int32>4</System:Int32>
+                        <System:Int32>5</System:Int32>
+                    </ComboBox.Items>
+                </ComboBox>
                 <Label
                     Grid.Row="4"
                     Content="К-сть студентів:"
@@ -242,7 +263,7 @@
                         Margin="10"
                         HorizontalContentAlignment="Center"
                         Command="{Binding SetResultCommand}"
-                        CommandParameter="{Binding Group}"
+                        CommandParameter="{Binding GroupDto}"
                         Foreground="{DynamicResource ForegroundColor}"
                         Style="{StaticResource RoundedButtonStyle}"/>
                 </Border>
