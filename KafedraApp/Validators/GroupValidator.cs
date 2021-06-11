@@ -26,7 +26,7 @@ namespace KafedraApp.Validators
 				return null;
 			}
 
-			if (int.TryParse(
+			if (!int.TryParse(
 				groupDto.StudentsCount,
 				NumberStyles.Any,
 				CultureInfo.InvariantCulture,

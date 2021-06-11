@@ -19,6 +19,8 @@ namespace KafedraApp.Models
 	[CollectionName("Subjects")]
 	public class Subject : BaseModel, ICloneable
 	{
+		public const double HoursPerCredit = 30;
+
 		[ExcelColumn("Предмет")]
 		public string Name { get; set; }
 
@@ -34,11 +36,9 @@ namespace KafedraApp.Models
 		[ExcelColumn("Кредити")]
 		public double Credits { get; set; }
 
-		[ExcelColumn("Всього")]
-		public double TotalHours { get; set; }
+		public double TotalHours => Credits * HoursPerCredit;
 
-		[ExcelColumn("Всього (аудиторних)")]
-		public double TotalClassroomHours { get; set; }
+		public double TotalClassroomHours => LectureHours + PracticalWorkHours + LaboratoryWorkHours;
 
 		[ExcelColumn("Лекції")]
 		public double LectureHours { get; set; }
@@ -91,8 +91,6 @@ namespace KafedraApp.Models
 				Course = Course,
 				Semester = Semester,
 				Credits = Credits,
-				TotalHours = TotalHours,
-				TotalClassroomHours = TotalClassroomHours,
 				LectureHours = LectureHours,
 				PracticalWorkHours = PracticalWorkHours,
 				LaboratoryWorkHours = LaboratoryWorkHours,

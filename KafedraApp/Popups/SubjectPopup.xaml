@@ -146,11 +146,11 @@
 
             <ScrollViewer
                 Grid.Row="1"
-                Height="400"
+                Height="425"
                 VerticalScrollBarVisibility="Auto">
                 <Grid
                     Margin="20,5"
-                    DataContext="{Binding Subject}">
+                    DataContext="{Binding SubjectDto}">
                     <Grid.Resources>
                         <Style TargetType="Label">
                             <Setter Property="Foreground" Value="{DynamicResource ForegroundColor}"/>
@@ -166,8 +166,6 @@
                         </ObjectDataProvider>
                     </Grid.Resources>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
@@ -195,29 +193,49 @@
                         Grid.Row="1"
                         Content="Спеціальність:"
                         VerticalContentAlignment="Center"/>
-                    <TextBox
+                    <ComboBox
                         Grid.Row="1"
                         Grid.Column="1"
-                        Text="{Binding Specialty}"
+                        IsEditable="True"
+                        SelectedItem="{Binding Specialty}"
+                        ItemsSource="{Binding Specialties, ElementName=ThisSubjectPopup}"
                         Margin="5"/>
                     <Label
                         Grid.Row="2"
                         Content="Курс:"
                         VerticalContentAlignment="Center"/>
-                    <TextBox
+                    <ComboBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        Text="{Binding Course}"
-                        Margin="5"/>
+                        SelectedItem="{Binding Course}"
+                        Margin="5">
+                        <ComboBox.Items>
+                            <System:Double>1</System:Double>
+                            <System:Double>2</System:Double>
+                            <System:Double>3</System:Double>
+                            <System:Double>4</System:Double>
+                            <System:Double>5</System:Double>
+                            <System:Double>6</System:Double>
+                            <System:Double>7</System:Double>
+                            <System:Double>8</System:Double>
+                            <System:Double>9</System:Double>
+                            <System:Double>10</System:Double>
+                        </ComboBox.Items>
+                    </ComboBox>
                     <Label
                         Grid.Row="3"
                         Content="Семестр:"
                         VerticalContentAlignment="Center"/>
-                    <TextBox
+                    <ComboBox
                         Grid.Row="3"
                         Grid.Column="1"
-                        Text="{Binding Semester}"
-                        Margin="5"/>
+                        SelectedItem="{Binding Semester}"
+                        Margin="5">
+                        <ComboBox.Items>
+                            <System:Double>1</System:Double>
+                            <System:Double>2</System:Double>
+                        </ComboBox.Items>
+                    </ComboBox>
                     <Label
                         Grid.Row="4"
                         Content="Кредити:"
@@ -225,59 +243,41 @@
                     <TextBox
                         Grid.Row="4"
                         Grid.Column="1"
-                        Text="{Binding Credits}"
+                        Text="{Binding CreditsStr}"
                         Margin="5"/>
                     <Label
                         Grid.Row="5"
-                        Content="Всього:"
-                        VerticalContentAlignment="Center"/>
-                    <TextBox
-                        Grid.Row="5"
-                        Grid.Column="1"
-                        Text="{Binding TotalHours}"
-                        Margin="5"/>
-                    <Label
-                        Grid.Row="6"
-                        Content="Всього (ауд.):"
-                        VerticalContentAlignment="Center"/>
-                    <TextBox
-                        Grid.Row="6"
-                        Grid.Column="1"
-                        Text="{Binding TotalClassroomHours}"
-                        Margin="5"/>
-                    <Label
-                        Grid.Row="7"
                         Content="Лекції:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="7"
+                        Grid.Row="5"
                         Grid.Column="1"
-                        Text="{Binding LectureHours}"
+                        Text="{Binding LectureHoursStr}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="8"
+                        Grid.Row="6"
                         Content="Практичні:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="8"
+                        Grid.Row="6"
                         Grid.Column="1"
-                        Text="{Binding PracticalWorkHours}"
+                        Text="{Binding PracticalWorkHoursStr}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="9"
+                        Grid.Row="7"
                         Content="Лабораторні:"
                         VerticalContentAlignment="Center"/>
                     <TextBox
-                        Grid.Row="9"
+                        Grid.Row="7"
                         Grid.Column="1"
-                        Text="{Binding LaboratoryWorkHours}"
+                        Text="{Binding LaboratoryWorkHoursStr}"
                         Margin="5"/>
                     <Label
-                        Grid.Row="10"
+                        Grid.Row="8"
                         Content="Форма контролю:"
                         VerticalContentAlignment="Center"/>
                     <ComboBox
-                        Grid.Row="10"
+                        Grid.Row="8"
                         Grid.Column="1"
                         SelectedItem="{Binding FinalControlFormType}"
                         ItemsSource="{Binding Source={StaticResource DataFromEnum}}"
@@ -308,7 +308,7 @@
                         Margin="10"
                         HorizontalContentAlignment="Center"
                         Command="{Binding SetResultCommand}"
-                        CommandParameter="{Binding Subject}"
+                        CommandParameter="{Binding SubjectDto}"
                         Foreground="{DynamicResource ForegroundColor}"
                         Style="{StaticResource RoundedButtonStyle}"/>
                 </Border>

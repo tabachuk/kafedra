@@ -1,17 +1,25 @@
 ﻿using KafedraApp.Commands;
+using KafedraApp.Dtos;
 using KafedraApp.Models;
+using KafedraApp.Services;
+using KafedraApp.Validators;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
+using Container = KafedraApp.Helpers.Container;
 
 namespace KafedraApp.Popups
 {
 	public partial class SubjectPopup : INotifyPropertyChanged
 	{
 		#region Fields
+
+		private readonly IDataService _dataService;
+		private readonly ISubjectValidator _subjectValidator;
 
 		private readonly TaskCompletionSource<Subject> _tcs
 			= new TaskCompletionSource<Subject>();
@@ -20,7 +28,7 @@ namespace KafedraApp.Popups
 
 		#region Properties
 
-		public Subject Subject { get; set; }
+		public SubjectDto SubjectDto { get; set; }
 
 		public Task<Subject> Result => _tcs.Task;
 
@@ -40,6 +48,8 @@ namespace KafedraApp.Popups
 			private set => SetProperty(ref _isBusy, value);
 		}
 
+		public List<string> Specialties { get; set; }
+
 		#endregion
 
 		#region Events
@@ -58,16 +68,33 @@ namespace KafedraApp.Popups
 
 		public SubjectPopup(Subject subject = null)
 		{
-			IsEditMode = subject != null;
-			Subject = subject ?? new Subject();
-			SetResultCommand = new DelegateCommand<Subject>(SetResult);
+			_dataService = Container.Resolve<IDataService>();
+			_subjectValidator = Container.Resolve<ISubjectValidator>();
 
+			IsEditMode = subject != null;
+			SubjectDto = new SubjectDto(subject);
+
+			if (subject == null)
+			{
+				SubjectDto.Course = SubjectDto.Semester = 1;
+			}
+
+			SetResultCommand = new DelegateCommand<SubjectDto>(SetResult);
+
+			InitSpecialties();
 			InitializeComponent();
 		}
 
 		#endregion
 
 		#region Methods
+
+		private void InitSpecialties()
+		{
+			Specialties = _dataService.Groups?
+				.Select(x => x.Specialty)?
+				.Distinct()?.ToList();
+		}
 
 		public override void EndInit()
 		{
@@ -77,43 +104,25 @@ namespace KafedraApp.Popups
 			BeginStoryboard(anim);
 		}
 
-		private void SetResult(Subject subject)
+		private void SetResult(SubjectDto subjectDto)
 		{
 			if (IsBusy)
 				return;
 			IsBusy = true;
 
-			string error = null;
+			Subject subject = null;
 
-			//if (subject != null)
-			//{
-			//	if (string.IsNullOrWhiteSpace(RateStr))
-			//	{
-			//		Error = "Вкажіть ставку";
-			//		IsBusy = false;
-			//		return;
-			//	}
+			if (subjectDto != null)
+			{
+				subject = _subjectValidator.Validate(subjectDto, out string error);
 
-			//	if (!float.TryParse(
-			//			RateStr,
-			//			NumberStyles.Any,
-			//			CultureInfo.InvariantCulture,
-			//			out float rate))
-			//	{
-			//		Error = "Невірний формат ставки";
-			//		IsBusy = false;
-			//		return;
-			//	}
-
-			//	subject.Rate = rate;
-
-			//	if (!subject.IsValid(out error))
-			//	{
-			//		Error = error;
-			//		IsBusy = false;
-			//		return;
-			//	}
-			//}
+				if (subject == null)
+				{
+					Error = error;
+					IsBusy = false;
+					return;
+				}
+			}
 
 			var anim = Resources["PopAnimation"] as Storyboard;
 

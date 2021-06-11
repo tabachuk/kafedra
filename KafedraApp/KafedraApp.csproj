@@ -125,6 +125,7 @@
     <Compile Include="Converters\PercentMultiConverter.cs" />
     <Compile Include="Dtos\GroupDto.cs" />
     <Compile Include="Dtos\LoadItemDto.cs" />
+    <Compile Include="Dtos\SubjectDto.cs" />
     <Compile Include="Dtos\TeacherDto.cs" />
     <Compile Include="Extensions\ExcelExtensions.cs" />
     <Compile Include="Extensions\IEnumerableExtensions.cs" />
@@ -171,8 +172,10 @@
     <Compile Include="Services\DataService.cs" />
     <Compile Include="Validators\Contracts\IGroupValidator.cs" />
     <Compile Include="Validators\Contracts\ILoadItemValidator.cs" />
+    <Compile Include="Validators\Contracts\ISubjectValidator.cs" />
     <Compile Include="Validators\Contracts\ITeacherValidator.cs" />
     <Compile Include="Validators\GroupValidator.cs" />
+    <Compile Include="Validators\SubjectValidator.cs" />
     <Compile Include="Validators\TeacherValidator.cs" />
     <Compile Include="Validators\LoadItemValidator.cs" />
     <Compile Include="ViewModels\AcademicStatusesViewModel.cs" />
