@@ -35,10 +35,10 @@
         VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="200"/>
-                <ColumnDefinition MinWidth="200"/>
-                <ColumnDefinition MinWidth="200"/>
-                <ColumnDefinition MinWidth="200"/>
+                <ColumnDefinition MinWidth="300"/>
+                <ColumnDefinition MinWidth="300"/>
+                <ColumnDefinition MinWidth="300"/>
+                <ColumnDefinition MinWidth="300"/>
             </Grid.ColumnDefinitions>
             <local:AcademicStatusView
                 Grid.Column="0"
