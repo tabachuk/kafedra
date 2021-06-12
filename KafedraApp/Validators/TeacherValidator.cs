@@ -32,35 +32,35 @@ namespace KafedraApp.Validators
 				return null;
 			}
 
-			if (string.IsNullOrWhiteSpace(teacherDto.Rate))
+			if (string.IsNullOrWhiteSpace(teacherDto.RateStr))
 			{
 				error = "Вкажіть ставку";
 				return null;
 			}
 
 			if (!float.TryParse(
-				teacherDto.Rate,
+				teacherDto.RateStr,
 				NumberStyles.Any,
 				CultureInfo.InvariantCulture,
-				out float rate))
+				out teacherDto.Rate))
 			{
 				error = "Невірний формат ставки";
 				return null;
 			}
 
-			if (rate < 0 || rate > 2)
+			if (teacherDto.Rate < 0 || teacherDto.Rate > 2)
 			{
 				error = "Вказана некоректна ставка";
 				return null;
 			}
 
-			Teacher teacher = CreateTeacherFromDto(teacherDto, rate);
+			Teacher teacher = CreateTeacherFromDto(teacherDto);
 
 			error = null;
 			return teacher;
 		}
 
-		private Teacher CreateTeacherFromDto(TeacherDto teacherDto, float rate)
+		private Teacher CreateTeacherFromDto(TeacherDto teacherDto)
 		{
 			var teacher = new Teacher
 			{
@@ -69,7 +69,7 @@ namespace KafedraApp.Validators
 				FirstName = teacherDto.FirstName,
 				MiddleName = teacherDto.MiddleName,
 				AcademicStatus = teacherDto.AcademicStatus,
-				Rate = rate
+				Rate = teacherDto.Rate
 			};
 
 			if (teacherDto.SubjectsSpecializesIn?.Any() == true)

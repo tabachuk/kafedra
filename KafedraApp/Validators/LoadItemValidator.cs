@@ -26,36 +26,36 @@ namespace KafedraApp.Validators
 				return null;
 			}
 
-			if (string.IsNullOrWhiteSpace(loadItemDto.Hours))
+			if (string.IsNullOrWhiteSpace(loadItemDto.HoursStr))
 			{
 				error = "Вкажіть кількість годин";
 				return null;
 			}
 
 			if (!double.TryParse(
-					loadItemDto.Hours,
-					NumberStyles.Any,
-					CultureInfo.InvariantCulture,
-						out double hours)
-				|| hours <= 0)
+				loadItemDto.HoursStr,
+				NumberStyles.Any,
+				CultureInfo.InvariantCulture,
+				out loadItemDto.Hours)
+				|| loadItemDto.Hours <= 0)
 			{
 				error = "Вказана некоректна кількість годин";
 				return null;
 			}
 
-			LoadItem loadItem = CreateLoadItemFromDto(loadItemDto, hours);
+			LoadItem loadItem = CreateLoadItemFromDto(loadItemDto);
 
 			error = null;
 			return loadItem;
 		}
 
-		private LoadItem CreateLoadItemFromDto(LoadItemDto loadItemDto, double hours)
+		private LoadItem CreateLoadItemFromDto(LoadItemDto loadItemDto)
 		{
 			var loadItem = new LoadItem
 			{
 				Type = loadItemDto.Type,
 				Subject = loadItemDto.Subject,
-				Hours = hours,
+				Hours = loadItemDto.Hours,
 				Group = loadItemDto.Group,
 				Semester = loadItemDto.Semester
 			};

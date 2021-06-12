@@ -40,11 +40,12 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _academicStatus, value);
 		}
 
-		private string _rate;
-		public string Rate
+		public float Rate;
+		private string _rateStr;
+		public string RateStr
 		{
-			get => _rate?.Replace(',', '.');
-			set => SetProperty(ref _rate, value);
+			get => _rateStr?.Replace(',', '.');
+			set => SetProperty(ref _rateStr, value);
 		}
 
 		public List<string> SubjectsSpecializesIn { get; set; }
@@ -70,7 +71,7 @@ namespace KafedraApp.Dtos
 			FirstName = teacher.FirstName;
 			MiddleName = teacher.MiddleName;
 			AcademicStatus = teacher.AcademicStatus;
-			Rate = teacher.Rate.ToString(CultureInfo.InvariantCulture);
+			RateStr = teacher.Rate.ToString(CultureInfo.InvariantCulture);
 
 			if (teacher.SubjectsSpecializesIn?.Any() == true)
 			{

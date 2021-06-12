@@ -31,11 +31,12 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _type, value);
 		}
 
-		private string _hours;
-		public string Hours
+		public double Hours;
+		private string _hoursStr;
+		public string HoursStr
 		{
-			get => _hours?.Replace(',', '.');
-			set => SetProperty(ref _hours, value);
+			get => _hoursStr?.Replace(',', '.');
+			set => SetProperty(ref _hoursStr, value);
 		}
 
 		private Group _group;
@@ -83,7 +84,7 @@ namespace KafedraApp.Dtos
 			Id = loadItem.Id;
 			Subject = loadItem.Subject;
 			Type = loadItem.Type;
-			Hours = loadItem.Hours.ToString(CultureInfo.InvariantCulture);
+			HoursStr = loadItem.Hours.ToString(CultureInfo.InvariantCulture);
 			Group = loadItem.Group;
 			Subgroup = loadItem.Subgroup == 0 ?
 				NoSubgroupText : loadItem.Subgroup.ToString();

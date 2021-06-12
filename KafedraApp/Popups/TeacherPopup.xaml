@@ -217,7 +217,7 @@
                 <TextBox
                     Grid.Row="4"
                     Grid.Column="1"
-                    Text="{Binding Rate}"
+                    Text="{Binding RateStr}"
                     Margin="5"/>
             </Grid>
 

@@ -37,11 +37,12 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _subgroupsCount, value);
 		}
 
-		private string _studentsCount;
-		public string StudentsCount
+		public int StudentsCount;
+		private string _studentsCountStr;
+		public string StudentsCountStr
 		{
-			get => _studentsCount;
-			set => SetProperty(ref _studentsCount, value);
+			get => _studentsCountStr;
+			set => SetProperty(ref _studentsCountStr, value);
 		}
 
 		#endregion
@@ -63,7 +64,7 @@ namespace KafedraApp.Dtos
 			Specialty = group.Specialty;
 			Course = group.Course;
 			SubgroupsCount = group.SubgroupsCount;
-			StudentsCount = group.StudentsCount.ToString();
+			StudentsCountStr = group.StudentsCount.ToString();
 		}
 
 		#endregion

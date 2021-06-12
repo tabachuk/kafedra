@@ -1,5 +1,6 @@
 ﻿using KafedraApp.Helpers;
 using KafedraApp.Models;
+using System.Globalization;
 
 namespace KafedraApp.Dtos
 {
@@ -95,10 +96,10 @@ namespace KafedraApp.Dtos
 			Specialty = subject.Specialty;
 			Course = subject.Course;
 			Semester = subject.Semester;
-			CreditsStr = subject.Credits.ToString();
-			LectureHoursStr = subject.LectureHours.ToString();
-			PracticalWorkHoursStr = subject.PracticalWorkHours.ToString();
-			LaboratoryWorkHoursStr = subject.LaboratoryWorkHours.ToString();
+			CreditsStr = subject.Credits.ToString(CultureInfo.InvariantCulture);
+			LectureHoursStr = subject.LectureHours.ToString(CultureInfo.InvariantCulture);
+			PracticalWorkHoursStr = subject.PracticalWorkHours.ToString(CultureInfo.InvariantCulture);
+			LaboratoryWorkHoursStr = subject.LaboratoryWorkHours.ToString(CultureInfo.InvariantCulture);
 			FinalControlFormType = subject.FinalControlFormType;
 		}
 

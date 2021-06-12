@@ -212,7 +212,7 @@
                     <TextBox
                         Grid.Row="2"
                         Grid.Column="1"
-                        Text="{Binding Hours}"
+                        Text="{Binding HoursStr}"
                         Margin="5"/>
                     <Label
                         Grid.Row="3"

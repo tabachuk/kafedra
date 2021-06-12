@@ -20,35 +20,35 @@ namespace KafedraApp.Validators
 				return null;
 			}
 
-			if (string.IsNullOrWhiteSpace(groupDto.StudentsCount))
+			if (string.IsNullOrWhiteSpace(groupDto.StudentsCountStr))
 			{
 				error = "Вкажіть кількість студентів";
 				return null;
 			}
 
 			if (!int.TryParse(
-				groupDto.StudentsCount,
+				groupDto.StudentsCountStr,
 				NumberStyles.Any,
 				CultureInfo.InvariantCulture,
-				out int studentsCount))
+				out groupDto.StudentsCount))
 			{
 				error = "Невірний формат кількості студентів";
 				return null;
 			}
 
-			if (studentsCount < 1 || studentsCount > 50)
+			if (groupDto.StudentsCount < 1 || groupDto.StudentsCount > 50)
 			{
 				error = "Група повинна містити від 1 до 50 студентів";
 				return null;
 			}
 
-			Group group = CreateGroupFromDto(groupDto, studentsCount);
+			Group group = CreateGroupFromDto(groupDto);
 
 			error = null;
 			return group;
 		}
 
-		private Group CreateGroupFromDto(GroupDto groupDto, int studentsCount)
+		private Group CreateGroupFromDto(GroupDto groupDto)
 		{
 			var group = new Group
 			{
@@ -57,7 +57,7 @@ namespace KafedraApp.Validators
 				Specialty = groupDto.Specialty,
 				Course = groupDto.Course,
 				SubgroupsCount = groupDto.SubgroupsCount,
-				StudentsCount = studentsCount
+				StudentsCount = groupDto.StudentsCount
 			};
 
 			return group;
