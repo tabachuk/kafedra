@@ -199,7 +199,7 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         IsEditable="True"
-                        SelectedItem="{Binding Subject}"
+                        Text="{Binding Subject}"
                         ItemsSource="{Binding Subjects, ElementName=ThisLoadItemPopup}"
                         Visibility="{Binding IsSubjectsComboBoxVisible,
                                              Converter={StaticResource BooleanToVisibilityConverter},

@@ -197,7 +197,7 @@
                         Grid.Row="1"
                         Grid.Column="1"
                         IsEditable="True"
-                        SelectedItem="{Binding Specialty}"
+                        Text="{Binding Specialty}"
                         ItemsSource="{Binding Specialties, ElementName=ThisSubjectPopup}"
                         Margin="5"/>
                     <Label
