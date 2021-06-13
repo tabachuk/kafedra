@@ -23,8 +23,8 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _specialty, value);
 		}
 
-		private double _course;
-		public double Course
+		private int _course;
+		public int Course
 		{
 			get => _course;
 			set => SetProperty(ref _course, value);

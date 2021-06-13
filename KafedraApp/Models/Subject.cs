@@ -28,56 +28,67 @@ namespace KafedraApp.Models
 		public string Specialty { get; set; }
 
 		[ExcelColumn("Курс")]
-		public double Course { get; set; }
+		public int Course { get; set; }
 
+		private int _semester;
 		[ExcelColumn("Семестр")]
-		public double Semester { get; set; }
+		public int Semester
+		{
+			get => _semester;
+			set => _semester = CastSemesterTo1Or2(value);
+		}
 
 		[ExcelColumn("Кредити")]
 		public double Credits { get; set; }
 
 		public double TotalHours => Credits * HoursPerCredit;
 
-		public double TotalClassroomHours => LectureHours + PracticalWorkHours + LaboratoryWorkHours;
+		public int TotalClassroomHours => LectureHours + PracticalWorkHours + LaboratoryWorkHours;
 
 		[ExcelColumn("Лекції")]
-		public double LectureHours { get; set; }
+		public int LectureHours { get; set; }
 
 		[ExcelColumn("Практичні")]
-		public double PracticalWorkHours { get; set; }
+		public int PracticalWorkHours { get; set; }
 
 		[ExcelColumn("Лабораторні")]
-		public double LaboratoryWorkHours { get; set; }
+		public int LaboratoryWorkHours { get; set; }
 
 		public FinalControlFormType FinalControlFormType { get; set; }
 
-		private double _examSemester;
+		private int _examSemester;
 		[Obsolete]
 		[ExcelColumn("Екзамен")]
-		public double ExamSemester
+		public int ExamSemester
 		{
 			get => _examSemester;
 			set
 			{
-				_examSemester = value;
-
-				if (value > 0 && FinalControlFormType == FinalControlFormType.Undefined)
+				if (value > 0
+					&& FinalControlFormType == FinalControlFormType.Undefined)
+				{
 					FinalControlFormType = FinalControlFormType.Exam;
+				}
+
+				_examSemester = CastSemesterTo1Or2(value);
 			}
 		}
 
-		private double _testSemester;
+		private int _testSemester;
 		[Obsolete]
 		[ExcelColumn("Залік")]
-		public double TestSemester
+		public int TestSemester
 		{
 			get => _testSemester;
 			set
 			{
-				_testSemester = value;
-
-				if (value > 0 && FinalControlFormType == FinalControlFormType.Undefined)
+				if (value > 0
+					&& FinalControlFormType == FinalControlFormType.Undefined)
+				{
 					FinalControlFormType = FinalControlFormType.Test;
+				}
+
+				_testSemester = CastSemesterTo1Or2(value);
 			}
 		}
 
@@ -98,6 +109,11 @@ namespace KafedraApp.Models
 				TestSemester = TestSemester,
 				FinalControlFormType = FinalControlFormType
 			};
+		}
+
+		private int CastSemesterTo1Or2(int semester)
+		{
+			return 2 - (semester % 2);
 		}
 	}
 }

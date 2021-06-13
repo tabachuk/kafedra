@@ -461,7 +461,7 @@ namespace KafedraApp.Services
 			return loadItems;
 		}
 
-		private LoadItem GetLoadItem(Subject subject, LoadItemType type, double hours, Group group, double subgroup = 0)
+		private LoadItem GetLoadItem(Subject subject, LoadItemType type, double hours, Group group, int subgroup = 0)
 		{
 			return new LoadItem
 			{

@@ -24,15 +24,15 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _specialty, value);
 		}
 
-		private double _course;
-		public double Course
+		private int _course;
+		public int Course
 		{
 			get => _course;
 			set => SetProperty(ref _course, value);
 		}
 
-		private double _semester;
-		public double Semester
+		private int _semester;
+		public int Semester
 		{
 			get => _semester;
 			set => SetProperty(ref _semester, value);
@@ -46,7 +46,7 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _creditsStr, value);
 		}
 
-		public double LectureHours;
+		public int LectureHours;
 		private string _lectureHoursStr;
 		public string LectureHoursStr
 		{
@@ -54,7 +54,7 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _lectureHoursStr, value);
 		}
 
-		public double PracticalWorkHours;
+		public int PracticalWorkHours;
 		private string _practicalWorkHoursStr;
 		public string PracticalWorkHoursStr
 		{
@@ -62,7 +62,7 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _practicalWorkHoursStr, value);
 		}
 
-		public double LaboratoryWorkHours;
+		public int LaboratoryWorkHours;
 		private string _laboratoryWorkHoursStr;
 		public string LaboratoryWorkHoursStr
 		{

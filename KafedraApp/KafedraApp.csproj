@@ -133,7 +133,7 @@
     <Compile Include="Helpers\Attach.cs" />
     <Compile Include="Helpers\BindableBase.cs" />
     <Compile Include="Helpers\Container.cs" />
-    <Compile Include="Helpers\ExcelHelper.cs" />
+    <Compile Include="Helpers\ExcelReader.cs" />
     <Compile Include="Helpers\Watch.cs" />
     <Compile Include="Models\AcademicStatusInfo.cs" />
     <Compile Include="Models\ExcelLoadProgressChangedEventArgs.cs" />

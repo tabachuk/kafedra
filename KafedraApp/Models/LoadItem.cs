@@ -56,9 +56,9 @@ namespace KafedraApp.Models
 
 		public Group Group { get; set; }
 
-		public double Subgroup { get; set; }
+		public int Subgroup { get; set; }
 
-		public double Semester { get; set; }
+		public int Semester { get; set; }
 
 		private Teacher _teacher;
 		[JsonIgnore]

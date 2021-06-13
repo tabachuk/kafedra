@@ -72,7 +72,7 @@ namespace KafedraApp.Validators
 			}
 			else
 			{
-				loadItem.Subgroup = double.Parse(loadItemDto.Subgroup);
+				loadItem.Subgroup = int.Parse(loadItemDto.Subgroup);
 			}
 
 			if (!string.IsNullOrWhiteSpace(loadItemDto.Teacher)

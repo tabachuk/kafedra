@@ -4,6 +4,7 @@ using KafedraApp.Models;
 using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
@@ -12,7 +13,7 @@ using System.Text.RegularExpressions;
 
 namespace KafedraApp.Helpers
 {
-	public static class ExcelHelper
+	public static class ExcelReader
 	{
 		#region Fields
 
@@ -50,7 +51,7 @@ namespace KafedraApp.Helpers
 
 		#region Public Methods
 
-		public static List<Subject> GetSubjects(string[] filePaths)
+		public static List<Subject> ReadSubjects(string[] filePaths)
 		{
 			var subjects = new List<Subject>();
 			var args = new ExcelLoadProgressChangedEventArgs
@@ -67,7 +68,9 @@ namespace KafedraApp.Helpers
 				if (_app == null)
 					_app = new Application();
 
-				var workBook = _app.Workbooks.Open(filePath, 0, true, 5, "", "", false, XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+				var workBook = _app.Workbooks.Open(filePath, 0, true, 5, "", "", false,
+					XlPlatform.xlWindows, "", true, false, 0, true, false, false);
+
 				var workSheet = (Worksheet)workBook.Sheets[1];
 
 				_titles = GetTitles(workSheet);
@@ -76,7 +79,7 @@ namespace KafedraApp.Helpers
 				string leftTopCell = $"{ DataStartColumn }{ DataStartRow }";
 
 				string rightBottomCell =
-					$"{ IncCol(DataStartColumn, _titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
+					$"{ IncrementCol(DataStartColumn, _titles.Count - 1) }{ DataStartRow + rowsCount - 1 }";
 
 				_data = GetData(workSheet, leftTopCell, rightBottomCell);
 
@@ -111,49 +114,48 @@ namespace KafedraApp.Helpers
 
 		private static T GetItem<T>(int row)
 		{
-			var t = typeof(T);
-			var props = t.GetProperties();
+			var type = typeof(T);
+			var props = type.GetProperties();
 			var item = Activator.CreateInstance<T>();
 
 			foreach (var prop in props)
 			{
-				var columnAttr = prop.GetCustomAttribute<ExcelColumnAttribute>();
-
-				if (columnAttr != null)
+				try
 				{
-					var column = _titles.FindIndex(x => Simplify(columnAttr.Column) == Simplify(x));
+					var columnAttr = prop.GetCustomAttribute<ExcelColumnAttribute>();
 
-					if (column > -1)
+					if (columnAttr != null)
 					{
-						var value = _data[row + 1, column + 1];
+						var column = _titles.FindIndex(x => Simplify(columnAttr.Column) == Simplify(x));
 
-						if (value != null
-							&& (prop.Name == nameof(Subject.Semester)
-							|| prop.Name == nameof(Subject.ExamSemester)
-							|| prop.Name == nameof(Subject.TestSemester)))
+						if (column > -1)
 						{
-							value = 2 - (double)value % 2;
-						}
+							var value = _data[row + 1, column + 1];
 
-						prop.SetValue(item, value);
+							if (value == null)
+								continue;
+
+							var convertedValue = Convert.ChangeType(value, prop.PropertyType);
+							prop.SetValue(item, convertedValue);
+						}
 					}
+				}
+				catch (Exception ex)
+				{
+					Debug.WriteLine($"Failed to set property: {ex.Message}");
 				}
 			}
 
 			return item;
 		}
 
-		private static string Simplify(string str)
-		{
-			var res = Regex.Replace(str.ToLower(), @"\s+", "");
-			return res;
-		}
+		private static string Simplify(string str) => Regex.Replace(str.ToLower(), @"\s+", "");
 
 		private static List<string> GetTitles(Worksheet workSheet)
 		{
 			var titles = new List<string>();
 
-			for (string i = DataStartColumn; ; i = IncCol(i))
+			for (string i = DataStartColumn; ; i = IncrementCol(i))
 			{
 				var value = workSheet.GetValue(i, HeaderRow);
 
@@ -185,7 +187,7 @@ namespace KafedraApp.Helpers
 			return data;
 		}
 
-		private static string IncCol(string col, int steps = 1)
+		private static string IncrementCol(string col, int steps = 1)
 		{
 			if (col.Any(x => !char.IsUpper(x)))
 				throw new ArgumentException();
@@ -203,9 +205,13 @@ namespace KafedraApp.Helpers
 				}
 
 				if (i == -1)
+				{
 					chars.Insert(0, 'A');
+				}
 				else
+				{
 					chars[i]++;
+				}
 			}
 
 			return chars.ToString();

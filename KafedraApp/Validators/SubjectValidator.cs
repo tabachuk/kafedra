@@ -60,7 +60,7 @@ namespace KafedraApp.Validators
 				return null;
 			}
 
-			if (!double.TryParse(
+			if (!int.TryParse(
 				subjectDto.LectureHoursStr,
 				NumberStyles.Any,
 				CultureInfo.InvariantCulture,
@@ -82,7 +82,7 @@ namespace KafedraApp.Validators
 				return null;
 			}
 
-			if (!double.TryParse(
+			if (!int.TryParse(
 				subjectDto.PracticalWorkHoursStr,
 				NumberStyles.Any,
 				CultureInfo.InvariantCulture,
@@ -104,7 +104,7 @@ namespace KafedraApp.Validators
 				return null;
 			}
 
-			if (!double.TryParse(
+			if (!int.TryParse(
 				subjectDto.LaboratoryWorkHoursStr,
 				NumberStyles.Any,
 				CultureInfo.InvariantCulture,

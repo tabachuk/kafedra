@@ -128,6 +128,7 @@ namespace KafedraApp.ViewModels
 			if (_dataService.SubjectNames?.Any() != true)
 			{
 				await _dialogService.ShowError("Спочатку додайте предмети в базу даних");
+				IsBusy = false;
 				return;
 			}
 

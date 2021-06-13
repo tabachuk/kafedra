@@ -83,8 +83,8 @@ namespace KafedraApp.Popups
 
 			InitializeComponent();
 
-			ExcelHelper.LoadProgressChanged += OnSubjectsLoadProgressChanged;
-			ExcelHelper.LoadCompleted += OnSubjectsLoadCompleted;
+			ExcelReader.LoadProgressChanged += OnSubjectsLoadProgressChanged;
+			ExcelReader.LoadCompleted += OnSubjectsLoadCompleted;
 		}
 
 		#endregion
@@ -97,8 +97,8 @@ namespace KafedraApp.Popups
 				return;
 			IsBusy = true;
 
-			ExcelHelper.LoadProgressChanged -= OnSubjectsLoadProgressChanged;
-			ExcelHelper.LoadCompleted -= OnSubjectsLoadCompleted;
+			ExcelReader.LoadProgressChanged -= OnSubjectsLoadProgressChanged;
+			ExcelReader.LoadCompleted -= OnSubjectsLoadCompleted;
 
 			Dispatcher.Invoke(() =>
 			{

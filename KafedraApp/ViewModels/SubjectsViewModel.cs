@@ -218,7 +218,7 @@ namespace KafedraApp.ViewModels
 			Task.Run(async () =>
 			{
 				_isImporting = true;
-				var subjects = ExcelHelper.GetSubjects(dialog.FileNames);
+				var subjects = ExcelReader.ReadSubjects(dialog.FileNames);
 
 				foreach (var subject in subjects)
 				{

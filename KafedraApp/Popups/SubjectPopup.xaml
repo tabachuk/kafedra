@@ -210,16 +210,16 @@
                         SelectedItem="{Binding Course}"
                         Margin="5">
                         <ComboBox.Items>
-                            <System:Double>1</System:Double>
-                            <System:Double>2</System:Double>
-                            <System:Double>3</System:Double>
-                            <System:Double>4</System:Double>
-                            <System:Double>5</System:Double>
-                            <System:Double>6</System:Double>
-                            <System:Double>7</System:Double>
-                            <System:Double>8</System:Double>
-                            <System:Double>9</System:Double>
-                            <System:Double>10</System:Double>
+                            <System:Int32>1</System:Int32>
+                            <System:Int32>2</System:Int32>
+                            <System:Int32>3</System:Int32>
+                            <System:Int32>4</System:Int32>
+                            <System:Int32>5</System:Int32>
+                            <System:Int32>6</System:Int32>
+                            <System:Int32>7</System:Int32>
+                            <System:Int32>8</System:Int32>
+                            <System:Int32>9</System:Int32>
+                            <System:Int32>10</System:Int32>
                         </ComboBox.Items>
                     </ComboBox>
                     <Label
@@ -232,8 +232,8 @@
                         SelectedItem="{Binding Semester}"
                         Margin="5">
                         <ComboBox.Items>
-                            <System:Double>1</System:Double>
-                            <System:Double>2</System:Double>
+                            <System:Int32>1</System:Int32>
+                            <System:Int32>2</System:Int32>
                         </ComboBox.Items>
                     </ComboBox>
                     <Label

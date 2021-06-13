@@ -53,8 +53,8 @@ namespace KafedraApp.Dtos
 			set => SetProperty(ref _subgroup, value);
 		}
 
-		private double _semester = 1;
-		public double Semester
+		private int _semester = 1;
+		public int Semester
 		{
 			get => _semester;
 			set => SetProperty(ref _semester, value);

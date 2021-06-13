@@ -251,8 +251,8 @@
                         SelectedItem="{Binding Semester}"
                         Margin="5">
                         <ComboBox.Items>
-                            <System:Double>1</System:Double>
-                            <System:Double>2</System:Double>
+                            <System:Int32>1</System:Int32>
+                            <System:Int32>2</System:Int32>
                         </ComboBox.Items>
                     </ComboBox>
                     <Label

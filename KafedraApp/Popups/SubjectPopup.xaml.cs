@@ -76,7 +76,8 @@ namespace KafedraApp.Popups
 
 			if (subject == null)
 			{
-				SubjectDto.Course = SubjectDto.Semester = 1;
+				SubjectDto.Course = 1;
+				SubjectDto.Semester = 1;
 			}
 
 			SetResultCommand = new DelegateCommand<SubjectDto>(SetResult);

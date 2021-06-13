@@ -10,7 +10,7 @@ namespace KafedraApp.Models
 
 		public string Specialty { get; set; }
 
-		public double Course { get; set; }
+		public int Course { get; set; }
 
 		public int SubgroupsCount { get; set; }
 
