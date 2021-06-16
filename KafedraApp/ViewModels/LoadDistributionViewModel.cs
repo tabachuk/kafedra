@@ -179,19 +179,29 @@ namespace KafedraApp.ViewModels
 		{
 			if (loadItem.Teacher != null)
 			{
-				CurrentTeacher.LoadItems.Remove(loadItem);
-				loadItem.Teacher = null;
-				UndistributedLoadItems.Add(loadItem);
+				RemoveLoadItemFromTeacher(loadItem);
 			}
 			else
 			{
-				if (CurrentTeacher.LoadItems == null)
-					CurrentTeacher.LoadItems = new ObservableCollection<LoadItem>();
-
-				loadItem.Teacher = CurrentTeacher;
-				CurrentTeacher.LoadItems.Add(loadItem);
-				UndistributedLoadItems.Remove(loadItem);
+				MoveLoadItemToTeacher(loadItem, CurrentTeacher);
 			}
+		}
+
+		private void MoveLoadItemToTeacher(LoadItem loadItem, Teacher teacher)
+		{
+			if (teacher.LoadItems == null)
+				teacher.LoadItems = new ObservableCollection<LoadItem>();
+
+			loadItem.Teacher = teacher;
+			teacher.LoadItems.Add(loadItem);
+			UndistributedLoadItems.Remove(loadItem);
+		}
+
+		private void RemoveLoadItemFromTeacher(LoadItem loadItem)
+		{
+			loadItem.Teacher.LoadItems.Remove(loadItem);
+			loadItem.Teacher = null;
+			UndistributedLoadItems.Add(loadItem);
 		}
 
 		private void InitNotDistributedLoadToShow()
@@ -238,9 +248,7 @@ namespace KafedraApp.ViewModels
 						switch (loadItems[i].Type)
 						{
 							case LoadItemType.Lectures:
-								loadItem.Teacher = teacher;
-								teacher.LoadItems.Add(loadItem);
-								UndistributedLoadItems.Remove(loadItem);
+								MoveLoadItemToTeacher(loadItem, teacher);
 
 								relatedLoadItems = loadItems.Where(x =>
 									x.Subject == loadItem.Subject
@@ -251,16 +259,13 @@ namespace KafedraApp.ViewModels
 								{
 									if (UndistributedLoadItems.Contains(relatedLoadItem))
 									{
-										UndistributedLoadItems.Remove(relatedLoadItem);
-										teacher.LoadItems.Add(relatedLoadItem);
+										MoveLoadItemToTeacher(relatedLoadItem, teacher);
 									}
 								}
 								break;
 							case LoadItemType.LaboratoryWorks:
 							case LoadItemType.PracticalWorks:
-								loadItem.Teacher = teacher;
-								teacher.LoadItems.Add(loadItem);
-								UndistributedLoadItems.Remove(loadItem);
+								MoveLoadItemToTeacher(loadItem, teacher);
 
 								relatedLoadItems = loadItems.Where(x =>
 									x.Subject == loadItem.Subject
@@ -271,9 +276,7 @@ namespace KafedraApp.ViewModels
 								{
 									if (UndistributedLoadItems.Contains(relatedLoadItem))
 									{
-										UndistributedLoadItems.Remove(relatedLoadItem);
-										loadItem.Teacher = teacher;
-										teacher.LoadItems.Add(relatedLoadItem);
+										MoveLoadItemToTeacher(relatedLoadItem, teacher);
 									}
 								}
 								break;
