@@ -105,10 +105,8 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="90"/>
             <ColumnDefinition>
@@ -134,30 +132,22 @@
             Fill="{DynamicResource FadeForegroundColor}"/>
         <Label
             Grid.Column="0"
-            Content="Прізвище"
+            Content="ПІБ"
             Style="{StaticResource HeaderStyle}"/>
         <Label
             Grid.Column="1"
-            Content="Ім'я"
-            Style="{StaticResource HeaderStyle}"/>
-        <Label
-            Grid.Column="2"
-            Content="По батькові"
-            Style="{StaticResource HeaderStyle}"/>
-        <Label
-            Grid.Column="3"
             Content="Учений ступінь"
             Style="{StaticResource HeaderStyle}"/>
         <Label
-            Grid.Column="4"
+            Grid.Column="2"
             Content="Ставка"
             Style="{StaticResource HeaderStyle}"/>
         <Label
-            Grid.Column="5"
+            Grid.Column="3"
             Content="Предмети"
             Style="{StaticResource HeaderStyle}"/>
         <Label
-            Grid.Column="6"
+            Grid.Column="4"
             Content="Дії"
             Style="{StaticResource HeaderStyle}"/>
         <ScrollViewer
@@ -179,31 +169,21 @@
                             Background="{DynamicResource BackgroundColor}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="90"/>
+                                <ColumnDefinition Width="250"/>
+                                <ColumnDefinition Width="100"/>
                                 <ColumnDefinition Width="150"/>
                                 <ColumnDefinition Width="90"/>
                             </Grid.ColumnDefinitions>
                             <Label
-                                Content="{Binding LastName}"
+                                Content="{Binding FullName}"
                                 Style="{StaticResource DataStyle}"/>
                             <Label
                                 Grid.Column="1"
-                                Content="{Binding FirstName}"
-                                Style="{StaticResource DataStyle}"/>
-                            <Label
-                                Grid.Column="2"
-                                Content="{Binding MiddleName}"
-                                Style="{StaticResource DataStyle}"/>
-                            <Label
-                                Grid.Column="3"
                                 Content="{Binding AcademicStatus}"
                                 Style="{StaticResource DataStyle}"
                                 FontStyle="Italic"/>
                             <StackPanel
-                                Grid.Column="4"
+                                Grid.Column="2"
                                 VerticalAlignment="Center"
                                 Orientation="Vertical">
                                 <Label
@@ -224,7 +204,7 @@
                                     ContentStringFormat="{}{0:f0} год"/>
                             </StackPanel>
                             <Button
-                                Grid.Column="5"
+                                Grid.Column="3"
                                 Content="{Binding SubjectsSpecializesInCount,
                                                   TargetNullValue=0,
                                                   FallbackValue=0}"
@@ -234,7 +214,7 @@
                                                   ElementName=ThisTeachersView}"
                                 CommandParameter="{Binding }"/>
                             <StackPanel
-                                Grid.Column="6"
+                                Grid.Column="4"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
