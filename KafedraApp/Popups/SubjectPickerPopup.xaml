@@ -67,6 +67,58 @@
                 EasingFunction="{StaticResource PopAnimationEase}"/>
         </Storyboard>
 
+        <DataTemplate x:Key="SubjectView">
+            <Grid Margin="10,3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle
+                    Grid.ColumnSpan="2"
+                    Fill="{DynamicResource BackgroundColor}"
+                    Opacity="0.6"/>
+                <TextBox
+                    Text="{Binding Name, Mode=OneWay}"
+                    IsHitTestVisible="False"
+                    HorizontalAlignment="Center"
+                    HorizontalContentAlignment="Center"
+                    IsReadOnly="True"
+                    Margin="10,5"
+                    TextWrapping="Wrap"
+                    Background="Transparent"
+                    Foreground="{DynamicResource FadeForegroundColor}"/>
+                <Button
+                    Grid.Column="1"
+                    FontFamily="{StaticResource FontAwesome}"
+                    FontSize="21"
+                    Foreground="{DynamicResource FadeForegroundColor}"
+                    VerticalAlignment="Center"
+                    Margin="10,0"
+                    CommandParameter="{Binding }">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource SmallButtonStyle}">
+                            <Setter Property="Content" Value="&#xf058;"/>
+                            <Setter
+                                Property="Command"
+                                Value="{Binding MoveSubjectToRightColumnCommand,
+                                                ElementName=ThisSubjectPickerPopup}"/>
+                            <Style.Triggers>
+                                <DataTrigger
+                                    Binding="{Binding IsAssignedToTeacher}"
+                                    Value="True">
+                                    <Setter Property="Content" Value="&#xf057;"/>
+                                    <Setter
+                                        Property="Command"
+                                        Value="{Binding MoveSubjectToLeftColumnCommand,
+                                                        ElementName=ThisSubjectPickerPopup}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </Grid>
+        </DataTemplate>
+        
     </Grid.Resources>
 
     <Grid
@@ -77,12 +129,11 @@
             Name="BackgroundRectangle"
             Fill="#90000000"
             HorizontalAlignment="Stretch"
-            VerticalAlignment="Stretch">
-        </Rectangle>
+            VerticalAlignment="Stretch"/>
 
         <Grid
             Name="SubjectPickerBox"
-            Width="800"
+            Width="900"
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
             Background="{DynamicResource BackgroundColor}"
@@ -99,7 +150,6 @@
             </Grid.RenderTransform>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -124,114 +174,84 @@
                 Margin="0,10,0,0"
                 HorizontalAlignment="Center"/>
 
-            <Label
-                Grid.Row="1"
-                Content="Натисніть на предмет для присвоєння викладачеві"
-                Foreground="{DynamicResource ForegroundColor}"
-                FontSize="20"
-                Margin="0,0,0,10"
-                Opacity="0.8"
-                HorizontalAlignment="Center"/>
-
             <Grid
-                Grid.Row="2"
-                Height="300"
-                Background="{DynamicResource DarkBackgroundColor}">
+                Grid.Row="1"
+                Height="400">
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition Width="5"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
+                <Label
+                    Content="Всі предмети"
+                    Foreground="{DynamicResource ForegroundColor}"
+                    FontSize="18"
+                    Opacity="0.6"
+                    Margin="0,0,0,5"
+                    HorizontalAlignment="Center"/>
+
+                <Label
+                    Grid.Column="2"
+                    Content="Предмети викладача"
+                    Foreground="{DynamicResource ForegroundColor}"
+                    FontSize="18"
+                    Opacity="0.6"
+                    Margin="0,0,0,5"
+                    HorizontalAlignment="Center"/>
+
+                <Rectangle
+                    Grid.Row="1"
+                    Grid.ColumnSpan="3"
+                    Fill="{DynamicResource DarkBackgroundColor}"/>
+
                 <ScrollViewer
+                    Grid.Row="1"
                     Grid.Column="0"
                     VerticalScrollBarVisibility="Auto">
                     <ItemsControl
                         Margin="5"
+                        ItemTemplate="{StaticResource SubjectView}"
                         ItemsSource="{Binding NotTeacherSubjects}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="10,3">
-                                    <Rectangle
-                                        Fill="{DynamicResource BackgroundColor}"
-                                        Opacity="0.6"/>
-                                    <TextBox
-                                        Text="{Binding Mode=OneWay}"
-                                        IsHitTestVisible="False"
-                                        HorizontalAlignment="Center"
-                                        HorizontalContentAlignment="Center"
-                                        IsReadOnly="True"
-                                        Margin="10,5"
-                                        TextWrapping="Wrap"
-                                        Background="Transparent"
-                                        Foreground="{DynamicResource FadeForegroundColor}"/>
-                                    <Grid.InputBindings>
-                                        <MouseBinding
-                                            Gesture="LeftClick"
-                                            Command="{Binding MoveSubjectToRightColumnCommand,
-                                                              ElementName=ThisSubjectPickerPopup}"
-                                            CommandParameter="{Binding}"/>
-                                    </Grid.InputBindings>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
 
                 <Rectangle
+                    Grid.Row="1"
                     Grid.Column="1"
                     Fill="{DynamicResource BackgroundColor}"
                     Opacity="0.5"/>
 
                 <ScrollViewer
+                    Grid.Row="1"
                     Grid.Column="2"
                     VerticalScrollBarVisibility="Auto">
                     <ItemsControl
                         Margin="5"
+                        ItemTemplate="{StaticResource SubjectView}"
                         ItemsSource="{Binding TeacherSubjects}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Vertical"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Margin="10,3">
-                                    <Rectangle
-                                        Fill="{DynamicResource BackgroundColor}"
-                                        Opacity="0.6"/>
-                                    <TextBox
-                                        Text="{Binding Mode=OneWay}"
-                                        IsHitTestVisible="False"
-                                        HorizontalAlignment="Center"
-                                        HorizontalContentAlignment="Center"
-                                        IsReadOnly="True"
-                                        Margin="10,5"
-                                        TextWrapping="Wrap"
-                                        Background="Transparent"
-                                        Foreground="{DynamicResource FadeForegroundColor}"/>
-                                    <Grid.InputBindings>
-                                        <MouseBinding
-                                            Gesture="LeftClick"
-                                            Command="{Binding MoveSubjectToLeftColumnCommand,
-                                                              ElementName=ThisSubjectPickerPopup}"
-                                            CommandParameter="{Binding}"/>
-                                    </Grid.InputBindings>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
             </Grid>
 
             <StackPanel
-                Grid.Row="3"
+                Grid.Row="2"
                 Orientation="Horizontal"
                 HorizontalAlignment="Center"
                 Margin="0,10,0,0">

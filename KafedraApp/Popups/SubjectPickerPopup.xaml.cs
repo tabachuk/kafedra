@@ -2,6 +2,7 @@
 using KafedraApp.Extensions;
 using KafedraApp.Helpers;
 using KafedraApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -26,9 +27,9 @@ namespace KafedraApp.Popups
 
 		public string TeacherName { get; }
 
-		public ObservableCollection<string> NotTeacherSubjects { get; set; }
+		public ObservableCollection<SubjectViewDto> NotTeacherSubjects { get; set; }
 
-		public ObservableCollection<string> TeacherSubjects { get; set; }
+		public ObservableCollection<SubjectViewDto> TeacherSubjects { get; set; }
 
 		public Task<List<string>> Result => _tcs.Task;
 
@@ -54,8 +55,8 @@ namespace KafedraApp.Popups
 			InitSubjects(subjects);
 
 			SetResultCommand = new DelegateCommand<bool>(SetResult);
-			MoveSubjectToLeftColumnCommand = new DelegateCommand<string>(MoveSubjectToLeftColumn);
-			MoveSubjectToRightColumnCommand = new DelegateCommand<string>(MoveSubjectToRightColumn);
+			MoveSubjectToLeftColumnCommand = new DelegateCommand<SubjectViewDto>(MoveSubjectToLeftColumn);
+			MoveSubjectToRightColumnCommand = new DelegateCommand<SubjectViewDto>(MoveSubjectToRightColumn);
 
 			InitializeComponent();
 		}
@@ -69,33 +70,34 @@ namespace KafedraApp.Popups
 			if (subjects?.Any() == true)
 			{
 				subjects.Sort();
-				TeacherSubjects = new ObservableCollection<string>(subjects);
+				TeacherSubjects = new ObservableCollection<SubjectViewDto>(
+					subjects.Select(x => new SubjectViewDto(x, true)));
 
 				if (_dataService.SubjectNames?.Any() == true)
 				{
 					var notTeacherSubjects = _dataService.SubjectNames
-						.Except(TeacherSubjects);
+						.Except(subjects);
 
-					NotTeacherSubjects =
-						new ObservableCollection<string>(notTeacherSubjects);
+					NotTeacherSubjects = new ObservableCollection<SubjectViewDto>(
+						notTeacherSubjects.Select(x => new SubjectViewDto(x)));
 				}
 				else
 				{
-					NotTeacherSubjects = new ObservableCollection<string>();
+					NotTeacherSubjects = new ObservableCollection<SubjectViewDto>();
 				}
 			}
 			else
 			{
-				TeacherSubjects = new ObservableCollection<string>();
+				TeacherSubjects = new ObservableCollection<SubjectViewDto>();
 
 				if (_dataService.SubjectNames?.Any() == true)
 				{
-					NotTeacherSubjects =
-						new ObservableCollection<string>(_dataService.SubjectNames);
+					NotTeacherSubjects = new ObservableCollection<SubjectViewDto>(
+						_dataService.SubjectNames.Select(x => new SubjectViewDto(x)));
 				}
 				else
 				{
-					NotTeacherSubjects = new ObservableCollection<string>();
+					NotTeacherSubjects = new ObservableCollection<SubjectViewDto>();
 				}
 			}
 		}
@@ -118,27 +120,48 @@ namespace KafedraApp.Popups
 
 			anim.Completed += (o, e) =>
 			{
-				_tcs.SetResult(result ? TeacherSubjects.ToList() : null);
+				_tcs.SetResult(result ? TeacherSubjects.Select(x => x.Name).ToList() : null);
 				IsBusy = false;
 			};
 
 			BeginStoryboard(anim);
 		}
 
-		private void MoveSubjectToLeftColumn(string subject)
+		private void MoveSubjectToLeftColumn(SubjectViewDto subject)
 		{
+			subject.IsAssignedToTeacher = false;
 			TeacherSubjects.Remove(subject);
 			var orderIndex = NotTeacherSubjects.GetOrderIndex(subject);
 			NotTeacherSubjects.Insert(orderIndex, subject);
 		}
 
-		private void MoveSubjectToRightColumn(string subject)
+		private void MoveSubjectToRightColumn(SubjectViewDto subject)
 		{
+			subject.IsAssignedToTeacher = true;
 			NotTeacherSubjects.Remove(subject);
 			var orderIndex = TeacherSubjects.GetOrderIndex(subject);
 			TeacherSubjects.Insert(orderIndex, subject);
 		}
 
 		#endregion
+	}
+
+	public class SubjectViewDto : IComparable
+	{
+		public string Name { get; set; }
+
+		public bool IsAssignedToTeacher { get; set; }
+
+		public SubjectViewDto(string name, bool isAssignedToTeacher = false)
+		{
+			Name = name;
+			IsAssignedToTeacher = isAssignedToTeacher;
+		}
+
+		public int CompareTo(object obj)
+		{
+			var subject = obj as SubjectViewDto;
+			return Name.CompareTo(subject.Name);
+		}
 	}
 }
